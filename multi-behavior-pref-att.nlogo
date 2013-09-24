@@ -491,7 +491,7 @@ rand-seed-threshold
 rand-seed-threshold
 0
 10000
-4937
+5033
 1
 1
 NIL
@@ -509,9 +509,9 @@ seed-distribution
 
 INPUTBOX
 237
-401
+473
 452
-461
+533
 final-ratio
 [1 1]
 1
@@ -520,9 +520,9 @@ String
 
 SLIDER
 236
-484
+556
 453
-517
+589
 num-sim-for-spread-based-seed-selection
 num-sim-for-spread-based-seed-selection
 1
@@ -535,9 +535,9 @@ HORIZONTAL
 
 SLIDER
 237
-535
+607
 455
-568
+640
 max-step
 max-step
 0
@@ -582,9 +582,9 @@ NIL
 
 MONITOR
 286
-606
+678
 387
-651
+723
 NIL
 total-part-mean
 2
@@ -593,9 +593,9 @@ total-part-mean
 
 MONITOR
 287
-665
+737
 370
-710
+782
 NIL
 total-part-sd
 2
@@ -624,8 +624,8 @@ INPUTBOX
 173
 1746
 233
-behavior-durations
-[1 3 1]
+behavior-durations-mean
+[10 20 30]
 1
 0
 String
@@ -637,7 +637,7 @@ SWITCH
 789
 global-influence
 global-influence
-1
+0
 1
 -1000
 
@@ -695,12 +695,12 @@ Select Duration Model
 1
 
 INPUTBOX
-1520
-263
-1749
-323
+1524
+388
+1753
+448
 behavior-recovered-duration
-[3 1 1]
+[1 1 1]
 1
 0
 String
@@ -724,6 +724,28 @@ duration-model
 duration-model
 "SIR" "SIRS" "sticky-behavior" "none"
 1
+
+MONITOR
+285
+409
+417
+454
+NIL
+max-utilization
+17
+1
+11
+
+INPUTBOX
+1521
+258
+1749
+318
+behavior-durations-sd
+[0.2 0.1 0.5]
+1
+0
+String
 
 @#$#@#$#@
 ## WHAT IS IT?

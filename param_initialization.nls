@@ -98,10 +98,17 @@ end
 
 ;; set individual duration for each agent
 to set-durations
-  let durationlist read-from-string behavior-durations
-  ifelse is-list? durationlist [
+  let durationmeanlist read-from-string behavior-durations-mean
+  let durationsdlist read-from-string behavior-durations-sd
+  let normal-variable [0 0 0]
+  
+  foreach durationmeanlist [
+    set normal-variable random-normal ? 0.5
+  ]
+  
+  ifelse is-list? durationmeanlist and is-list? durationsdlist[
    ask turtles [
-        set durations array:from-list durationlist
+        set durations array:from-list normal-variable ;;n-values num-behaviors[random-normal durationmeanlist durationsdlist]
                ]
   ][
     user-message "Input behaivor durations as a list i.e. within []"
