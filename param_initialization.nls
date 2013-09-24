@@ -100,21 +100,16 @@ end
 to set-durations
   let durationmeanlist read-from-string behavior-durations-mean
   let durationsdlist read-from-string behavior-durations-sd
-  let normal-variable [0 0 0]
+  let durationlist n-values num-behaviors [0]
+  let normal-variable n-values num-behaviors [0]
   
-  foreach durationmeanlist [
-    set normal-variable random-normal ? 0.5
+  (foreach durationmeanlist durationsdlist behav-id-list [
+    set normal-variable random-normal ?1 ?2
+    set durationlist replace-item ?3  durationlist round normal-variable ])
+  ask turtles [
+    set durations array:from-list durationlist
   ]
   
-  ifelse is-list? durationmeanlist and is-list? durationsdlist[
-   ask turtles [
-        set durations array:from-list normal-variable ;;n-values num-behaviors[random-normal durationmeanlist durationsdlist]
-               ]
-  ][
-    user-message "Input behaivor durations as a list i.e. within []"
-    stop
-      ]
-   
 end
 
 ;; set individual incubationduration for each behavior

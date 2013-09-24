@@ -625,7 +625,7 @@ INPUTBOX
 1746
 233
 behavior-durations-mean
-[10 20 30]
+[1 2 3]
 1
 0
 String
@@ -723,7 +723,7 @@ CHOOSER
 duration-model
 duration-model
 "SIR" "SIRS" "sticky-behavior" "none"
-1
+3
 
 MONITOR
 285
@@ -742,7 +742,7 @@ INPUTBOX
 1749
 318
 behavior-durations-sd
-[0.2 0.1 0.5]
+[1 1 1]
 1
 0
 String
