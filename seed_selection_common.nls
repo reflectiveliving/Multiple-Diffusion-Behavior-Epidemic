@@ -1,0 +1,43 @@
+;; common seed selection procedures
+
+to-report more-seeds-required? [seeds-required]
+  foreach behav-id-list [
+    if array:item seeds-required ? > 0 [
+      report true
+    ]
+  ]
+  report false
+end   
+           
+        
+;; turtle procedure to report total used resouces by the already
+;; adopted behaviors        
+to-report used-resource
+  let used 0
+  foreach behav-id-list [
+    if array:item actives? ? [
+      set used used + array:item costs ?
+    ]
+  ]
+  report used
+end
+
+to-report continue-seed-selection? [seeds-required]
+  foreach behav-id-list [
+    if (array:item seeds-required ?) - (count turtles with [array:item actives? ?]) > 0 [
+      report true
+    ]
+  ]
+  report false
+end
+
+;; this will set the remaining-duration for nodes
+
+to initialize-remaining-duration [winner]
+      array:set remaining-duration winner (array:item durations winner) ;; this will set the remaining-duration of the choosen behavior
+end
+
+
+to initialize-remaining-incubation-duration [agent]
+      array:set remaining-incubation-duration agent (array:item incubation-durations agent) ;; this will set the remaining-duration of the choosen behavior
+end

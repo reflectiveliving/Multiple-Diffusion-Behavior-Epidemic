@@ -1,0 +1,137 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;Random Seed Selection;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; selects seeds uniformly at random from the set of all agents
+;; increase resource if necessary (unlimited resource of seed nodes), seeds selected in batches
+to randomly-unlimited-seed-resource-batched
+  foreach behav-id-list [
+    let seeds n-of array:item num-seeds-per-behavior ? turtles
+    ask seeds [
+      let used used-resource
+      if used + array:item costs ? > resource [
+        set resource (used + array:item costs ?)
+      ]
+      ; set resource 1.0
+      array:set actives? ? true
+      set-color
+    ]
+  ]
+end
+
+;; same as the previous one but seeds selected one at a time
+to randomly-unlimited-seed-resource-incremental
+;  repeat number-of-seeds-per-behavior [
+;     foreach behav-id-list [
+;       ask one-of turtles with [array:item actives? ? = false] [force-adopt ?]
+;     ]
+;  ]
+end
+
+;; turtle procedure
+to force-adopt [behav-id] 
+  let used used-resource
+  if used + array:item costs behav-id > resource [
+    set resource (used + array:item costs behav-id)
+  ]
+  array:set actives? behav-id true
+  set-color
+end
+
+;; seeds randomly selected from the nodes with available resource
+;; ordering of the given behaviors matter
+to randomly-with-available-resource-batched
+  foreach behav-id-list [
+    let pop turtles with [(resource - used-resource) >= array:item costs ?]
+    let seeds nobody 
+    ifelse array:item num-seeds-per-behavior ? > count pop [
+      set seeds pop
+    ]
+    [
+      set seeds n-of array:item num-seeds-per-behavior ? pop
+    ]
+      
+    ask seeds [
+      array:set actives? ? true
+      set-color
+    ]
+  ]
+end
+
+to randomly-with-available-resource-incremental
+;  repeat number-of-seeds-per-behavior [
+;     foreach behav-id-list [
+;       let seed one-of turtles with [((resource - used-resource) >= array:item costs ?) and (array:item actives? ? = false)]
+;       if seed != nobody [
+;         ask seed [
+;           array:set actives? ? true
+;           set-color
+;         ]
+;       ]
+;     ]
+;  ]
+end
+  
+to randomly-with-knapsack-assignment
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pop turtles
+  while [more-seeds-required? seeds-required] [
+    let candidate-seed one-of pop
+    ifelse candidate-seed = nobody [
+      stop
+    ]
+    [ 
+      ask candidate-seed [
+        set pop other pop  
+        
+        foreach behav-id-list [
+          if array:item seeds-required ? > 0 [
+            array:set consider? ? true
+            array:set payoffs ? (array:item utilities ?)
+          ]
+        ]
+        
+        let opt knapsack-decide
+        
+        foreach behav-id-list [
+          array:set consider? ? false
+          array:set payoffs ? 0
+        ]
+        
+        foreach opt [
+          array:set actives? ? true
+          array:set seeds-required ? (array:item seeds-required ? - 1)
+        ]
+        
+        if not empty? opt [
+          set-color
+        ]
+      ]
+    ]
+  ]
+end 
+
+to randomly-with-random-tie-breaking
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pop turtles
+  
+  while [more-seeds-required? seeds-required] [
+    let seedsets map [n-of (array:item seeds-required ?) pop] (behav-id-list)
+    
+    let seeds reduce [(turtle-set ?1 ?2)] seedsets
+    
+    set pop pop with [not member? self seeds]
+    
+    ask seeds [
+      let candidates filter [member? self (item ? seedsets)] (behav-id-list)
+      let winner item (random length candidates) candidates
+      array:set actives? winner true
+      array:set seeds-required winner ((array:item seeds-required winner) - 1)
+      ;; with resource nudging
+      if array:item costs winner > resource [
+        set resource array:item costs winner
+      ]
+      set-color
+    ] 
+  ]
+end

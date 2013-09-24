@@ -1,0 +1,172 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;Degree Centrality Based;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to naive-degree-ranked-with-knapsack-assignment
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pop turtles
+  while [more-seeds-required? seeds-required] [
+    let candidate-seed max-one-of pop [count link-neighbors]
+    ifelse candidate-seed = nobody [
+      stop
+    ]
+    [ 
+      ask candidate-seed [
+        set pop other pop  
+        
+        foreach behav-id-list [
+          if array:item seeds-required ? > 0 [
+            array:set consider? ? true
+            array:set payoffs ? (array:item utilities ?)
+          ]
+        ]
+        
+        let opt knapsack-decide
+        
+        foreach behav-id-list [
+          array:set consider? ? false
+          array:set payoffs ? 0
+        ]
+        
+        foreach opt [
+          array:set actives? ? true
+          array:set seeds-required ? (array:item seeds-required ? - 1)
+        ]
+        
+        if not empty? opt [
+          set-color
+        ]
+      ]
+    ]
+  ]
+end
+
+to naive-degree-ranked-with-random-tie-breaking-no-nudging
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pop turtles
+  while [more-seeds-required? seeds-required] [
+    let candidate-seed max-one-of pop [count link-neighbors]
+    ifelse candidate-seed = nobody [
+      stop
+    ]
+    [
+      ask candidate-seed [
+        set pop other pop
+        let candidate-behavs filter [array:item seeds-required ? != 0] behav-id-list 
+        let winner item (random length candidate-behavs) candidate-behavs
+        if array:item costs winner <= resource [
+          array:set actives? winner true
+          array:set seeds-required winner ((array:item seeds-required winner) - 1)
+          set-color
+        ]
+      ]
+    ]
+  ]
+end
+
+to naive-degree-ranked-with-random-tie-breaking-with-nudging
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pop turtles
+  while [more-seeds-required? seeds-required] [
+    let candidate-seed max-one-of pop [count link-neighbors]
+    ifelse candidate-seed = nobody [
+      stop
+    ]
+    [
+      ask candidate-seed [
+        set pop other pop
+        let candidate-behavs filter [array:item seeds-required ? != 0] behav-id-list 
+        let winner item (random length candidate-behavs) candidate-behavs
+        array:set actives? winner true
+        array:set seeds-required winner ((array:item seeds-required winner) - 1)
+        ;; with resource nudging
+        if array:item costs winner > resource [
+          set resource array:item costs winner
+        ]
+        set-color
+      ]
+    ]
+  ]
+end
+      
+
+to degree-and-resource-ranked-with-knapsack-tie-breaking
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pops array:from-list n-values num-behaviors [turtles]
+  while [continue-seed-selection? seeds-required] [
+    let seedsets []
+    foreach behav-id-list [
+      let num-required-seeds ((array:item seeds-required ?) - (count turtles with [array:item actives? ?]))
+      let seedset nobody
+      ifelse num-required-seeds > count array:item pops ? [
+        set seedset array:item pops ?
+        array:set seeds-required ? 0 ;; to set continue-seed-selection? false
+      ][
+      ifelse num-required-seeds >= 0 [
+        set seedset max-n-of num-required-seeds (array:item pops ?) [count link-neighbors with [resource >= (array:item costs ?)]]
+      ][
+      set seedset turtle-set nobody
+      ]]
+      set seedsets sentence seedsets seedset
+      array:set pops ? ((array:item pops ?) with [not member? self seedset])
+    ]
+    
+    let seeds turtle-set nobody
+    foreach seedsets [
+      set seeds (turtle-set seeds ?)
+    ]
+    
+    ask seeds [
+      foreach behav-id-list [
+        if (member? self (item ? seedsets)) or array:item actives? ? [
+          array:set consider? ? true
+          array:set payoffs ? (array:item utilities ?)
+        ]
+      ]
+      
+      let opt knapsack-decide
+
+      foreach behav-id-list [
+        array:set consider? ? false
+        array:set payoffs ? 0
+      ]
+      
+      foreach behav-id-list [
+        array:set actives? ? false
+      ]
+      
+      foreach opt [
+        array:set actives? ? true
+      ]
+      
+      if not empty? opt [
+        set-color
+      ]
+    ]      
+  ]
+end  
+
+to degree-and-resource-ranked-with-random-tie-breaking
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pop turtles
+  
+  while [more-seeds-required? seeds-required] [
+    let seedsets map [max-n-of (array:item seeds-required ?) pop [count link-neighbors with [resource >= array:item costs ?]]] (behav-id-list)
+    
+    let seeds reduce [(turtle-set ?1 ?2)] seedsets
+    
+    set pop pop with [not member? self seeds]
+    
+    ask seeds [
+      let candidates filter [member? self (item ? seedsets)] (behav-id-list)
+      let winner item (random length candidates) candidates
+      array:set actives? winner true
+      array:set seeds-required winner ((array:item seeds-required winner) - 1)
+      ;; with resource nudging
+      if array:item costs winner > resource [
+        set resource array:item costs winner
+      ]
+      set-color
+    ] 
+  ]
+end

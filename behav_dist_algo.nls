@@ -1,0 +1,63 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;Behavior Distribution;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+globals [
+  ;; vector for storing number of seeds per behavior
+  num-seeds-per-behavior 
+]
+
+to set-uniform-seed-distribution  
+  let seeds-per-behavior (round  (total-num-seeds / num-behaviors))
+  
+  set num-seeds-per-behavior array:from-list n-values num-behaviors [seeds-per-behavior]
+end
+
+to set-proportional-to-cost-seed-distribution
+  set num-seeds-per-behavior array:from-list all-zeros
+  
+  let sum-behav-costs sum array:to-list costs
+  
+  foreach behav-id-list [
+    array:set num-seeds-per-behavior ? (round ((array:item costs ?) / sum-behav-costs * total-num-seeds)) 
+  ]
+end
+
+to set-inversely-proportional-to-cost-seed-distribution
+  set num-seeds-per-behavior array:from-list all-zeros
+  
+  let sorted-behaviors sort-by sort-by-cost (behav-id-list)
+  
+  let sum-behav-costs sum array:to-list costs
+  
+  foreach behav-id-list [
+    array:set num-seeds-per-behavior (item ? sorted-behaviors) (round ((array:item costs (item (num-behaviors - 1 - ?) sorted-behaviors)) / sum-behav-costs * total-num-seeds))
+  ]
+end
+
+to set-highest-cost-behavior-only
+  set num-seeds-per-behavior array:from-list all-zeros
+  let sorted-behaviors sort-by sort-by-cost (behav-id-list)
+  
+  array:set num-seeds-per-behavior (first sorted-behaviors) total-num-seeds
+end
+
+to set-lowest-cost-behavior-only
+  set num-seeds-per-behavior array:from-list all-zeros
+  let sorted-behaviors sort-by sort-by-cost (behav-id-list)
+  
+  array:set num-seeds-per-behavior (last sorted-behaviors) total-num-seeds
+end  
+
+to-report sort-by-cost [first-behav-id second-behav-id]
+  report array:item costs first-behav-id > array:item costs second-behav-id
+end
+
+to set-in-ratio
+  set num-seeds-per-behavior array:from-list all-zeros
+  let ratio read-from-string final-ratio
+  let sum-ratio sum ratio
+  foreach behav-id-list [
+    array:set num-seeds-per-behavior ? (round ((item ? ratio) / sum-ratio * total-num-seeds))
+  ]
+end

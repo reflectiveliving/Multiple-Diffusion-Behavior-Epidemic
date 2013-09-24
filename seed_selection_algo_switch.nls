@@ -1,0 +1,101 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;Seed Selection Switch;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to select-seeds 
+  
+  ;; Determine the seed distribution i.e. number of seeds per behavior
+  ifelse seed-distribution = "uniform" [
+    set-uniform-seed-distribution
+  ][
+  ifelse seed-distribution ="proportional to cost" [
+    set-proportional-to-cost-seed-distribution
+  ][
+  ifelse seed-distribution = "inversely proportional to cost" [
+    set-inversely-proportional-to-cost-seed-distribution
+  ][
+  ifelse seed-distribution = "highest cost behavior only" [
+    set-highest-cost-behavior-only
+  ][
+  ifelse seed-distribution = "lowest cost behavior only" [
+    set-lowest-cost-behavior-only
+  ][
+  ifelse seed-distribution = "in ratio" [
+    set-in-ratio
+  ][
+  user-message "Specify the seed distribution"
+  ]]]]]]
+  
+  ;; select seeds
+  ifelse seed-selection-algorithm = "randomly-unlimited-seed-resource-batched" [
+    randomly-unlimited-seed-resource-batched
+  ][
+  ifelse seed-selection-algorithm = "randomly-unlimited-seed-resource-incremental" [
+    randomly-unlimited-seed-resource-incremental
+  ][
+  ifelse seed-selection-algorithm = "randomly-with-available-resource-batched" [
+    randomly-with-available-resource-batched
+  ][
+  ifelse seed-selection-algorithm = "randomly-with-available-resource-incremental" [
+    randomly-with-available-resource-incremental
+  ][
+  ifelse seed-selection-algorithm = "randomly-with-knapsack-assignment" [
+    randomly-with-knapsack-assignment
+  ][
+  ifelse seed-selection-algorithm = "randomly-with-random-tie-breaking"[
+    randomly-with-random-tie-breaking
+  ][
+  ifelse seed-selection-algorithm = "naive-degree-ranked-with-knapsack-assignment" [
+    naive-degree-ranked-with-knapsack-assignment
+  ][
+  ifelse seed-selection-algorithm = "naive-degree-ranked-with-random-tie-breaking-no-nudging" [
+    naive-degree-ranked-with-random-tie-breaking-no-nudging
+  ][
+  ifelse seed-selection-algorithm = "naive-degree-ranked-with-random-tie-breaking-with-nudging" [
+    naive-degree-ranked-with-random-tie-breaking-with-nudging
+  ][
+  ifelse seed-selection-algorithm = "degree-and-resource-ranked-with-knapsack-tie-breaking" [
+    degree-and-resource-ranked-with-knapsack-tie-breaking
+  ][
+  ifelse seed-selection-algorithm = "degree-and-resource-ranked-with-random-tie-breaking" [
+    degree-and-resource-ranked-with-random-tie-breaking
+  ][
+  ifelse seed-selection-algorithm = "one-step-spread-ranked-with-random-tie-breaking" [
+    one-step-spread-ranked-with-random-tie-breaking
+  ][
+  ifelse seed-selection-algorithm = "one-step-spread-hill-climbing-with-random-tie-breaking" [
+    one-step-spread-hill-climbing-with-random-tie-breaking
+  ][
+  ifelse seed-selection-algorithm = "IA-S-NT" [
+    IA-S-NT
+  ][
+  ifelse seed-selection-algorithm = "IA-S-T" [
+    IA-S-T
+  ][
+  ifelse seed-selection-algorithm = "IA-M-NT" [
+    IA-M-NT
+  ][
+  ifelse seed-selection-algorithm = "IA-M-T" [
+    IA-M-T
+  ][
+  ifelse seed-selection-algorithm = "spread-based-hill-climbing-with-random-tie-breaking" [
+    spread-based-hill-climbing-with-random-tie-breaking
+  ][
+  ifelse seed-selection-algorithm = "KKT-S-T" [
+    KKT-S-T
+  ][
+  ifelse seed-selection-algorithm = "KKT-S-NT" [
+    KKT-S-NT
+  ][
+   ifelse seed-selection-algorithm = "KKT-M-T" [
+    KKT-M-T
+  ][
+   ifelse seed-selection-algorithm = "KKT-M-NT" [
+    KKT-M-NT
+  ][
+  ifelse seed-selection-algorithm = "ideal-all-agent-adoption-without-network-effect" [
+    ideal-all-agent-adoption-without-network-effect
+  ][
+  user-message "Specify the seed selection algorithm"
+  ]]]]]]]]]]]]]]]]]]]]]]]
+end

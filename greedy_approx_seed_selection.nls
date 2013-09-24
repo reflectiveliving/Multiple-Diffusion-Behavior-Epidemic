@@ -1,0 +1,455 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;Greedy approximation seed selection algorithm;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+globals [
+  ;;re-setup task to be run by mini-setup-1
+  reinit-turtle-var-task
+]
+
+turtles-own [
+  spreads ;; vectors containing the spread for each behavior of this node
+  spread ;; spread for this agent
+]
+
+;; Kempe-Kleinberg-Tardos seed selection with multiple behaviors per seed and no top up
+;; INC - incremetnal version 
+to KKT-M-NT
+  set-spread
+  set reinit-turtle-var-task task [mini-setup-1-many-with-no-topup]
+  
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let seedsets array:from-list n-values num-behaviors [turtle-set nobody]
+  
+  while [more-seeds-required? seeds-required] [
+    let new-candidates map [compute-best-candidate-for-spread-based-inc ? (array:item seeds-required ?) seedsets] (behav-id-list)
+    
+    ;; to handle boundary cases
+    (foreach behav-id-list new-candidates [
+        if (empty? ?2) and (array:item seeds-required ?1 != 0) [
+          array:set seeds-required ?1 0
+        ]
+    ])
+    
+    let spread-values map [ifelse-value empty? ? [-1] [item 1 ?]] new-candidates
+    
+    let winner-position position (max spread-values) spread-values
+    let winner item 0 (item winner-position new-candidates)
+    
+    array:set seeds-required winner-position ((array:item seeds-required winner-position) - 1)
+    array:set seedsets winner-position (turtle-set array:item seedsets winner-position winner)
+  ]
+  
+  ;; actives? field, color and resource is messed-up so set it up again
+  set-actives
+  set-neutral-color
+  
+  set seed-sets seedsets
+  set-seeds-active seedsets    
+end  
+
+to mini-setup-1-many-with-no-topup
+  set-actives
+  set-neutral-color
+end
+
+to-report compute-best-candidate-for-spread-based-inc [behav-id num-seeds-req seedsets]
+  if num-seeds-req = 0 [
+    report []
+  ]
+  
+  let pop turtles with [(not member? self (array:item seedsets behav-id)) and ((resource - used-resource) >= array:item costs behav-id)]
+  
+  compute-spread-for-pop-1 behav-id seedsets pop
+  let best-candidate max-one-of pop [spread]
+  report (list best-candidate ([spread] of best-candidate))
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Kempe-Kleinberg-Tardos greedy approx. seed selection algorithm with multiple behaviors per seed and top up
+;; INC - incremental approach
+;; top up dosen't take place if total resource exceeds 1.0
+
+to KKT-M-T
+  set-spread
+  backup-resources
+  set reinit-turtle-var-task task [mini-setup-1-with-topup]
+  
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pop turtles
+  let seedsets array:from-list n-values num-behaviors [turtle-set nobody]
+  
+  while [more-seeds-required? seeds-required] [
+    let new-candidates map [compute-best-candidate-this-behav-M-T ? (array:item seeds-required ?) seedsets] (behav-id-list)
+    
+    ;; to handle boundary cases
+    (foreach behav-id-list new-candidates [
+        if (empty? ?2) and (array:item seeds-required ?1 != 0) [
+          array:set seeds-required ?1 0
+        ]
+    ])
+    
+    let spread-values map [ifelse-value empty? ? [-1] [item 1 ?]] new-candidates
+    
+    let winner-position position (max spread-values) spread-values
+    let winner item 0 (item winner-position new-candidates)
+    
+    ask winner [
+      set pop other pop
+    ]
+    array:set seeds-required winner-position ((array:item seeds-required winner-position) - 1)
+    array:set seedsets winner-position (turtle-set array:item seedsets winner-position winner)
+  ]
+  
+  ;; actives? field, color and resource is messed-up so set it up again
+  set-actives
+  set-neutral-color
+  restore-resources
+  
+  set seed-sets seedsets
+  set-seeds-active seedsets   
+end
+
+to-report compute-best-candidate-this-behav-M-T [behav-id num-seeds-req seedsets]
+  if num-seeds-req = 0 [
+    report []
+  ]
+  
+  let pop turtles with [(not member? self (array:item seedsets behav-id)) and ((1.0 - used-resource) >= array:item costs behav-id)]
+  
+  compute-spread-for-pop-1 behav-id seedsets pop
+  let best-candidate max-one-of pop [spread]
+  report (list best-candidate ([spread] of best-candidate))
+end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Kempe-Kleinberg-Tardos greedy seed selection algorithm with single behavior per seed and no top up
+;; INC - incremental approach
+
+to KKT-S-NT
+  set-spread
+  set reinit-turtle-var-task task [mini-setup-1-many-with-no-topup]
+  
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pop turtles
+  let seedsets array:from-list n-values num-behaviors [turtle-set nobody]
+  
+  while [more-seeds-required? seeds-required] [
+    let new-candidates map [compute-best-candidate-this-behav-no-topup ? (array:item seeds-required ?) seedsets pop] (behav-id-list)
+    
+    ;; to handle boundary cases
+    (foreach behav-id-list new-candidates [
+        if (empty? ?2) and (array:item seeds-required ?1 != 0) [
+          array:set seeds-required ?1 0
+        ]
+    ])
+    
+    let spread-values map [ifelse-value empty? ? [-1] [item 1 ?]] new-candidates
+    
+    let winner-position position (max spread-values) spread-values
+    let winner item 0 (item winner-position new-candidates)
+    
+    ask winner [
+      set pop other pop
+    ]
+    array:set seeds-required winner-position ((array:item seeds-required winner-position) - 1)
+    array:set seedsets winner-position (turtle-set array:item seedsets winner-position winner)
+  ]
+  
+  ;; actives? field, color and resource is messed-up so set it up again
+  set-actives
+  set-neutral-color
+  
+  set seed-sets seedsets
+  set-seeds-active seedsets
+end
+
+to-report compute-best-candidate-this-behav-no-topup [behav-id num-seeds-req seedsets pop]
+  if num-seeds-req = 0 [
+    report []
+  ]
+  
+  set pop pop with [(resource - used-resource) >= array:item costs behav-id]    
+  
+  compute-spread-for-pop-1 behav-id seedsets pop
+  let best-candidate max-one-of pop [spread]
+  report (list best-candidate ([spread] of best-candidate))  
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Kempe-Kleinberg-Tardos greedy approx. seed selection algorithm with single behavior per seed and resource top up
+;; INC - incremental seed selection approach
+
+to KKT-S-T
+  set-spread
+  backup-resources
+  set reinit-turtle-var-task task [mini-setup-1-with-topup]
+  
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pop turtles
+  let seedsets array:from-list n-values num-behaviors [turtle-set nobody]
+  
+  while [more-seeds-required? seeds-required] [
+    let new-candidates map [compute-best-candidate-for-this-behav ? (array:item seeds-required ?) seedsets pop] (behav-id-list)
+    
+    ;; to handle boundary cases
+    (foreach behav-id-list new-candidates [
+        if (empty? ?2) and (array:item seeds-required ?1 != 0) [
+          array:set seeds-required ?1 0
+        ]
+    ])
+    
+    let spread-values map [ifelse-value empty? ? [-1] [item 1 ?]] new-candidates
+    
+    let winner-position position (max spread-values) spread-values
+    let winner item 0 (item winner-position new-candidates)
+    
+    ask winner [
+      set pop other pop
+    ]
+    array:set seeds-required winner-position ((array:item seeds-required winner-position) - 1)
+    array:set seedsets winner-position (turtle-set array:item seedsets winner-position winner)
+  ]
+  
+  ;; actives? field, color and resource is messed-up so set it up again
+  set-actives
+  set-neutral-color
+  restore-resources
+  
+  set seed-sets seedsets
+  set-seeds-active seedsets           
+end
+    
+to set-spread
+  ask turtles [
+    set spread 0
+  ]
+end
+
+to-report compute-best-candidate-for-this-behav [behav-id num-seeds-req seedsets pop]
+  if num-seeds-req = 0 [
+    report []
+  ]
+  
+  compute-spread-for-pop-1 behav-id seedsets pop
+  let best-candidate max-one-of pop [spread]
+  report (list best-candidate ([spread] of best-candidate))
+end
+
+to compute-spread-for-pop-1 [b-id seedsets pop]
+  foreach sort pop [
+    let spread-est estimate-spread-1 b-id ? seedsets 
+    ask ? [
+      set spread spread-est 
+    ]
+  ]
+end
+
+to-report estimate-spread-1 [b-id new-agent seedsets]
+  let rand-seed 4567
+  setup-stats
+
+  repeat num-sim-for-spread-based-seed-selection [
+    simulate-model-1 b-id new-agent seedsets rand-seed
+    set rand-seed rand-seed + 1
+    update-stats
+  ]
+  finalize-stats num-sim-for-spread-based-seed-selection
+  ;report runresult "metric"
+  report total-part-mean
+end
+
+to simulate-model-1 [b-id new-agent seedsets rand-seed]
+  mini-setup-1 b-id new-agent seedsets rand-seed
+
+  let step-count 0
+  while [(not no-new-adoption?) and (step-count < max-step)] [
+    mini-go
+    set step-count step-count + 1
+  ] 
+end
+
+to mini-setup-1-with-topup
+  set-actives
+  set-neutral-color
+  restore-resources
+end
+
+to mini-setup-1 [b-id new-agent seedsets rand-seed]
+  run reinit-turtle-var-task
+  
+  set-seeds-active seedsets
+  ask new-agent [
+    array:set actives? b-id true
+    set-color
+    if (resource - used-resource) < array:item costs b-id [
+      set resource array:item costs b-id + used-resource  ;; r <- r + c - (r - ur)
+    ]
+  ]
+    
+  random-seed 1234567 + rand-seed
+  set-thresholds
+  setup-indicators
+  
+  reset-ticks
+end
+
+   
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to spread-based-hill-climbing-with-random-tie-breaking
+  init-spreads
+  backup-resources
+  let seeds-required array:from-list array:to-list num-seeds-per-behavior
+  let pop turtles
+  let seedsets array:from-list n-values num-behaviors [turtle-set nobody]
+  
+   while [more-seeds-required? seeds-required] [
+     let new-seedsets map [compute-greedy-spread-based-seedset ? (array:item seeds-required ?) (array:item seedsets ?) pop] (behav-id-list) 
+     
+     foreach behav-id-list [
+       if array:item seeds-required ? > count (item ? new-seedsets) [
+         array:set seeds-required ? 0
+       ]
+     ]
+     
+     let new-seeds reduce [(turtle-set ?1 ?2)] new-seedsets
+     
+     set pop pop with [not member? self new-seeds]
+     
+     ask new-seeds [
+      let candidates filter [member? self (item ? new-seedsets)] (behav-id-list)
+      let winner item (random length candidates) candidates
+      ;array:set actives? winner true
+      array:set seeds-required winner ((array:item seeds-required winner) - 1)
+      array:set seedsets winner (turtle-set array:item seedsets winner self)
+      ;; with resource nudging ; Consider doing the top up here vs in set-seeds-active
+      ;if array:item costs winner > resource [
+       ; set resource array:item costs winner
+      ;]
+      ;set-color
+    ]   
+   ] 
+   
+  ;; actives? field, color and resource is messed-up so set it up again
+  set-actives
+  set-neutral-color
+  restore-resources
+  
+  set seed-sets seedsets
+  set-seeds-active seedsets
+  
+end  
+
+to init-spreads
+  ask turtles [
+    set spreads array:from-list all-zeros
+  ]
+end
+
+to backup-resources
+  ask turtles [
+    set resource-backup resource
+  ]
+end
+
+to restore-resources
+  ask turtles [
+    set resource resource-backup
+  ]
+end
+
+to set-neutral-color
+  ask turtles [
+    set color neutral
+  ]
+end
+
+to set-seeds-active [seedsets]
+  (foreach behav-id-list array:to-list seedsets [
+      ask ?2 [
+        array:set actives? ?1 true
+        set-color
+        if array:item costs ?1 > resource [
+          set resource array:item costs ?1
+        ]
+      ]
+  ])
+end
+
+to-report compute-greedy-spread-based-seedset [b-id num-seeds seedset remaining-pop]
+  let pop remaining-pop
+  
+  let new-seedset (turtle-set nobody)
+  
+  repeat num-seeds [
+    compute-spread-for-pop b-id pop (turtle-set seedset new-seedset)   
+    let newseed max-one-of pop [array:item spreads b-id]
+    set new-seedset (turtle-set new-seedset newseed)
+    ifelse newseed = nobody [
+      report new-seedset
+    ]
+    [
+      ask newseed [
+        set pop other pop
+      ]
+    ]
+  ]
+  
+  report new-seedset    
+end
+
+to compute-spread-for-pop [b-id pop seedset]
+  foreach sort pop [
+    let spread-est estimate-spread b-id (turtle-set seedset ?)
+    ask ? [
+      array:set spreads b-id spread-est  
+    ]
+  ]
+end
+
+to-report estimate-spread [b-id seedset]
+  let rand-seed 4567
+  let spread-est 0
+  ;let num-sim-for-spread-based-seed-selection 50
+
+  repeat num-sim-for-spread-based-seed-selection [
+    set spread-est spread-est + simulate-model b-id seedset rand-seed
+    set rand-seed rand-seed + 1
+  ]
+  report spread-est / num-sim-for-spread-based-seed-selection
+end
+
+to-report simulate-model [b-id seedset rand-seed]
+  mini-setup b-id seedset rand-seed
+  ;let max-step 100
+  let step-count 0
+  while [(not no-new-adoption?) and (step-count < max-step)] [
+    mini-go
+    set step-count step-count + 1
+  ] 
+  report count turtles with [array:item actives? b-id]
+end
+
+to mini-setup [b-id seedset rand-seed]
+  set-actives
+  set-neutral-color
+  restore-resources
+  set-active b-id seedset
+  random-seed 1234567 + rand-seed
+  set-thresholds
+  setup-indicators
+  
+  reset-ticks
+end
+
+to set-active [b-id seedset]
+  ask seedset [
+    array:set actives? b-id true
+    set-color
+    if array:item costs b-id > resource [
+      set resource array:item costs b-id
+    ]
+  ]
+end

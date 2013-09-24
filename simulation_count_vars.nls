@@ -1,0 +1,70 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;Simulation Count Variables;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+globals [
+  roundActiveCounts  ;; stores the number of agents who turned active in the previous round for each behavior
+  
+  total-active-count ;; total number of active agents
+  total-unique-active-count ;; total number of unique active agents
+  active-counts ;; holds number of active agents per behavior
+  old-active-counts ;; temp variable for calculating roundActiveCount
+  total-resource ;; total resource available to the agents after seed selection
+  utilization ;; network wide resource utilization
+]
+
+to setup-indicators 
+  set total-resource sum [resource] of turtles
+  
+  set total-active-count count turtles with [active?]
+  
+  set active-counts array:from-list n-values num-behaviors [count turtles with [array:item actives? ?]]
+  
+  set preferences array:from-list n-values num-behaviors [count turtles with [array:item actives? ?] / number-of-nodes ]
+  
+  set old-active-counts array:from-list all-zeros
+  
+  set total-unique-active-count sum array:to-list active-counts
+  
+  let utilized-resource 0
+  foreach behav-id-list [
+    set utilized-resource utilized-resource + (array:item active-counts ? * array:item costs ?)
+  ]
+  
+  set utilization utilized-resource / total-resource
+  
+  set roundActiveCounts array:from-list array:to-list active-counts
+end
+
+to update-indicators
+  set total-active-count count turtles with [active?]
+  
+  foreach behav-id-list [
+    array:set old-active-counts ? array:item active-counts ?
+  ]
+  
+  foreach behav-id-list [
+    array:set active-counts ? count turtles with [array:item actives? ?]
+  ]
+  
+  foreach behav-id-list [
+    array:set roundActiveCounts ? (array:item active-counts ? - array:item old-active-counts ?)
+  ]
+  
+  set total-unique-active-count sum array:to-list active-counts
+  
+  let utilized-resource 0
+  foreach behav-id-list [
+    set utilized-resource utilized-resource + (array:item active-counts ? * array:item costs ?)
+  ]
+  
+  set utilization utilized-resource / total-resource
+end
+
+
+;; updating preferences proportional to unique active agents for each behavior Anindita 20-sep-2013
+to update-preferences
+  foreach behav-id-list [
+  array:set preferences ? ( count turtles with [array:item actives? ?] )/ number-of-nodes
+  ]
+end

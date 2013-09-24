@@ -1,0 +1,22 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;Maximum Utilization Computation;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to ideal-all-agent-adoption-without-network-effect
+  ask turtles [
+        foreach behav-id-list [
+          array:set consider? ? true
+          array:set payoffs ? array:item utilities ?
+        ]
+        
+        let opt knapsack-decide
+        
+        foreach opt [
+          array:set actives? ? true
+        ]
+        
+        if not empty? opt [
+          set-color
+        ]
+  ]
+end

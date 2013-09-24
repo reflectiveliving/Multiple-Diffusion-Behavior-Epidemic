@@ -1,0 +1,290 @@
+;;;;;;;;;;;;;;;;;;;;;;
+;;;Diffusion Model;;;;
+;;;;;;;;;;;;;;;;;;;;;;
+
+to go
+ ;; if no-new-adoption? [stop]
+  
+  if all? turtles [not active?]  [ stop ]   ;; it will stop when there is no more active turtles
+  
+  update-remaining-duration                 ;; sets new remaining-durations for new behaviors
+  
+  reset-roundActiveCounts
+  reset-weight-sums
+ ; reset-consider this is commented out
+  reset-payoffs
+  
+  
+  propagate-influence
+  make-adoption-decision
+ 
+  update-indicators
+  update-preferences                       ;; set preferences with respect to the number of active-counts / number of nodes , code written in simulation_counts_vars.nls
+  
+  tick
+end
+
+to-report no-new-adoption?
+  let new-adoption reduce + array:to-list roundActiveCounts
+  ifelse new-adoption = 0
+  [report true]
+  [report false]
+end 
+
+to reset-roundActiveCounts
+  set roundActiveCounts array:from-list all-zeros
+end
+
+to reset-weight-sums
+  ask turtles [
+    set weight-sums array:from-list all-zeros
+  ]
+end
+
+to reset-consider
+  ask turtles [
+    foreach behav-id-list [
+      array:set consider? ? (array:item actives? ?)   ;; previously adopted behaviors are automatically considered
+      ;array:set consider? ? false ; only behaviors crossing the threshold are considered
+    ]
+  ]
+end
+
+to reset-payoffs
+  ask turtles [
+    set payoffs array:from-list all-zeros
+  ]
+end    
+
+;; update the remaining duration by decreamenting by one in every tick Anindita 19-sep-2013
+to update-remaining-duration 
+  ask turtles [
+    foreach behav-id-list [
+      if array:item actives? ? and array:item remaining-duration ? = 0 [
+        ifelse duration-model = "SIR"[                                                                   ;; This is for SIR model                                                  
+          array:set behavior-dropped? ? true                                          ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
+          array:set actives? ? false
+          array:set consider? ? false                                                 ;; expicitly setting cosider to false, so not to get considered for the next round
+          set remaining-resource (remaining-resource + array:item costs ?)            ;; resources are getting back after dropping the behavior 
+        ][
+        ifelse duration-model = "SIRS"[                                                                   ;; check for SIRs model
+          array:set behavior-dropped? ? true                                           ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
+          array:set actives? ? false
+          initialize-remaining-incubation-duration ?                                   ;; initializes incubation duration for the behavior which has been dropped , written in seed_selection_common.nls
+          set remaining-resource (remaining-resource + array:item costs ?)
+        ][
+           ;array:set actives? ? false                                                ;; check for sticky behavior option    
+        set remaining-resource resource ;(remaining-resource + array:item costs ?)
+        ] 
+        ]
+      ]
+      if array:item actives? ? [
+        if array:item remaining-duration ? > 0 [
+          array:set remaining-duration ? (array:item remaining-duration ? - 1)         ;; decrementing remaining-duration by one tick
+        ]
+      ]
+      if array:item remaining-incubation-duration ? > 0  and duration-model = "SIRS"[
+        array:set remaining-incubation-duration ? (array:item remaining-incubation-duration ? - 1)           ;; decrementing remaining-incubation-duration by one tick for SIR model
+      ]
+      if array:item behavior-dropped? ? and array:item remaining-incubation-duration ? = 0 and duration-model = "SIRS"[                 ;; checks for both behavior has been dropped previously and incubation-duration is over for SIRS model
+        array:set behavior-dropped? ? false                                                                  ;; so that the behavior gets considered
+        ;array:set consider? ? true                                                                           ;; This is to again consider the behavior after incubation period is over
+      ]
+    ]
+  ]
+end
+
+to propagate-influence 
+  ask turtles [
+    foreach behav-id-list [
+      if array:item actives? ?
+      [
+        ask my-links [
+          influence myself ?
+          ;set color (base + ? * step)
+        ]
+      ]
+    ]
+  ]
+end
+
+;; link procedure; influencer influences the other end of the link; link procedure
+to influence [influencer behav-id]
+  ifelse end1 = influencer [
+    let weight end2-weight
+    ask end2 [
+      let t array:item weight-sums behav-id
+      array:set weight-sums behav-id ( t + weight )
+    ]
+  ]
+  [
+    let weight end1-weight
+    ask end1 [
+      let t array:item weight-sums behav-id
+      array:set weight-sums behav-id ( t + weight )
+    ]
+  ]
+end
+
+;; decision to turn active or not
+to make-adoption-decision
+  ask turtles [
+    calculate-payoffs
+    new-consider
+    
+    let opt knapsack-decide
+    
+    foreach opt [
+     array:set actives? ? true
+     set remaining-resource (remaining-resource - array:item costs ?)
+     initialize-remaining-duration ?       ;; this will set the remaining-duration of the choosen behavior present in seed-selection-common.nls
+    ]
+    
+    ifelse empty? opt [
+      set color neutral
+    ]
+    [
+      set-color
+    ]
+  ]
+end
+
+;; turtle procedure; calculate the present payoffs for each behavior
+to calculate-payoffs
+  let w 0.5
+  let extra 0
+  if switching-cost? [
+    set extra benefit-of-inertia
+  ]
+  
+  foreach behav-id-list [
+   ;; if preferences-per-behav switch is on then includde preferences
+    ifelse global-influence  [
+      set w 0.33
+      array:set payoffs ?  w * (array:item utilities ? + extra) + w * (array:item weight-sums ?) + w * (array:item preferences ?) ;; preference factor is added 
+    ][
+    set w 0.5
+    let payoff-temp w * (array:item utilities ? + extra) + w * (array:item weight-sums ?)
+    array:set payoffs ?  payoff-temp
+    ]
+  ]
+end
+
+;; turtle procedure to check which behaviors cross the node thresholds
+;; change made to include SIR check and the remaining-duration check Anindita 20-sep-2013
+to new-consider
+   foreach behav-id-list [
+     if ((array:item weight-sums ?) >= (array:item thresholds ?))[
+      
+       ifelse array:item actives? ?[
+         array:set consider? ? false
+       ][
+       ifelse duration-model = "SIR" [                                                 ;; checks if the model is SIR or SIRS
+         ifelse array:item behavior-dropped? ? [
+           array:set consider? ? false                                    ;; if SIR or SIRS model and behavior has been dropped then it does not get considered for the next round
+         ][
+          array:set consider? ? true
+         ]                                  ;; if SIR or SIRS model and behavior has been dropped then it does not get considered for the next round
+       ][
+       ifelse duration-model = "SIRS" [
+         if array:item remaining-incubation-duration ? = 0 [
+           array:set consider? ? true
+         ]
+       ][
+       array:set consider? ? true
+       ]
+       ]
+         
+       ]
+     ]
+   ]
+end
+
+;; turtle procedure for adoption decision making
+;; employs brute-force search for the knapsack problem
+;; ; should implement dynamic programing version of the knapsack algorithm
+to-report knapsack-decide 
+  let consider-behav-list filter [array:item consider? ?] behav-id-list
+  
+  let power-set compute-power-set consider-behav-list
+  
+  let opt [] 
+  let max-payoff 0
+  foreach power-set [
+    let total-cost 0
+    foreach ? [
+      set total-cost total-cost + (array:item costs ?)
+    ]
+    if total-cost <= remaining-resource [  ;; resource minus the used-resource because the used-resource is sticky  
+      let total-payoff 0
+      foreach ? [
+        set total-payoff total-payoff + (array:item payoffs ?)
+      ]
+      if total-payoff > max-payoff [
+        set max-payoff total-payoff
+        set opt ?
+      ]
+    ]
+  ]
+  
+  report opt
+end
+
+to-report compute-power-set [list-of-items]
+;  ifelse empty? list-of-items [
+;    report [[]]
+;  ]
+;  [
+;    let head first list-of-items
+;    let rest but-first list-of-items
+;   let rest-power-set compute-power-set rest
+;    let new-subsets []
+;    foreach rest-power-set [
+;      set new-subsets sentence new-subsets (list (sentence ? head))
+;   ]
+;    report sentence rest-power-set new-subsets
+;  ]
+  
+  report compute-power-set-tail-recursive [[]] list-of-items
+end
+
+to-report compute-power-set-tail-recursive [list-of-subsets list-of-items]
+  ifelse empty? list-of-items [
+    report list-of-subsets
+  ]
+  [
+    let head first list-of-items
+    let list-of-new-subsets map [sentence ? head] list-of-subsets
+    report compute-power-set-tail-recursive (sentence list-of-subsets list-of-new-subsets) (but-first list-of-items)
+  ]
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;Auxiliary Procedures;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; turtle procedure
+to set-color
+  set color 0
+  let num 0
+  foreach behav-id-list [
+    if array:item actives? ? [
+      set color color + (base + ? * step)
+      set num num + 1
+    ]
+  ]
+  if num > 1 [
+    set color color + scaling
+  ]
+end
+  
+
+;; turtle procedure
+to-report active?
+  foreach behav-id-list [
+    if array:item actives? ? [
+      report true
+    ]
+  ]
+  report false
+end
