@@ -1,0 +1,21 @@
+
+;; turtle procedure; calculate the present payoffs for each behavior
+to calculate-payoffs
+  let w 0.5
+  let extra 0
+  if switching-cost? [
+    set extra benefit-of-inertia
+  ]
+  
+  foreach behav-id-list [
+   ;; if preferences-per-behav switch is on then includde preferences
+    ifelse global-influence  [
+      set w 0.33
+      array:set payoffs ?  0.10 * (array:item utilities ? + extra) + 0.10 * (array:item weight-sums ?) + 0.80 * (array:item preferences ?) ;; preference factor is added 
+    ][
+    set w 0.5
+    let payoff-temp w * (array:item utilities ? + extra) + w * (array:item weight-sums ?)
+    array:set payoffs ?  payoff-temp
+    ]
+  ]
+end

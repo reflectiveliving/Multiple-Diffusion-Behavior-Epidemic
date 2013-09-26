@@ -7,19 +7,19 @@ to go
   
   if all? turtles [not active?]  [ stop ]   ;; it will stop when there is no more active turtles
   
-  update-remaining-duration                 ;; sets new remaining-durations for new behaviors
+  update-remaining-duration                 ;; sets new remaining-durations for new behaviors present in network_dynamics.nls
   
   reset-roundActiveCounts
   reset-weight-sums
  ; reset-consider this is commented out
   reset-payoffs
-  
+  update-preferences
   
   propagate-influence
   make-adoption-decision
  
   update-indicators
-  update-preferences                       ;; set preferences with respect to the number of active-counts / number of nodes , code written in simulation_counts_vars.nls
+                         ;; set preferences with respect to the number of active-counts / number of nodes , code written in simulation_counts_vars.nls
   
   tick
 end
@@ -56,43 +56,7 @@ to reset-payoffs
   ]
 end    
 
-;; update the remaining duration by decreamenting by one in every tick Anindita 19-sep-2013
-to update-remaining-duration 
-  ask turtles [
-    foreach behav-id-list [
-      if array:item actives? ? and array:item remaining-duration ? = 0 [
-        ifelse duration-model = "SIR"[                                                                   ;; This is for SIR model                                                  
-          array:set behavior-dropped? ? true                                          ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
-          array:set actives? ? false
-          array:set consider? ? false                                                 ;; expicitly setting cosider to false, so not to get considered for the next round
-          set remaining-resource (remaining-resource + array:item costs ?)            ;; resources are getting back after dropping the behavior 
-        ][
-        ifelse duration-model = "SIRS"[                                                                   ;; check for SIRs model
-          array:set behavior-dropped? ? true                                           ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
-          array:set actives? ? false
-          initialize-remaining-incubation-duration ?                                   ;; initializes incubation duration for the behavior which has been dropped , written in seed_selection_common.nls
-          set remaining-resource (remaining-resource + array:item costs ?)
-        ][
-           ;array:set actives? ? false                                                ;; check for sticky behavior option    
-        set remaining-resource resource ;(remaining-resource + array:item costs ?)
-        ] 
-        ]
-      ]
-      if array:item actives? ? [
-        if array:item remaining-duration ? > 0 [
-          array:set remaining-duration ? (array:item remaining-duration ? - 1)         ;; decrementing remaining-duration by one tick
-        ]
-      ]
-      if array:item remaining-incubation-duration ? > 0  and duration-model = "SIRS"[
-        array:set remaining-incubation-duration ? (array:item remaining-incubation-duration ? - 1)           ;; decrementing remaining-incubation-duration by one tick for SIR model
-      ]
-      if array:item behavior-dropped? ? and array:item remaining-incubation-duration ? = 0 and duration-model = "SIRS"[                 ;; checks for both behavior has been dropped previously and incubation-duration is over for SIRS model
-        array:set behavior-dropped? ? false                                                                  ;; so that the behavior gets considered
-        ;array:set consider? ? true                                                                           ;; This is to again consider the behavior after incubation period is over
-      ]
-    ]
-  ]
-end
+
 
 to propagate-influence 
   ask turtles [
@@ -147,57 +111,6 @@ to make-adoption-decision
       set-color
     ]
   ]
-end
-
-;; turtle procedure; calculate the present payoffs for each behavior
-to calculate-payoffs
-  let w 0.5
-  let extra 0
-  if switching-cost? [
-    set extra benefit-of-inertia
-  ]
-  
-  foreach behav-id-list [
-   ;; if preferences-per-behav switch is on then includde preferences
-    ifelse global-influence  [
-      set w 0.33
-      array:set payoffs ?  w * (array:item utilities ? + extra) + w * (array:item weight-sums ?) + w * (array:item preferences ?) ;; preference factor is added 
-    ][
-    set w 0.5
-    let payoff-temp w * (array:item utilities ? + extra) + w * (array:item weight-sums ?)
-    array:set payoffs ?  payoff-temp
-    ]
-  ]
-end
-
-;; turtle procedure to check which behaviors cross the node thresholds
-;; change made to include SIR check and the remaining-duration check Anindita 20-sep-2013
-to new-consider
-   foreach behav-id-list [
-     if ((array:item weight-sums ?) >= (array:item thresholds ?))[
-      
-       ifelse array:item actives? ?[
-         array:set consider? ? false
-       ][
-       ifelse duration-model = "SIR" [                                                 ;; checks if the model is SIR or SIRS
-         ifelse array:item behavior-dropped? ? [
-           array:set consider? ? false                                    ;; if SIR or SIRS model and behavior has been dropped then it does not get considered for the next round
-         ][
-          array:set consider? ? true
-         ]                                  ;; if SIR or SIRS model and behavior has been dropped then it does not get considered for the next round
-       ][
-       ifelse duration-model = "SIRS" [
-         if array:item remaining-incubation-duration ? = 0 [
-           array:set consider? ? true
-         ]
-       ][
-       array:set consider? ? true
-       ]
-       ]
-         
-       ]
-     ]
-   ]
 end
 
 ;; turtle procedure for adoption decision making
