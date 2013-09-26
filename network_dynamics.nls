@@ -12,14 +12,14 @@ to update-remaining-duration
       if array:item actives? ? and array:item remaining-duration ? = 0 [
         
         array:set behavior-dropped? ? true                                          ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
-        array:set actives? ? false
         set remaining-resource (remaining-resource + array:item costs ?)  
         
         if duration-model = "SIR"[                                                                   ;; This is for SIR model                                                  
-          ;array:set consider? ? false;; resources are getting back after dropping the behavior 
+          array:set actives? ? false
         ]
         
-        if duration-model = "SIRS"[                                                                   ;; check for SIRs model
+        if duration-model = "SIRS"[   
+          array:set actives? ? false                                                                ;; check for SIRs model
           initialize-remaining-incubation-duration ?                                   ;; initializes incubation duration for the behavior which has been dropped , written in seed_selection_common.nls
         ]
               
@@ -51,6 +51,14 @@ to new-consider
        
        if duration-model = "none"[
          array:set consider? ? true
+       ]
+       
+       if duration-model = "sticky-behavior" [
+         ifelse array:item actives? ? [
+          array:set consider? ? false;
+         ][
+         array:set consider? ? true;
+         ]
        ]
        
       ifelse duration-model = "SIR"[

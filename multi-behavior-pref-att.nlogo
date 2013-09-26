@@ -242,7 +242,7 @@ BUTTON
 107
 NIL
 go
-NIL
+T
 1
 T
 OBSERVER
@@ -729,7 +729,7 @@ CHOOSER
 duration-model
 duration-model
 "SIR" "SIRS" "sticky-behavior" "none"
-3
+2
 
 MONITOR
 285
