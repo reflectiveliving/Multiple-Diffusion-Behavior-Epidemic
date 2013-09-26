@@ -47,8 +47,11 @@ end
 to reset-consider
   ask turtles [
     foreach behav-id-list [
-      ;array:set consider? ? (array:item actives? ?)   ;; previously adopted behaviors are automatically considered
+      ifelse duration-model = "none"[
+      array:set consider? ? (array:item actives? ?)   ;; previously adopted behaviors are automatically considered
+      ][
       array:set consider? ? false ; only behaviors crossing the threshold are considered
+      ]
     ]
   ]
 end

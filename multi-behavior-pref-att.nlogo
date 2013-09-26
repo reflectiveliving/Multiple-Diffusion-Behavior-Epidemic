@@ -242,7 +242,7 @@ BUTTON
 107
 NIL
 go
-T
+NIL
 1
 T
 OBSERVER
@@ -631,7 +631,7 @@ INPUTBOX
 1746
 233
 behavior-durations-mean
-[1 2 3]
+[4 3 2]
 1
 0
 String
@@ -706,7 +706,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[3 2 1]
+[2 3 4]
 1
 0
 String

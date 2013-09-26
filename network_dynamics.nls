@@ -5,8 +5,7 @@ to update-remaining-duration
   ask turtles [
     foreach behav-id-list [
       
-      if duration-model ="none"[
-                                                                                 ;; check for sticky behavior option    
+      if duration-model ="none"[                                                                         ;; check for sticky behavior option    
         set remaining-resource resource ;
       ]
        
