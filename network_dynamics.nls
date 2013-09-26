@@ -4,6 +4,12 @@
 to update-remaining-duration 
   ask turtles [
     foreach behav-id-list [
+      
+      if duration-model ="none"[
+                                                                                 ;; check for sticky behavior option    
+        set remaining-resource resource ;
+      ]
+       
       if array:item actives? ? and array:item remaining-duration ? = 0 [
         
         array:set behavior-dropped? ? true                                          ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
@@ -17,12 +23,7 @@ to update-remaining-duration
         if duration-model = "SIRS"[                                                                   ;; check for SIRs model
           initialize-remaining-incubation-duration ?                                   ;; initializes incubation duration for the behavior which has been dropped , written in seed_selection_common.nls
         ]
-        
-        if duration-model ="none"[
-                                                                                   ;; check for sticky behavior option    
-        set remaining-resource resource ;
-        ] 
-        
+              
       ]
       ifelse array:item actives? ? [
         if array:item remaining-duration ? > 0 [
@@ -48,6 +49,10 @@ end
 to new-consider
    foreach behav-id-list [
      if ((array:item weight-sums ?) >= (array:item thresholds ?))[
+       
+       if duration-model = "none"[
+         array:set consider? ? true
+       ]
        
       ifelse duration-model = "SIR"[
         ifelse array:item actives? ? [

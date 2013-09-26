@@ -242,7 +242,7 @@ BUTTON
 107
 NIL
 go
-NIL
+T
 1
 T
 OBSERVER
@@ -664,7 +664,7 @@ SWITCH
 839
 threshold-per-behavior
 threshold-per-behavior
-0
+1
 1
 -1000
 
@@ -729,7 +729,7 @@ CHOOSER
 duration-model
 duration-model
 "SIR" "SIRS" "sticky-behavior" "none"
-1
+3
 
 MONITOR
 285
