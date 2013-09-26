@@ -171,9 +171,19 @@ end
 
 
 ;; set individual positive-global-effect states for each agent
+;; this will set uniformaly randomly it's effect towards global effects as true or false
 to set-positive-global-effect
   ask turtles [
     set positive-global-effect? array:from-list n-values num-behaviors [true]
+    let probability array:from-list n-values num-behaviors [random-float 1]
+    foreach behav-id-list[
+      let ran-var random-float 1
+      ifelse ran-var < array:item probability ? [
+      array:set positive-global-effect? ? true
+      ][
+      array:set positive-global-effect? ? false      
+      ]    
+    ]
   ]
 end
 

@@ -98,14 +98,16 @@ to update-threshold
   ask turtles[
     if threshold-per-behavior [
       foreach behav-id-list [
-        if array:item positive-global-effect? ? [
-          let stable-threshold (array:item thresholds-backup ? - 0.05)
-          let temp-threshold  (0.05 * exp ( 0 - (0.25 * array:item global-population ?) ) + stable-threshold )   ;; this is to 
+        let stable-threshold (array:item thresholds-backup ? - 0.05)
+        let temp-threshold  (0.05 * exp ( 0 - (0.25 * array:item global-population ?) ) + stable-threshold )   ;; this is to have an exponential drop if the global population drops          
+        ifelse array:item positive-global-effect? ? [
           ifelse temp-threshold < 0.05 [
             array:set thresholds ? 0.05
           ][
           array:set thresholds ? temp-threshold
           ]
+        ][
+        array:set thresholds ? (1 - temp-threshold)                                                             ;; This is having negative effect with increase of global population
         ]
       ]   
     ]

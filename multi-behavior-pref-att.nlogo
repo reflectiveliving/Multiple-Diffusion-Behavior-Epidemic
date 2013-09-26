@@ -189,10 +189,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-20
-432
-203
-465
+23
+315
+206
+348
 total-num-seeds
 total-num-seeds
 1
@@ -204,10 +204,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-18
-756
-205
-789
+21
+639
+208
+672
 rand-seed-network
 rand-seed-network
 1
@@ -242,7 +242,7 @@ BUTTON
 107
 NIL
 go
-NIL
+T
 1
 T
 OBSERVER
@@ -397,40 +397,40 @@ Specify the Behaviors
 1
 
 TEXTBOX
-24
-403
-174
-421
+27
+286
+177
+304
 Specify the Seeds
 16
 0.0
 1
 
 TEXTBOX
-21
-727
-187
-767
+24
+610
+190
+650
 Control Randomization
 16
 0.0
 1
 
 TEXTBOX
-23
-577
-173
-597
+26
+460
+176
+480
 Diffusion Model
 16
 0.0
 1
 
 SWITCH
-19
-647
-204
-680
+22
+530
+207
+563
 switching-cost?
 switching-cost?
 1
@@ -438,10 +438,10 @@ switching-cost?
 -1000
 
 SWITCH
-19
-609
-204
-642
+22
+492
+207
+525
 matched-threshold?
 matched-threshold?
 1
@@ -449,10 +449,10 @@ matched-threshold?
 -1000
 
 SLIDER
-19
-688
-203
-721
+22
+571
+206
+604
 benefit-of-inertia
 benefit-of-inertia
 0
@@ -464,20 +464,20 @@ NIL
 HORIZONTAL
 
 CHOOSER
-20
-529
-203
-574
+23
+412
+206
+457
 seed-selection-algorithm
 seed-selection-algorithm
 "randomly-unlimited-seed-resource-batched" "randomly-unlimited-seed-resource-incremental" "randomly-with-available-resource-batched" "randomly-with-available-resource-incremental" "randomly-with-knapsack-assignment" "randomly-with-random-tie-breaking" "naive-degree-ranked-with-knapsack-assignment" "naive-degree-ranked-with-random-tie-breaking-no-nudging" "naive-degree-ranked-with-random-tie-breaking-with-nudging" "degree-and-resource-ranked-with-knapsack-tie-breaking" "degree-and-resource-ranked-with-random-tie-breaking" "one-step-spread-ranked-with-random-tie-breaking" "one-step-spread-hill-climbing-with-random-tie-breaking" "IA-S-T" "IA-S-NT" "IA-M-T" "IA-M-NT" "ideal-all-agent-adoption-without-network-effect" "KKT-S-T" "KKT-S-NT" "KKT-M-T" "KKT-M-NT"
 12
 
 SLIDER
-18
-795
-205
-828
+21
+678
+208
+711
 rand-seed-resource
 rand-seed-resource
 0
@@ -489,10 +489,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-19
-836
-205
-869
+22
+719
+208
+752
 rand-seed-threshold
 rand-seed-threshold
 0
@@ -504,10 +504,10 @@ NIL
 HORIZONTAL
 
 CHOOSER
-20
-473
-203
-518
+23
+356
+206
+401
 seed-distribution
 seed-distribution
 "uniform" "proportional to cost" "inversely proportional to cost" "highest cost behavior only" "lowest cost behavior only" "in ratio"
@@ -706,7 +706,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[2 3 4]
+[1 3 1]
 1
 0
 String
@@ -729,7 +729,7 @@ CHOOSER
 duration-model
 duration-model
 "SIR" "SIRS" "sticky-behavior" "none"
-2
+1
 
 MONITOR
 285
@@ -752,6 +752,21 @@ behavior-durations-sd
 1
 0
 String
+
+SLIDER
+22
+762
+210
+795
+rand-seed-duration
+rand-seed-duration
+1
+10000
+4789
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
