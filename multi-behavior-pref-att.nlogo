@@ -242,7 +242,7 @@ BUTTON
 107
 NIL
 go
-T
+NIL
 1
 T
 OBSERVER
@@ -631,7 +631,7 @@ INPUTBOX
 1746
 233
 behavior-durations-mean
-[4 3 2]
+[1 2 3]
 1
 0
 String
@@ -664,7 +664,7 @@ SWITCH
 839
 threshold-per-behavior
 threshold-per-behavior
-1
+0
 1
 -1000
 
@@ -675,7 +675,7 @@ SWITCH
 888
 cost-per-behavior
 cost-per-behavior
-0
+1
 1
 -1000
 
@@ -706,7 +706,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[4 3 2]
+[3 2 1]
 1
 0
 String

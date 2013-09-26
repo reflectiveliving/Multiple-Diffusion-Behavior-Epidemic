@@ -16,7 +16,7 @@ to go
   reset-weight-sums
   reset-consider ;this is commented out
   reset-payoffs
-  update-preferences                        ;; set preferences with respect to the number of active-counts / number of nodes , code written in simulation_counts_vars.nls
+  update-global-population                      ;; set preferences with respect to the number of active-counts / number of nodes , code written in simulation_counts_vars.nls
   
   propagate-influence
   make-adoption-decision

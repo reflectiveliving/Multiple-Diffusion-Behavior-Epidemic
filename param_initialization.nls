@@ -9,7 +9,7 @@ globals [
   all-zeros ;; a list of length num-behaviors containing zeros
   
   ;; Params added for time varying models
-  preferences ;; an extrinsic benefits depends on population for each behavior
+  global-population ;; an extrinsic benefits depends on population for each behavior
   
 ]
 
@@ -67,7 +67,7 @@ to set-behaviors
   
   set behav-id-list n-values num-behaviors [?]
   set all-zeros n-values num-behaviors [0]
-  set preferences n-values num-behaviors [0]  ;; initialize all preferences to zeros
+  set global-population n-values num-behaviors [0]  ;; initialize all global-population to zeros
 end
 
 ;; sets edge weights such that sum of incoming edge weights equal to 1,
@@ -188,6 +188,7 @@ to set-thresholds
   [   
     ask turtles [
       set thresholds  array:from-list n-values num-behaviors [random-float 1]
+      set thresholds-backup array:from-list array:to-list thresholds
     ]
   ]
 end

@@ -21,7 +21,7 @@ to setup-indicators
   
   set active-counts array:from-list n-values num-behaviors [count turtles with [array:item actives? ?]]
   
-  set preferences array:from-list n-values num-behaviors [count turtles with [array:item actives? ?] / number-of-nodes ]
+  set global-population array:from-list n-values num-behaviors [count turtles with [array:item actives? ?] / number-of-nodes ]
   
   set old-active-counts array:from-list all-zeros
   
@@ -66,11 +66,11 @@ to update-indicators
 end
 
 
-;; updating preferences proportional to unique active agents for each behavior Anindita 20-sep-2013
-to update-preferences
+;; updating global-population proportional to unique active agents for each behavior Anindita 20-sep-2013
+to update-global-population
   foreach behav-id-list [
   ;array:set preferences ? ( count turtles with [array:item actives? ?] )/ number-of-nodes
-    array:set preferences ? ( total-active-count / number-of-nodes )  
+    array:set global-population ? ( total-active-count / number-of-nodes )  
   ]
 end
 
