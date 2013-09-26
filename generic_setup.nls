@@ -37,7 +37,8 @@ to generic-setup [network-generation-task]
   set-consider 
   
   set-durations                    ;; sets all the behavior durations for sticky behaviors
-  set-incubation-durations         ;; sets all the incubation durations for sticky behaviors       
+  set-incubation-durations         ;; sets all the incubation durations for sticky behaviors
+  set-positive-global-effect       ;; set all the positive global effects to true now       
   
   random-seed 12345 + rand-seed-network
   select-seeds

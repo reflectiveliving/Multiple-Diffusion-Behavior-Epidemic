@@ -8,18 +8,21 @@ to go
   if all? turtles [not active?]  [ stop ]   ;; it will stop when there is no more active turtles
   
   update-remaining-duration                 ;; sets new remaining-durations for new behaviors present in network_dynamics.nls
+                           
+  update-threshold                          ;; set the new threshold if the threshold switch is on  
+  update-costs                              ;; set the new cost
   
   reset-roundActiveCounts
   reset-weight-sums
- ; reset-consider this is commented out
+  reset-consider ;this is commented out
   reset-payoffs
-  update-preferences
+  update-preferences                        ;; set preferences with respect to the number of active-counts / number of nodes , code written in simulation_counts_vars.nls
   
   propagate-influence
   make-adoption-decision
  
   update-indicators
-                         ;; set preferences with respect to the number of active-counts / number of nodes , code written in simulation_counts_vars.nls
+
   
   tick
 end
@@ -44,8 +47,8 @@ end
 to reset-consider
   ask turtles [
     foreach behav-id-list [
-      array:set consider? ? (array:item actives? ?)   ;; previously adopted behaviors are automatically considered
-      ;array:set consider? ? false ; only behaviors crossing the threshold are considered
+      ;array:set consider? ? (array:item actives? ?)   ;; previously adopted behaviors are automatically considered
+      array:set consider? ? false ; only behaviors crossing the threshold are considered
     ]
   ]
 end

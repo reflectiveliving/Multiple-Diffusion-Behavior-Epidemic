@@ -272,7 +272,7 @@ num-behaviors
 num-behaviors
 1
 10
-1
+3
 1
 1
 NIL
@@ -360,7 +360,7 @@ INPUTBOX
 195
 204
 behavior-costs
-[0.5]
+[0.5 0.3 0.2]
 1
 0
 String
@@ -371,7 +371,7 @@ INPUTBOX
 196
 269
 behavior-utilities
-[0.5]
+[0.5 0.3 0.2]
 1
 0
 String
@@ -631,7 +631,7 @@ INPUTBOX
 1746
 233
 behavior-durations-mean
-[3]
+[4 3 2]
 1
 0
 String
@@ -675,7 +675,7 @@ SWITCH
 888
 cost-per-behavior
 cost-per-behavior
-1
+0
 1
 -1000
 
@@ -706,7 +706,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[2]
+[4 3 2]
 1
 0
 String
@@ -729,7 +729,7 @@ CHOOSER
 duration-model
 duration-model
 "SIR" "SIRS" "sticky-behavior" "none"
-0
+1
 
 MONITOR
 285
@@ -748,7 +748,7 @@ INPUTBOX
 1749
 318
 behavior-durations-sd
-[1]
+[1 1 1]
 1
 0
 String

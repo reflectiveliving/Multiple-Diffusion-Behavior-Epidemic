@@ -24,6 +24,7 @@ turtles-own
   resource   ;; total resource available to this agent for behavior adoption 
   resource-backup ;; backs up the resource value of each agent while running the spread based seedselection simulations
   thresholds ;; thresholds of adoption for each possible behavior
+  thresholds-backup ;; this is a backup for thresholds
   actives?   ;; whether this agent is active or not for the particular behavior
   weight-sums ;; used to sum up influence weight from active neighbors
   payoffs    ;; payoff from each of the the behaviors
@@ -37,6 +38,8 @@ turtles-own
   remaining-duration ;; an array to keep a track of the remaining duration
   behavior-dropped? ;; an array which stores true if behavior is dropped permanently, this follows SIR model
   remaining-resource ;; total resource available to agent at that point of time
+  
+  positive-global-effect? ;;an array which shows how a change in threshold will be taken of an individual, positively or negatively.
 ]
 
 to set-behaviors
@@ -102,11 +105,12 @@ to set-durations
   let durationsdlist read-from-string behavior-durations-sd
   let durationlist n-values num-behaviors [0]
   let normal-variable n-values num-behaviors [0]
-  
+
+  ask turtles [
   (foreach durationmeanlist durationsdlist behav-id-list [
     set normal-variable random-normal ?1 ?2
     set durationlist replace-item ?3  durationlist round normal-variable ])
-  ask turtles [
+  
     set durations array:from-list durationlist
   ]
   
@@ -162,6 +166,14 @@ end
 to set-actives
   ask turtles [
     set actives? array:from-list n-values num-behaviors [false]
+  ]
+end
+
+
+;; set individual positive-global-effect states for each agent
+to set-positive-global-effect
+  ask turtles [
+    set positive-global-effect? array:from-list n-values num-behaviors [true]
   ]
 end
 

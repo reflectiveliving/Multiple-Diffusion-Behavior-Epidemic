@@ -11,7 +11,7 @@ to calculate-payoffs
    ;; if preferences-per-behav switch is on then includde preferences
     ifelse global-influence  [
       set w 0.33
-      array:set payoffs ?  0.10 * (array:item utilities ? + extra) + 0.10 * (array:item weight-sums ?) + 0.80 * (array:item preferences ?) ;; preference factor is added 
+      array:set payoffs ?  0.10 * (array:item utilities ? + extra) + 0.10 * (array:item weight-sums ?) + 0.80 * (array:item preferences ? ) ;; preference factor is added 
     ][
     set w 0.5
     let payoff-temp w * (array:item utilities ? + extra) + w * (array:item weight-sums ?)

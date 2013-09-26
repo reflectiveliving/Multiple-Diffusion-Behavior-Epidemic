@@ -5,22 +5,24 @@ to update-remaining-duration
   ask turtles [
     foreach behav-id-list [
       if array:item actives? ? and array:item remaining-duration ? = 0 [
-        ifelse duration-model = "SIR"[                                                                   ;; This is for SIR model                                                  
-          array:set behavior-dropped? ? true                                          ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
-          array:set actives? ? false
-          ;array:set consider? ? false                                                 ;; expicitly setting cosider to false, so not to get considered for the next round
-          set remaining-resource (remaining-resource + array:item costs ?)            ;; resources are getting back after dropping the behavior 
-        ][
-        ifelse duration-model = "SIRS"[                                                                   ;; check for SIRs model
-          array:set behavior-dropped? ? true                                           ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
-          array:set actives? ? false
+        
+        array:set behavior-dropped? ? true                                          ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
+        array:set actives? ? false
+        set remaining-resource (remaining-resource + array:item costs ?)  
+        
+        if duration-model = "SIR"[                                                                   ;; This is for SIR model                                                  
+          ;array:set consider? ? false;; resources are getting back after dropping the behavior 
+        ]
+        
+        if duration-model = "SIRS"[                                                                   ;; check for SIRs model
           initialize-remaining-incubation-duration ?                                   ;; initializes incubation duration for the behavior which has been dropped , written in seed_selection_common.nls
-          set remaining-resource (remaining-resource + array:item costs ?)
-        ][
-                                                                                       ;; check for sticky behavior option    
+        ]
+        
+        if duration-model ="none"[
+                                                                                   ;; check for sticky behavior option    
         set remaining-resource resource ;
         ] 
-        ]
+        
       ]
       ifelse array:item actives? ? [
         if array:item remaining-duration ? > 0 [
@@ -47,20 +49,64 @@ to new-consider
    foreach behav-id-list [
      if ((array:item weight-sums ?) >= (array:item thresholds ?))[
        
-      if array:item actives? ? and duration-model = "SIR"[
-        array:set consider? ? false;
-      ] 
-      ifelse array:item behavior-dropped? ? [
-           array:set consider? ? false                                    ;; if SIR or SIRS model and behavior has been dropped then it does not get considered for the next round
+      ifelse duration-model = "SIR"[
+        ifelse array:item actives? ? [
+          array:set consider? ? false;
+        ][
+        ifelse array:item behavior-dropped? ? [
+          array:set consider? ? false                                    ;; if SIR or SIRS model and behavior has been dropped then it does not get considered for the next round
+        ][
+        array:set consider? ? true
+        ]
+        ]
+      ][
+      if duration-model = "SIRS"[
+        ifelse array:item actives? ? [
+          array:set consider? ? false;
+        ][
+         ifelse array:item behavior-dropped? ?[
+           array:set consider? ? false;
          ][
-          array:set consider? ? true
-         ] 
+         array:set consider? ? true;
+         ]
+        ]
+      ] 
      ]
+   ]
    ]
 end
 
 ;; turtle procedure to update thresholds
 to update-threshold
+  ask turtles[
+    if threshold-per-behavior [
+      foreach behav-id-list [
+        if array:item positive-global-effect? ? [
+          let stable-threshold (array:item thresholds-backup ? - 0.05)
+          let temp-threshold  ( exp ( 0 - (0.25 * array:item preferences ?) )  )
+          ifelse temp-threshold < 0.05 [
+            array:set thresholds ? 0.05
+          ][
+          array:set thresholds ? temp-threshold
+          ]
+        ]
+      ]   
+    ]
+  ]
 
+end 
 
+;; turtle procedure to update costs
+to update-costs
+    if cost-per-behavior [
+      foreach behav-id-list [
+          let stable-cost (array:item costs ? - 0.05)
+          let temp-costs  ( exp ( 0 - (0.25 * array:item preferences ?) )  )
+          ifelse temp-costs < 0.05 [
+            array:set costs ? 0.05
+          ][
+          array:set costs ? temp-costs
+          ]
+      ]   
+    ]
 end 

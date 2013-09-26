@@ -69,7 +69,8 @@ end
 ;; updating preferences proportional to unique active agents for each behavior Anindita 20-sep-2013
 to update-preferences
   foreach behav-id-list [
-  array:set preferences ? ( count turtles with [array:item actives? ?] )/ number-of-nodes
+  ;array:set preferences ? ( count turtles with [array:item actives? ?] )/ number-of-nodes
+    array:set preferences ? ( total-active-count / number-of-nodes )  
   ]
 end
 
