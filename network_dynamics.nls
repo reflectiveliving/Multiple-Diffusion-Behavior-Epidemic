@@ -5,7 +5,7 @@ to update-remaining-duration
   ask turtles [
     foreach behav-id-list [
       
-      if duration-model ="none"[                                                                         ;; check for sticky behavior option    
+      if duration-model ="none"[                                                    ;; check for sticky behavior option    
         set remaining-resource resource ;
       ]
        
@@ -14,19 +14,23 @@ to update-remaining-duration
         array:set behavior-dropped? ? true                                          ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
         set remaining-resource (remaining-resource + array:item costs ?)  
         
-        if duration-model = "SIR"[                                                                   ;; This is for SIR model                                                  
+        if duration-model = "SIR"[                                                  ;; This is for SIR model                                                  
           array:set actives? ? false
         ]
         
         if duration-model = "SIRS"[   
-          array:set actives? ? false                                                                ;; check for SIRs model
-          initialize-remaining-incubation-duration ?                                   ;; initializes incubation duration for the behavior which has been dropped , written in seed_selection_common.nls
+          array:set actives? ? false                                                 ;; check for SIRs model
+          initialize-remaining-incubation-duration ?                                 ;; initializes incubation duration for the behavior which has been dropped , written in seed_selection_common.nls
+        ]
+         
+        if duration-model ="sticky-behavior"[                                        ;; for sticky behavior, it does not consider till the remaining-duration is not zero   
+         array:set consider? ? true; 
         ]
               
       ]
       ifelse array:item actives? ? [
         if array:item remaining-duration ? > 0 [
-          array:set remaining-duration ? (array:item remaining-duration ? - 1)         ;; decrementing remaining-duration by one tick
+          array:set remaining-duration ? (array:item remaining-duration ? - 1)                               ;; decrementing remaining-duration by one tick
         ]
       ][
       if array:item remaining-incubation-duration ? > 0  and duration-model = "SIRS"[
@@ -35,7 +39,7 @@ to update-remaining-duration
       
       if array:item behavior-dropped? ? and array:item remaining-incubation-duration ? = 0 and duration-model = "SIRS"[                 ;; checks for both behavior has been dropped previously and incubation-duration is over for SIRS model
         array:set behavior-dropped? ? false                                                                  ;; so that the behavior gets considered
-        ;array:set consider? ? true                                                                           ;; This is to again consider the behavior after incubation period is over
+        ;array:set consider? ? true                                                                          ;; This is to again consider the behavior after incubation period is over
       ]
       ]
     ]
@@ -53,38 +57,39 @@ to new-consider
          array:set consider? ? true
        ]
        
-       if duration-model = "sticky-behavior" [
-         ifelse array:item actives? ? [
-          array:set consider? ? false;
+       if duration-model = "sticky-behavior"[
+         ifelse array:item remaining-duration ? > 0 [
+           array:set consider? ? false
          ][
-         array:set consider? ? true;
+         array:set consider? ? true
          ]
+         
        ]
        
-      ifelse duration-model = "SIR"[
-        ifelse array:item actives? ? [
-          array:set consider? ? false;
-        ][
-        ifelse array:item behavior-dropped? ? [
-          array:set consider? ? false                                    ;; if SIR or SIRS model and behavior has been dropped then it does not get considered for the next round
-        ][
-        array:set consider? ? true
-        ]
-        ]
-      ][
-      if duration-model = "SIRS"[
-        ifelse array:item actives? ? [
-          array:set consider? ? false;
-        ][
+       ifelse duration-model = "SIR"[
+         ifelse array:item actives? ? [
+           array:set consider? ? false;
+         ][
+         ifelse array:item behavior-dropped? ? [
+           array:set consider? ? false                                    ;; if SIR or SIRS model and behavior has been dropped then it does not get considered for the next round
+         ][
+         array:set consider? ? true
+         ]
+         ]
+       ][
+       if duration-model = "SIRS"[
+         ifelse array:item actives? ? [
+           array:set consider? ? false;
+         ][
          ifelse array:item behavior-dropped? ?[
            array:set consider? ? false;
          ][
          array:set consider? ? true;
          ]
-        ]
-      ] 
+         ]
+       ] 
+       ]
      ]
-   ]
    ]
 end
 
