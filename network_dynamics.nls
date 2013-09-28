@@ -1,113 +1,198 @@
 
+;;;;;;;;;;;;;;;;;;;;;SIvRS Model;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; update the remaining duration by decreamenting by one in every tick Anindita 19-sep-2013
-to update-remaining-duration 
-  ask turtles [
-    foreach behav-id-list [
-      
-      if duration-model ="none"[                                                    ;; check for sticky behavior option    
-        set remaining-resource resource ;
+;; turtel procedure
+to after-adoption-SIvRS [b-id]
+  array:set state b-id "I"
+  array:set remaining-infected-duration b-id (array:item infected-durations b-id)
+  set remaining-resource remaining-resource - (array:item costs b-id)
+end
+
+;; turtle procedure
+to new-consider-SIvRS 
+  foreach behav-id-list [
+    array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S"))
+  ]
+end
+
+;;turtle procedure
+to update-turtle-attr-SIvRS
+  foreach behav-id-list [
+    ifelse array:item state ? = "I" [
+      ifelse array:item remaining-infected-duration ? = 0 [
+        array:set state ? "R"
+        array:set actives? ? false
+        array:set remaining-recovered-duration ? (array:item recovered-durations ?)
+        set remaining-resource remaining-resource + (array:item costs ?)
       ]
-       
-      if array:item actives? ? and array:item remaining-duration ? = 0 [
-        
-        array:set behavior-dropped? ? true                                          ;; This will check SIR, if yes then will set the behavior-dropped true of the adopted behaviour
-        set remaining-resource (remaining-resource + array:item costs ?)  
-        
-        if duration-model = "SIR"[                                                  ;; This is for SIR model                                                  
-          array:set actives? ? false
-        ]
-        
-        if duration-model = "SIRS"[   
-          array:set actives? ? false                                                 ;; check for SIRs model
-          initialize-remaining-incubation-duration ?                                 ;; initializes incubation duration for the behavior which has been dropped , written in seed_selection_common.nls
-        ]
-         
-        if duration-model ="sticky-behavior"[                                        ;; for sticky behavior, it does not consider till the remaining-duration is not zero   
-         array:set consider? ? true; 
-        ]
-              
+      [
+        array:set remaining-infected-duration ? (array:item remaining-infected-duration ? - 1)
       ]
-      ifelse array:item actives? ? [
-        if array:item remaining-duration ? > 0 [
-          array:set remaining-duration ? (array:item remaining-duration ? - 1)                               ;; decrementing remaining-duration by one tick
+    ]
+    [
+      if array:item state ? = "R" [
+        ifelse array:item remaining-recovered-duration ? = 0 [
+          array:set state ? "S"
         ]
-      ][
-      if array:item remaining-incubation-duration ? > 0  and duration-model = "SIRS"[
-        array:set remaining-incubation-duration ? (array:item remaining-incubation-duration ? - 1)           ;; decrementing remaining-incubation-duration by one tick for SIR model
+        [
+          array:set remaining-recovered-duration ? (array:item remaining-recovered-duration ?) - 1
+        ]
       ]
-      
-      if array:item behavior-dropped? ? and array:item remaining-incubation-duration ? = 0 and duration-model = "SIRS"[                 ;; checks for both behavior has been dropped previously and incubation-duration is over for SIRS model
-        array:set behavior-dropped? ? false                                                                  ;; so that the behavior gets considered
-        ;array:set consider? ? true                                                                          ;; This is to again consider the behavior after incubation period is over
+    ]
+  ]
+end
+
+;;;;;;;;;;;;;;;;;;;;;SIRS Model;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; turtel procedure
+to after-adoption-SIRS [b-id]
+  array:set state b-id "I"
+  array:set remaining-infected-duration b-id (array:item infected-durations b-id)
+  set remaining-resource remaining-resource - (array:item costs b-id)
+end
+
+;; turtle procedure
+to new-consider-SIRS 
+  foreach behav-id-list [
+    array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S"))
+  ]
+end
+
+;;turtle procedure
+to update-turtle-attr-SIRS
+  foreach behav-id-list [
+    ifelse array:item state ? = "I" [
+      ifelse array:item remaining-infected-duration ? = 0 [
+        array:set state ? "R"
+        array:set actives? ? false
+        array:set remaining-recovered-duration ? (array:item recovered-durations ?)
+        set remaining-resource remaining-resource + (array:item costs ?)
       ]
+      [
+        array:set remaining-infected-duration ? (array:item remaining-infected-duration ? - 1)
+      ]
+    ]
+    [
+      if array:item state ? = "R" [
+        ifelse array:item remaining-recovered-duration ? = 0 [
+          array:set state ? "S"
+        ]
+        [
+          array:set remaining-recovered-duration ? (array:item remaining-recovered-duration ?) - 1
+        ]
+      ]
+    ]
+  ]
+end
+
+;;;;;;;;;;;;;;;;;;;;;SIR Model;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; turtel procedure
+to after-adoption-SIR [b-id]
+  array:set state b-id "I"
+  array:set actives? b-id true
+  array:set remaining-infected-duration b-id (array:item infected-durations b-id)
+  set remaining-resource remaining-resource - (array:item costs b-id)
+end
+
+;; turtle procedure
+to new-consider-SIR 
+  foreach behav-id-list [
+    array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S"))
+  ]
+end
+
+;;turtle procedure
+to update-turtle-attr-SIR
+  foreach behav-id-list [
+    if array:item state ? = "I" [
+      ifelse array:item remaining-infected-duration ? = 0 [
+        array:set state ? "R"
+        array:set actives? ? false
+        set remaining-resource remaining-resource + (array:item costs ?)
+      ]
+      [
+        array:set remaining-infected-duration ? (array:item remaining-infected-duration ? - 1)
       ]
     ]
   ]
 end
 
 
-;; turtle procedure to check which behaviors cross the node thresholds
-;; change made to include SIR check and the remaining-duration check Anindita 20-sep-2013
-to new-consider
-   foreach behav-id-list [
-     if ((array:item weight-sums ?) >= (array:item thresholds ?))[
-       
-       if duration-model = "none"[
-         array:set consider? ? true
-       ]
-       
-       if duration-model = "sticky-behavior"[
-         ifelse array:item remaining-duration ? > 0 [
-           array:set consider? ? false
-         ][
-         array:set consider? ? true
-         ]
-         
-       ]
-       
-       ifelse duration-model = "SIR"[
-         ifelse array:item actives? ? [
-           array:set consider? ? false;
-         ][
-         ifelse array:item behavior-dropped? ? [
-           array:set consider? ? false                                    ;; if SIR or SIRS model and behavior has been dropped then it does not get considered for the next round
-         ][
-         array:set consider? ? true
-         ]
-         ]
-       ][
-       if duration-model = "SIRS"[
-         ifelse array:item actives? ? [
-           array:set consider? ? false;
-         ][
-         ifelse array:item behavior-dropped? ?[
-           array:set consider? ? false;
-         ][
-         array:set consider? ? true;
-         ]
-         ]
-       ] 
-       ]
-     ]
-   ]
+
+;;;;;;;;;;;;;;;;;;;;;Sticky Behavior SIVS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    
+;; V (Velnerable) denotes the state where a behavior has crossed its mandatory infection period, but it
+;; will be considered for knap-sack for the next time step
+
+;; turtel procedure
+to after-adoption-sticky [b-id]
+  array:set state b-id "I"
+  array:set remaining-infected-duration b-id (array:item infected-durations b-id)
+  set remaining-resource remaining-resource - (array:item costs b-id)
 end
+
+;; turtle procedure
+to new-consider-sticky 
+  foreach behav-id-list [
+    array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S")) or (not (array:item state ? = "V"))
+  ]
+end
+
+;;turtle procedure
+to update-turtle-attr-sticky
+    foreach behav-id-list [
+    if array:item state ? = "I" [
+      ifelse array:item remaining-infected-duration ? = 0 [
+        array:set state ? "V"
+        set remaining-resource remaining-resource + (array:item costs ?)
+      ]
+      [
+        array:set remaining-infected-duration ? (array:item remaining-infected-duration ? - 1)
+      ]
+    ]
+  ]
+end
+
+;;;;;;;;;;;;;;;;;;;;;None SVS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    
+;; V (Velnerable) denotes the state where a behavior has crossed its mandatory infection period, but it
+;; will be considered for knap-sack for the next time step
+
+;; turtel procedure
+to after-adoption-none [b-id]
+end
+
+;; turtle procedure
+to new-consider-node 
+  foreach behav-id-list [
+    array:set consider? ? ((array:item consider? ?) or (array:item actives? ?))
+  ]
+end
+
+;;turtle procedure
+to update-turtle-attr-none
+end
+  
+  
+  
+  
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 ;; turtle procedure to update thresholds
 to update-threshold
   ask turtles[
     if threshold-per-behavior [
       foreach behav-id-list [
-        let stable-threshold (array:item thresholds-backup ? - 0.05)
-        let temp-threshold  (0.05 * exp ( 0 - (0.25 * array:item global-population ?) ) + stable-threshold )   ;; this is to have an exponential drop if the global population drops          
-        ifelse array:item positive-global-effect? ? [
+        if array:item positive-global-effect? ? [
+          let stable-threshold (array:item thresholds-backup ? - 0.05)
+          let temp-threshold  (0.05 * exp ( 0 - (0.25 * array:item global-population ?) ) + stable-threshold )
           ifelse temp-threshold < 0.05 [
             array:set thresholds ? 0.05
           ][
           array:set thresholds ? temp-threshold
           ]
-        ][
-        array:set thresholds ? (1 - temp-threshold)                                                             ;; This is having negative effect with increase of global population
         ]
       ]   
     ]

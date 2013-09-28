@@ -6,6 +6,10 @@ globals [
   base
   step
   scaling
+  
+  update-turtle-attr
+  new-consider
+  after-adoption
 ]
 
 to generic-setup [network-generation-task]
@@ -18,9 +22,7 @@ to generic-setup [network-generation-task]
   
   set-behaviors
   
-  set-remaining-duration ;; set remaining-duration to all zeros
-  set-remaining-incubation-duration ;; set remaining-incubationduration to all zeros
-  set-behavior-dropped ;; set behavior-dropped to be all false
+  set-diffusion-model
   
   set-edge-weights
   
@@ -31,22 +33,87 @@ to generic-setup [network-generation-task]
   random-seed 1234567 + rand-seed-threshold
   set-thresholds
   
+  set-remaining-infected-duration ;; set remaining-duration to all zeros
+  set-remaining-recovered-duration ;; set remaining-incubationduration to all zeros
+  set-state ;; set S,I,R state
   set-actives
   set-weight-sums
   set-payoffs
   set-consider 
   
-  random-seed 12345678 + rand-seed-duration
-  set-durations                    ;; sets all the behavior durations for sticky behaviors
-  set-incubation-durations         ;; sets all the incubation durations for sticky behaviors
+  set-infected-durations                    ;; sets all the behavior durations for sticky behaviors
+  set-recovered-durations         ;; sets all the incubation durations for sticky behaviors
   set-positive-global-effect       ;; set all the positive global effects to true now       
   
   random-seed 12345 + rand-seed-network
   select-seeds
   
+  update-seeds
+  
+  set-turtle-color
+  
   setup-indicators
   
   reset-ticks
+end
+
+to set-turtle-color
+  ask turtles [
+    set-color
+  ]
+end
+
+to update-seeds
+  ask turtles with [active?] [
+    foreach behav-id-list [
+      if array:item actives? ? [
+        (run after-adoption ?)
+      ]
+    ]
+  ]
+end
+
+to set-diffusion-model
+  ifelse duration-model = "SIRS" [
+    set-SIRS
+  ]
+  [
+    ifelse duration-model = "SIR" [
+      set-SIR
+    ]
+    [
+      if duration-model = "sticky-behavior" [
+        set-sticky
+      ]
+    ]
+  ]
+  if duration-model ="SIvRS" [
+    set-SIvRS
+  ]
+end
+
+to set-SIRS
+  set update-turtle-attr task [update-turtle-attr-SIRS]
+  set new-consider task [new-consider-SIRS]
+  set after-adoption task [after-adoption-SIRS ?]
+end
+
+to set-SIvRS
+  set update-turtle-attr task [update-turtle-attr-SIRS]
+  set new-consider task [new-consider-SIRS]
+  set after-adoption task [after-adoption-SIRS ?]
+end
+
+to set-SIR
+  set update-turtle-attr task [update-turtle-attr-SIR]
+  set new-consider task [new-consider-SIR]
+  set after-adoption task [after-adoption-SIR ?]
+end
+
+to set-sticky
+  set update-turtle-attr task [update-turtle-attr-sticky]
+  set new-consider task [new-consider-sticky]
+  set after-adoption task [after-adoption-sticky ?]
 end
 
 to set-coloring-variables

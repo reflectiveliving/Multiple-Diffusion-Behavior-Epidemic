@@ -13,7 +13,7 @@ end
 to setup-small-world-network
   make-turtles
   wire-them
-  rewire-all
+  ;rewire-all
 end
 
 to make-turtles
@@ -23,7 +23,7 @@ to make-turtles
     set size 1.5
   ]
   ;; arrange them in a circle in order by who number
-  ;layout-circle (sort turtles) max-pxcor - 1
+  layout-circle (sort turtles) max-pxcor - 1
 end
 
 to wire-them
@@ -132,17 +132,26 @@ __includes [
   
   ;; simulation count variables
   "simulation_count_vars.nls"
+    
+  ;; simulation count variables
+  "simulation_count_vars.nls"
+  
+  ;; network dynamics
+  "network_dynamics.nls"
+  
+  ;; calculates payoffs which is a combination of intrinsic and extrensic properties
+  "calculate_payoffs.nls"
 ]    
     
 @#$#@#$#@
 GRAPHICS-WINDOW
-917
-21
-1580
-705
+838
+33
+1460
+676
 20
 20
-15.93
+14.93
 1
 10
 1
@@ -171,7 +180,7 @@ number-of-nodes
 number-of-nodes
 1
 2000
-500
+103
 1
 1
 NIL
@@ -186,7 +195,7 @@ total-num-seeds
 total-num-seeds
 1
 number-of-nodes
-51
+10
 1
 1
 NIL
@@ -216,7 +225,7 @@ rewiring-probability
 rewiring-probability
 0
 1
-0.2
+0.25
 0.01
 1
 NIL
@@ -246,7 +255,7 @@ BUTTON
 107
 NIL
 go
-T
+NIL
 1
 T
 OBSERVER
@@ -276,7 +285,7 @@ num-behaviors
 num-behaviors
 1
 10
-3
+1
 1
 1
 NIL
@@ -475,7 +484,7 @@ CHOOSER
 seed-selection-algorithm
 seed-selection-algorithm
 "ideal-all-agent-adoption-without-network-effect" "randomly-unlimited-seed-resource-batched" "randomly-unlimited-seed-resource-incremental" "randomly-with-available-resource-batched" "randomly-with-available-resource-incremental" "randomly-with-knapsack-assignment" "randomly-with-random-tie-breaking" "naive-degree-ranked-with-knapsack-assignment" "naive-degree-ranked-with-random-tie-breaking-no-nudging" "naive-degree-ranked-with-random-tie-breaking-with-nudging" "degree-and-resource-ranked-with-knapsack-tie-breaking" "degree-and-resource-ranked-with-random-tie-breaking" "one-step-spread-ranked-with-random-tie-breaking" "one-step-spread-hill-climbing-with-random-tie-breaking" "IA-S-T" "IA-S-NT" "IA-M-T" "IA-M-NT" "KKT-S-T" "KKT-S-NT" "KKT-M-T" "KKT-M-NT"
-14
+13
 
 SLIDER
 20
@@ -606,6 +615,149 @@ NIL
 NIL
 NIL
 1
+
+SLIDER
+21
+799
+207
+832
+rand-seed-duration
+rand-seed-duration
+0
+100
+50
+1
+1
+NIL
+HORIZONTAL
+
+MONITOR
+290
+591
+414
+636
+NIL
+max-utilization
+17
+1
+11
+
+TEXTBOX
+861
+689
+1106
+729
+Select Time Varying Parameters
+16
+0.0
+1
+
+SWITCH
+861
+722
+1016
+755
+global-influence
+global-influence
+1
+1
+-1000
+
+SWITCH
+862
+775
+1017
+808
+cost-per-behavior
+cost-per-behavior
+1
+1
+-1000
+
+SWITCH
+1049
+722
+1256
+755
+threshold-per-behavior
+threshold-per-behavior
+1
+1
+-1000
+
+SWITCH
+1049
+776
+1258
+809
+varying-avialable-resources
+varying-avialable-resources
+1
+1
+-1000
+
+TEXTBOX
+1505
+27
+1704
+67
+Select Duration Model
+16
+0.0
+1
+
+CHOOSER
+1505
+75
+1710
+120
+duration-model
+duration-model
+"SIR" "SIRS" "SIVRS" "sticky-behavior" "original"
+1
+
+TEXTBOX
+1508
+169
+1658
+189
+Insert Durations
+16
+0.0
+1
+
+INPUTBOX
+1506
+218
+1767
+278
+behavior-durations-mean
+[5]
+1
+0
+String
+
+INPUTBOX
+1507
+300
+1769
+360
+behavior-durations-sd
+[0]
+1
+0
+String
+
+INPUTBOX
+1506
+385
+1772
+445
+behavior-recovered-duration
+[3]
+1
+0
+String
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -950,7 +1102,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.0.2
+NetLogo 5.0.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

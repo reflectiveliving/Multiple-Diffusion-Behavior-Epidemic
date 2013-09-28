@@ -33,11 +33,11 @@ end
 
 ;; this will set the remaining-duration for nodes
 
-to initialize-remaining-duration [winner]
-      array:set remaining-duration winner (array:item durations winner) ;; this will set the remaining-duration of the choosen behavior
+to initialize-remaining-infected-duration [winner]
+      array:set remaining-infected-duration winner (array:item infected-durations winner) ;; this will set the remaining-duration of the choosen behavior
 end
 
 
-to initialize-remaining-incubation-duration [agent]
-      array:set remaining-incubation-duration agent (array:item incubation-durations agent) ;; this will set the remaining-duration of the choosen behavior
+to initialize-remaining-recovered-duration [b-id]
+      array:set remaining-recovered-duration b-id (array:item recovered-durations b-id) ;; this will set the remaining-duration of the choosen behavior
 end

@@ -7,19 +7,24 @@ to go
   
   if all? turtles [not active?]  [ stop ]   ;; it will stop when there is no more active turtles
   
-  update-remaining-duration                 ;; sets new remaining-durations for new behaviors present in network_dynamics.nls
-                           
-  update-threshold                          ;; set the new threshold if the threshold switch is on  
-  update-costs                              ;; set the new cost
-  
-  reset-roundActiveCounts
+  ;reset-roundActiveCounts
   reset-weight-sums
   reset-consider ;this is commented out
   reset-payoffs
-  update-global-population                      ;; set preferences with respect to the number of active-counts / number of nodes , code written in simulation_counts_vars.nls
   
   propagate-influence
+  
+  ;update-remaining-duration                 ;; sets new remaining-durations for new behaviors present in network_dynamics.nls
+                           
+  ;update-threshold                          ;; set the new threshold if the threshold switch is on  
+  ;update-costs                              ;; set the new cost
+  
+  
+  
   make-adoption-decision
+  
+  set-turtle-color
+  
  
   update-indicators
 
@@ -47,11 +52,11 @@ end
 to reset-consider
   ask turtles [
     foreach behav-id-list [
-      ifelse duration-model = "none"[
-      array:set consider? ? (array:item actives? ?)   ;; previously adopted behaviors are automatically considered
-      ][
+      ;ifelse duration-model = "none"[
+      ;array:set consider? ? (array:item actives? ?)   ;; previously adopted behaviors are automatically considered
+     ; ][
       array:set consider? ? false ; only behaviors crossing the threshold are considered
-      ]
+      ;]
     ]
   ]
 end
@@ -100,24 +105,31 @@ end
 to make-adoption-decision
   ask turtles [
     calculate-payoffs
-    new-consider
+    
+    calculate-high-local-influence
+    
+    run update-turtle-attr
+    
+    run new-consider
     
     let opt knapsack-decide
     
     foreach opt [
      array:set actives? ? true
-     set remaining-resource (remaining-resource - array:item costs ?)
-     initialize-remaining-duration ?       ;; this will set the remaining-duration of the choosen behavior present in seed-selection-common.nls
+     (run after-adoption ?)
     ]
     
-    ifelse empty? opt [
-      set color neutral
-    ]
-    [
-      set-color
+  ]
+end
+
+to calculate-high-local-influence
+  foreach behav-id-list [
+    if array:item weight-sums ? >= array:item thresholds ? [
+      array:set consider? ? true
     ]
   ]
 end
+    
 
 ;; turtle procedure for adoption decision making
 ;; employs brute-force search for the knapsack problem
@@ -183,17 +195,26 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; turtle procedure
+;; turtle procedure
 to set-color
-  set color 0
-  let num 0
-  foreach behav-id-list [
-    if array:item actives? ? [
-      set color color + (base + ? * step)
-      set num num + 1
-    ]
+;;  set color 0
+;;  let num 0
+  
+;;  foreach behav-id-list [
+;;    if array:item actives? ? [
+;;     set color color + (base + ? * step)
+;;      set num num + 1
+;;    ]
+;;  ]
+;;  if num > 1 [
+;;   set color color + scaling
+;;  ]
+
+  ifelse active? [
+    set color base
   ]
-  if num > 1 [
-    set color color + scaling
+  [
+    set color neutral
   ]
 end
   

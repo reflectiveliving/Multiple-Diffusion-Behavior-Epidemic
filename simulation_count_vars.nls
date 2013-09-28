@@ -61,6 +61,8 @@ to update-indicators
     set utilized-resource utilized-resource + (array:item active-counts ? * array:item costs ?)
   ]
   
+  update-global-population
+  
   set utilization utilized-resource / total-resource
   update-max-utilization                                      ;; updating the max-utilization
 end

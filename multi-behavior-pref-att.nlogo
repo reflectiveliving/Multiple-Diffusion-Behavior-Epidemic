@@ -197,7 +197,7 @@ total-num-seeds
 total-num-seeds
 1
 number-of-nodes
-9
+30
 1
 1
 NIL
@@ -242,7 +242,7 @@ BUTTON
 107
 NIL
 go
-T
+NIL
 1
 T
 OBSERVER
@@ -272,7 +272,7 @@ num-behaviors
 num-behaviors
 1
 10
-3
+2
 1
 1
 NIL
@@ -497,7 +497,7 @@ rand-seed-threshold
 rand-seed-threshold
 0
 10000
-5033
+5032
 1
 1
 NIL
@@ -631,7 +631,7 @@ INPUTBOX
 1746
 233
 behavior-durations-mean
-[4 3 2]
+[1 1]
 1
 0
 String
@@ -706,7 +706,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[1 3 1]
+[1 1]
 1
 0
 String
@@ -748,7 +748,7 @@ INPUTBOX
 1749
 318
 behavior-durations-sd
-[1 1 1]
+[0 0]
 1
 0
 String
@@ -762,7 +762,7 @@ rand-seed-duration
 rand-seed-duration
 1
 10000
-4789
+1967
 1
 1
 NIL

@@ -31,12 +31,12 @@ turtles-own
   consider?  ;; boolean array for indicating whether a behavior will be considered for adoption or not
   
   ;; Params added for Time Varying models
-  incubation-durations ;; array for duration per behavior going to be in incuation
-  remaining-incubation-duration ;; an array to keep a track of the remaining incubation duration
+  recovered-durations ;; array for duration per behavior going to be in incuation
+  remaining-recovered-duration ;; an array to keep a track of the remaining incubation duration
   
-  durations   ;; an array of durations per behavior which are sticky
-  remaining-duration ;; an array to keep a track of the remaining duration
-  behavior-dropped? ;; an array which stores true if behavior is dropped permanently, this follows SIR model
+  infected-durations   ;; an array of durations per behavior which are sticky
+  remaining-infected-duration ;; an array to keep a track of the remaining duration
+  state ;; an array which stores state (i.e. S, I or R) of the turtle wrt each behavior
   remaining-resource ;; total resource available to agent at that point of time
   
   positive-global-effect? ;;an array which shows how a change in threshold will be taken of an individual, positively or negatively.
@@ -85,22 +85,22 @@ end
 
 ;; set the remaining duration to all zeros
 
-to set-remaining-duration
+to set-remaining-infected-duration
   ask turtles [
-    set remaining-duration array:from-list all-zeros
+    set remaining-infected-duration array:from-list all-zeros
   ]
 end
 
 ;; set the remaining incubation duration to all zeros
 
-to set-remaining-incubation-duration
+to set-remaining-recovered-duration
   ask turtles [
-    set remaining-incubation-duration array:from-list all-zeros
+    set remaining-recovered-duration array:from-list all-zeros
   ]
 end
 
 ;; set individual duration for each agent
-to set-durations
+to set-infected-durations
   let durationmeanlist read-from-string behavior-durations-mean
   let durationsdlist read-from-string behavior-durations-sd
   let durationlist n-values num-behaviors [0]
@@ -111,17 +111,17 @@ to set-durations
     set normal-variable random-normal ?1 ?2
     set durationlist replace-item ?3  durationlist round normal-variable ])
   
-    set durations array:from-list durationlist
+    set infected-durations array:from-list durationlist
   ]
   
 end
 
 ;; set individual incubationduration for each behavior
-to set-incubation-durations
+to set-recovered-durations
   let incubationdurationlist read-from-string behavior-recovered-duration
   ifelse is-list? incubationdurationlist [
    ask turtles [
-        set incubation-durations array:from-list incubationdurationlist
+        set recovered-durations array:from-list incubationdurationlist
                ]
   ][
     user-message "Input behaivor incubation durations as a list i.e. within []"
@@ -131,9 +131,9 @@ to set-incubation-durations
 end
 
 ;; set individual behavior-dropped states for each agent
-to set-behavior-dropped
+to set-state
   ask turtles [
-    set behavior-dropped? array:from-list n-values num-behaviors [false]
+    set state array:from-list n-values num-behaviors ["S"]
   ]
 end
 
@@ -171,19 +171,9 @@ end
 
 
 ;; set individual positive-global-effect states for each agent
-;; this will set uniformaly randomly it's effect towards global effects as true or false
 to set-positive-global-effect
   ask turtles [
     set positive-global-effect? array:from-list n-values num-behaviors [true]
-    let probability array:from-list n-values num-behaviors [random-float 1]
-    foreach behav-id-list[
-      let ran-var random-float 1
-      ifelse ran-var < array:item probability ? [
-      array:set positive-global-effect? ? true
-      ][
-      array:set positive-global-effect? ? false      
-      ]    
-    ]
   ]
 end
 

@@ -406,7 +406,7 @@ to one-step-spread-hill-climbing-with-random-tie-breaking
       let candidates filter [member? self (item ? new-seedsets)] (behav-id-list)
       let winner item (random length candidates) candidates
       array:set actives? winner true
-      initialize-remaining-duration winner                                           ;; function written in seed_selection_common.nls
+      initialize-remaining-infected-duration winner                                           ;; function written in seed_selection_common.nls
        
       array:set seeds-required winner ((array:item seeds-required winner) - 1)
       array:set seedsets winner (turtle-set array:item seedsets winner self)
