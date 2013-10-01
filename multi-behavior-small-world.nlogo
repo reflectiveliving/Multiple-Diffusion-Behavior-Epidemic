@@ -13,7 +13,7 @@ end
 to setup-small-world-network
   make-turtles
   wire-them
-  ;rewire-all
+  rewire-all
 end
 
 to make-turtles
@@ -33,10 +33,13 @@ to wire-them
   [
     ;; make edges with the next two neighbors
     ;; this makes a lattice with average degree of 4
+    let edge 1
+    while [edge <= no-edges]
+    [
     make-edge turtle n
-              turtle ((n + 1) mod count turtles)
-    make-edge turtle n
-              turtle ((n + 2) mod count turtles)
+              turtle ((n + edge) mod count turtles)
+              set edge edge + 1
+     ]
     set n n + 1
   ]
 end
@@ -180,7 +183,7 @@ number-of-nodes
 number-of-nodes
 1
 2000
-103
+100
 1
 1
 NIL
@@ -210,7 +213,7 @@ rand-seed-network
 rand-seed-network
 1
 10000
-1997
+2164
 1
 1
 NIL
@@ -225,7 +228,7 @@ rewiring-probability
 rewiring-probability
 0
 1
-0.25
+0.2
 0.01
 1
 NIL
@@ -309,7 +312,7 @@ MONITOR
 382
 NIL
 utilization
-5
+3
 1
 11
 
@@ -373,7 +376,7 @@ INPUTBOX
 196
 245
 behavior-costs
-[0.2 0.5 0.7]
+[0.5]
 1
 0
 String
@@ -384,7 +387,7 @@ INPUTBOX
 197
 310
 behavior-utilities
-[0.2 0.5 0.7]
+[0.5]
 1
 0
 String
@@ -510,7 +513,7 @@ rand-seed-threshold
 rand-seed-threshold
 0
 10000
-4937
+4999
 1
 1
 NIL
@@ -624,8 +627,8 @@ SLIDER
 rand-seed-duration
 rand-seed-duration
 0
-100
-50
+10000
+1967
 1
 1
 NIL
@@ -638,7 +641,7 @@ MONITOR
 636
 NIL
 max-utilization
-17
+3
 1
 11
 
@@ -668,8 +671,8 @@ SWITCH
 775
 1017
 808
-cost-per-behavior
-cost-per-behavior
+cost-varying?
+cost-varying?
 1
 1
 -1000
@@ -679,9 +682,9 @@ SWITCH
 722
 1256
 755
-threshold-per-behavior
-threshold-per-behavior
-1
+threshold-varying?
+threshold-varying?
+0
 1
 -1000
 
@@ -713,7 +716,7 @@ CHOOSER
 120
 duration-model
 duration-model
-"SIR" "SIRS" "SIVRS" "sticky-behavior" "original"
+"SIR" "SIRS" "SIvRS" "sticky-behavior" "none"
 1
 
 TEXTBOX
@@ -732,7 +735,7 @@ INPUTBOX
 1767
 278
 behavior-durations-mean
-[5]
+[2]
 1
 0
 String
@@ -754,10 +757,36 @@ INPUTBOX
 1772
 445
 behavior-recovered-duration
-[3]
+[0]
 1
 0
 String
+
+SLIDER
+277
+705
+449
+738
+no-edges
+no-edges
+0
+10
+2
+1
+1
+NIL
+HORIZONTAL
+
+MONITOR
+292
+654
+384
+699
+NIL
+total-adoption
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -2438,6 +2467,98 @@ NetLogo 5.0.3
     <enumeratedValueSet variable="num-samples-for-spread-estimation">
       <value value="5000"/>
     </enumeratedValueSet>
+  </experiment>
+  <experiment name="SIR-SIRS-SI-SVS-SW-threshold-average" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="20"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-per-behavior">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-avialable-resources">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-per-behavior">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;none&quot;"/>
+      <value value="&quot;SIR&quot;"/>
+      <value value="&quot;SIRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="2164"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[3 2 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5]&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
   </experiment>
 </experiments>
 @#$#@#$#@

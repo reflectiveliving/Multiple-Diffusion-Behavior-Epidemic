@@ -1,4 +1,5 @@
 extensions [array profiler]
+;; Add profiler
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -182,7 +183,7 @@ number-of-nodes
 number-of-nodes
 1
 2000
-103
+100
 1
 1
 NIL
@@ -197,7 +198,7 @@ total-num-seeds
 total-num-seeds
 1
 number-of-nodes
-30
+10
 1
 1
 NIL
@@ -272,7 +273,7 @@ num-behaviors
 num-behaviors
 1
 10
-2
+1
 1
 1
 NIL
@@ -296,7 +297,7 @@ MONITOR
 382
 NIL
 utilization
-5
+3
 1
 11
 
@@ -360,7 +361,7 @@ INPUTBOX
 195
 204
 behavior-costs
-[0.5 0.3 0.2]
+[0.5]
 1
 0
 String
@@ -631,7 +632,7 @@ INPUTBOX
 1746
 233
 behavior-durations-mean
-[1 1]
+[2]
 1
 0
 String
@@ -706,7 +707,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[1 1]
+[0]
 1
 0
 String
@@ -728,8 +729,8 @@ CHOOSER
 103
 duration-model
 duration-model
-"SIR" "SIRS" "sticky-behavior" "none"
-1
+"SIR" "SIRS" "SIvRS" "sticky-behavior" "none"
+4
 
 MONITOR
 285
@@ -738,7 +739,7 @@ MONITOR
 454
 NIL
 max-utilization
-17
+3
 1
 11
 
@@ -748,7 +749,7 @@ INPUTBOX
 1749
 318
 behavior-durations-sd
-[0 0]
+[0]
 1
 0
 String
@@ -767,6 +768,17 @@ rand-seed-duration
 1
 NIL
 HORIZONTAL
+
+MONITOR
+288
+801
+380
+846
+NIL
+total-adoption
+5
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -2154,6 +2166,94 @@ NetLogo 5.0.3
       <value value="&quot;SIR&quot;"/>
       <value value="&quot;none&quot;"/>
       <value value="&quot;sticky-behavior&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SIvRS-SIR-PA-threshold-average" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="100"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-per-behavior">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-per-behavior">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="2164"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+      <value value="&quot;SIRS&quot;"/>
+      <value value="&quot;SIR&quot;"/>
+      <value value="&quot;none&quot;"/>
+      <value value="&quot;sticky-behavior&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

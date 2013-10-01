@@ -87,8 +87,12 @@ to set-diffusion-model
       ]
     ]
   ]
-  if duration-model ="SIvRS" [
+  if duration-model = "SIvRS" [
     set-SIvRS
+  ]
+  
+  if duration-model = "none" [
+    set-none
   ]
 end
 
@@ -99,9 +103,15 @@ to set-SIRS
 end
 
 to set-SIvRS
-  set update-turtle-attr task [update-turtle-attr-SIRS]
-  set new-consider task [new-consider-SIRS]
-  set after-adoption task [after-adoption-SIRS ?]
+  set update-turtle-attr task [update-turtle-attr-SIvRS]
+  set new-consider task [new-consider-SIvRS]
+  set after-adoption task [after-adoption-SIvRS ?]
+end
+
+to set-none
+  set update-turtle-attr task [update-turtle-attr-none]
+  set new-consider task [new-consider-none]
+  set after-adoption task [after-adoption-none ?]
 end
 
 to set-SIR

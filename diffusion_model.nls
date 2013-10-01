@@ -16,7 +16,7 @@ to go
   
   ;update-remaining-duration                 ;; sets new remaining-durations for new behaviors present in network_dynamics.nls
                            
-  ;update-threshold                          ;; set the new threshold if the threshold switch is on  
+  update-threshold                          ;; set the new threshold if the threshold switch is on  
   ;update-costs                              ;; set the new cost
   
   

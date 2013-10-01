@@ -151,7 +151,7 @@ end
 ;; set individual resources for each agent
 to set-resource
   ask turtles [
-    set resource random-float 1
+    set resource round (random-float 1)
   ]
 end
 
@@ -173,9 +173,26 @@ end
 ;; set individual positive-global-effect states for each agent
 to set-positive-global-effect
   ask turtles [
-    set positive-global-effect? array:from-list n-values num-behaviors [true]
+    set positive-global-effect? array:from-list n-values num-behaviors [true]  
+  ]
+  update-positive-global-effect
+end
+
+to update-positive-global-effect
+  let temp-global-effect random-float 1
+  ask turtles [
+    foreach behav-id-list[
+      let temp-var random-float 1
+      ifelse temp-var > temp-global-effect [
+        array:set positive-global-effect? ? true
+      ][
+      array:set positive-global-effect? ? false    
+      ]
+    ]
   ]
 end
+
+
 
 ;; set agent thresholds before every run 
 to set-thresholds 

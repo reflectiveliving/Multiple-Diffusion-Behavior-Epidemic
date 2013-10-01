@@ -3,27 +3,24 @@
 
 ;; turtel procedure
 to after-adoption-SIvRS [b-id]
-  array:set state b-id "I"
-  array:set remaining-infected-duration b-id (array:item infected-durations b-id)
-  set remaining-resource remaining-resource - (array:item costs b-id)
+  array:set state b-id "V"
 end
 
 ;; turtle procedure
 to new-consider-SIvRS 
   foreach behav-id-list [
-    array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S"))
+    array:set consider? ? ((array:item consider? ?) or (array:item actives? ?))
   ]
 end
 
 ;;turtle procedure
 to update-turtle-attr-SIvRS
   foreach behav-id-list [
-    ifelse array:item state ? = "I" [
+    ifelse array:item state ? = "V" [
       ifelse array:item remaining-infected-duration ? = 0 [
         array:set state ? "R"
         array:set actives? ? false
         array:set remaining-recovered-duration ? (array:item recovered-durations ?)
-        set remaining-resource remaining-resource + (array:item costs ?)
       ]
       [
         array:set remaining-infected-duration ? (array:item remaining-infected-duration ? - 1)
@@ -161,10 +158,11 @@ end
 
 ;; turtel procedure
 to after-adoption-none [b-id]
+  array:set state b-id "V"
 end
 
 ;; turtle procedure
-to new-consider-node 
+to new-consider-none 
   foreach behav-id-list [
     array:set consider? ? ((array:item consider? ?) or (array:item actives? ?))
   ]
@@ -183,16 +181,16 @@ end
 ;; turtle procedure to update thresholds
 to update-threshold
   ask turtles[
-    if threshold-per-behavior [
+    if threshold-varying? [
       foreach behav-id-list [
-        if array:item positive-global-effect? ? [
-          let stable-threshold (array:item thresholds-backup ? - 0.05)
-          let temp-threshold  (0.05 * exp ( 0 - (0.25 * array:item global-population ?) ) + stable-threshold )
-          ifelse temp-threshold < 0.05 [
-            array:set thresholds ? 0.05
-          ][
+           let temp-threshold 0
+          let stable-threshold (array:item thresholds-backup ? - 0.06)
+          set temp-threshold  (0.06 * exp ( 0 - (10 * array:item global-population ?) ) + stable-threshold )
+        ifelse array:item positive-global-effect? ? [          
           array:set thresholds ? temp-threshold
-          ]
+        ]
+        [
+          array:set thresholds ? (1 - temp-threshold)
         ]
       ]   
     ]
@@ -202,9 +200,9 @@ end
 
 ;; turtle procedure to update costs
 to update-costs
-    if cost-per-behavior [
+    if cost-varying? [
       foreach behav-id-list [
-          let stable-cost (array:item costs ? - 0.05)
+          let stable-cost (array:item costs ? - 0.1)
           let temp-costs  ( exp ( 0 - (0.25 * array:item global-population ?) )  )
           ifelse temp-costs < 0.05 [
             array:set costs ? 0.05

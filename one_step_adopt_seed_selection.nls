@@ -411,13 +411,11 @@ to one-step-spread-hill-climbing-with-random-tie-breaking
       array:set seeds-required winner ((array:item seeds-required winner) - 1)
       array:set seedsets winner (turtle-set array:item seedsets winner self)
       ;; with resource nudging
-      ifelse array:item costs winner > resource [
+      if array:item costs winner > resource [
         set resource array:item costs winner
-        set remaining-resource (resource - array:item costs winner)                   ;; set remaining-resource when cost is greater than the actual resource
+        set remaining-resource resource
       ]
-      [
-        set remaining-resource (resource - array:item costs winner)                   ;; set remaining-resource
-      ]
+     
       set-color
     ]   
    ]
