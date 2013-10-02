@@ -3,13 +3,16 @@
 
 ;; turtel procedure
 to after-adoption-SIvRS [b-id]
-  array:set state b-id "V"
+  if array:item state b-id = "S"[
+    array:set state b-id "V"
+    array:set remaining-infected-duration b-id (array:item infected-durations b-id)
+  ]
 end
 
 ;; turtle procedure
 to new-consider-SIvRS 
   foreach behav-id-list [
-    array:set consider? ? ((array:item consider? ?) or (array:item actives? ?))
+    array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S"))
   ]
 end
 
@@ -184,8 +187,8 @@ to update-threshold
     if threshold-varying? [
       foreach behav-id-list [
            let temp-threshold 0
-          let stable-threshold (array:item thresholds-backup ? - 0.06)
-          set temp-threshold  (0.06 * exp ( 0 - (10 * array:item global-population ?) ) + stable-threshold )
+          let stable-threshold (array:item thresholds-backup ? - 0.09)
+          set temp-threshold  (0.09 * exp ( 0 - (10 * array:item global-population ?) ) + stable-threshold )
         ifelse array:item positive-global-effect? ? [          
           array:set thresholds ? temp-threshold
         ]
