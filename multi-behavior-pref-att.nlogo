@@ -780,6 +780,21 @@ total-adoption
 1
 11
 
+SLIDER
+646
+805
+836
+838
+positive-effect-probability
+positive-effect-probability
+0
+1
+0.5
+0.1
+1
+NIL
+HORIZONTAL
+
 @#$#@#$#@
 ## WHAT IS IT?
 
