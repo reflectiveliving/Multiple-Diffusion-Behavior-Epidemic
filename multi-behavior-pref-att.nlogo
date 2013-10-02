@@ -665,7 +665,7 @@ SWITCH
 839
 threshold-varying?
 threshold-varying?
-0
+1
 1
 -1000
 
@@ -730,7 +730,7 @@ CHOOSER
 duration-model
 duration-model
 "SIR" "SIRS" "SIvRS" "sticky-behavior" "none"
-1
+2
 
 MONITOR
 285
@@ -789,7 +789,7 @@ positive-effect-probability
 positive-effect-probability
 0
 1
-0.5
+1
 0.1
 1
 NIL

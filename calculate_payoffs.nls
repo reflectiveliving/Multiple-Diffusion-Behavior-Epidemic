@@ -11,11 +11,54 @@ to calculate-payoffs
    ;; if preferences-per-behav switch is on then includde preferences
     ifelse global-influence  [
       set w 0.33
-      array:set payoffs ?  0.10 * (array:item utilities ? + extra) + 0.10 * (array:item weight-sums ?) + 0.80 * (array:item global-population ? ) ;; preference factor is added 
+      array:set payoffs ?  w * (array:item utilities ? + extra) + w * (array:item weight-sums ?) + w * (array:item global-population ? ) ;; preference factor is added 
     ][
     set w 0.5
     let payoff-temp w * (array:item utilities ? + extra) + w * (array:item weight-sums ?)
     array:set payoffs ?  payoff-temp
+    ]
+  ]
+end
+
+
+;; turtle procedure; calculate the present weightsum for each behavior
+to calculate-weight-sums [influencer behav-id]
+  let w 0.5
+  
+  foreach behav-id-list [
+   ;; if preferences-per-behav switch is on then includde preferences
+    ifelse global-influence  [
+      ifelse end1 = influencer [
+        let weight end2-weight
+        ask end2 [
+          let t array:item weight-sums behav-id
+          let weight-sums-temp ( t + weight )
+          array:set weight-sums behav-id w * weight-sums-temp + w * (array:item global-population behav-id )
+        ]
+      ]
+      [
+        let weight end1-weight
+        ask end1 [
+          let t array:item weight-sums behav-id
+          let weight-sums-temp ( t + weight )
+          array:set weight-sums behav-id w * weight-sums-temp + w * (array:item global-population behav-id )
+        ]
+      ]
+    ][
+    ifelse end1 = influencer [
+      let weight end2-weight
+      ask end2 [
+        let t array:item weight-sums behav-id
+        array:set weight-sums behav-id ( t + weight )
+      ]
+    ]
+    [
+      let weight end1-weight
+      ask end1 [
+        let t array:item weight-sums behav-id
+        array:set weight-sums behav-id ( t + weight )
+      ]
+    ]
     ]
   ]
 end

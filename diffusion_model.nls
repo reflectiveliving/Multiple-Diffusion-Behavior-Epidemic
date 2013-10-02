@@ -85,20 +85,7 @@ end
 
 ;; link procedure; influencer influences the other end of the link; link procedure
 to influence [influencer behav-id]
-  ifelse end1 = influencer [
-    let weight end2-weight
-    ask end2 [
-      let t array:item weight-sums behav-id
-      array:set weight-sums behav-id ( t + weight )
-    ]
-  ]
-  [
-    let weight end1-weight
-    ask end1 [
-      let t array:item weight-sums behav-id
-      array:set weight-sums behav-id ( t + weight )
-    ]
-  ]
+  calculate-weight-sums influencer behav-id
 end
 
 ;; decision to turn active or not
