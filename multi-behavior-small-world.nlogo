@@ -182,7 +182,7 @@ SLIDER
 number-of-nodes
 number-of-nodes
 1
-2000
+1000
 100
 1
 1
@@ -228,7 +228,7 @@ rewiring-probability
 rewiring-probability
 0
 1
-0
+0.2
 0.01
 1
 NIL
@@ -288,7 +288,7 @@ num-behaviors
 num-behaviors
 1
 10
-1
+2
 1
 1
 NIL
@@ -376,7 +376,7 @@ INPUTBOX
 196
 245
 behavior-costs
-[0.5]
+[0.5 0.2]
 1
 0
 String
@@ -387,7 +387,7 @@ INPUTBOX
 197
 310
 behavior-utilities
-[0.5]
+[0.5 0.2]
 1
 0
 String
@@ -662,7 +662,7 @@ SWITCH
 755
 global-influence
 global-influence
-0
+1
 1
 -1000
 
@@ -673,7 +673,7 @@ SWITCH
 808
 cost-varying?
 cost-varying?
-1
+0
 1
 -1000
 
@@ -735,7 +735,7 @@ INPUTBOX
 1767
 278
 behavior-durations-mean
-[2]
+[2 2]
 1
 0
 String
@@ -746,7 +746,7 @@ INPUTBOX
 1769
 360
 behavior-durations-sd
-[0]
+[0 0]
 1
 0
 String
@@ -757,7 +757,7 @@ INPUTBOX
 1772
 445
 behavior-recovered-duration
-[1]
+[1 1]
 1
 0
 String
@@ -771,7 +771,7 @@ no-edges
 no-edges
 0
 number-of-nodes
-98
+2
 1
 1
 NIL
@@ -789,10 +789,10 @@ total-adoption
 11
 
 SLIDER
-1289
-724
-1479
-757
+1291
+722
+1495
+755
 positive-effect-probability
 positive-effect-probability
 0
@@ -802,6 +802,17 @@ positive-effect-probability
 1
 NIL
 HORIZONTAL
+
+SWITCH
+1292
+777
+1497
+810
+global-behavior-awareness
+global-behavior-awareness
+1
+1
+-1000
 
 @#$#@#$#@
 ## WHAT IS IT?

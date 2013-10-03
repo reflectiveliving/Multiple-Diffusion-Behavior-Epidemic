@@ -148,10 +148,10 @@ __includes [
   
 @#$#@#$#@
 GRAPHICS-WINDOW
-851
-28
-1481
-679
+831
+29
+1461
+680
 20
 20
 15.122
@@ -198,7 +198,7 @@ total-num-seeds
 total-num-seeds
 1
 number-of-nodes
-20
+10
 1
 1
 NIL
@@ -644,7 +644,7 @@ SWITCH
 789
 global-influence
 global-influence
-0
+1
 1
 -1000
 
@@ -676,7 +676,7 @@ SWITCH
 888
 cost-varying?
 cost-varying?
-1
+0
 1
 -1000
 
@@ -730,7 +730,7 @@ CHOOSER
 duration-model
 duration-model
 "SIR" "SIRS" "SIvRS" "sticky-behavior" "none"
-2
+4
 
 MONITOR
 285
@@ -805,6 +805,17 @@ ticks
 17
 1
 11
+
+SWITCH
+1066
+807
+1276
+840
+global-behavior-awareness
+global-behavior-awareness
+1
+1
+-1000
 
 @#$#@#$#@
 ## WHAT IS IT?

@@ -30,7 +30,7 @@ to setup-indicators
   
   let utilized-resource 0
   foreach behav-id-list [
-    set utilized-resource utilized-resource + (array:item active-counts ? * array:item costs ?)
+    set utilized-resource utilized-resource + (array:item active-counts ? * array:item costs-backup ?)
   ]
   
   set utilization utilized-resource / total-resource
@@ -61,7 +61,7 @@ to update-indicators
   
   let utilized-resource 0
   foreach behav-id-list [
-    set utilized-resource utilized-resource + (array:item active-counts ? * array:item costs ?)
+    set utilized-resource utilized-resource + (array:item active-counts ? * array:item costs-backup ?)
   ]
   
   update-global-population

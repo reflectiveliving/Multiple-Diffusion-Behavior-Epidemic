@@ -4,6 +4,7 @@
 
 globals [
   costs  ;; costs of each of the behaviors
+  costs-backup ;; backs up all costs
   utilities ;; intrinsic benefits from each of the behaviors
   behav-id-list ;; list of behavior ids
   all-zeros ;; a list of length num-behaviors containing zeros
@@ -23,8 +24,10 @@ turtles-own
 [
   resource   ;; total resource available to this agent for behavior adoption 
   resource-backup ;; backs up the resource value of each agent while running the spread based seedselection simulations
+  
   thresholds ;; thresholds of adoption for each possible behavior
   thresholds-backup ;; this is a backup for thresholds
+  
   actives?   ;; whether this agent is active or not for the particular behavior
   weight-sums ;; used to sum up influence weight from active neighbors
   payoffs    ;; payoff from each of the the behaviors
@@ -50,6 +53,7 @@ to set-behaviors
   set costs read-from-string behavior-costs
   ifelse is-list? costs [
     set costs array:from-list costs
+    set costs-backup array:from-list array:to-list costs
   ]
   [
     user-message "Input behaivor costs as a list i.e. within []"
