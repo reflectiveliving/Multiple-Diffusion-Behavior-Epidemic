@@ -155,7 +155,7 @@ end
 ;; set individual resources for each agent
 to set-resource
   ask turtles [
-    set resource round (random-float 1)
+    set resource random-float 1
   ]
 end
 

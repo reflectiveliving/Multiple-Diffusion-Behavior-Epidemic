@@ -673,7 +673,7 @@ SWITCH
 808
 cost-varying?
 cost-varying?
-0
+1
 1
 -1000
 
