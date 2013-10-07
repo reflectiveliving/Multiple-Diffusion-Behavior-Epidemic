@@ -5,7 +5,7 @@
 to go
  ;; if no-new-adoption? [stop]
   
-  if all? turtles [not active?]  [ stop ]   ;; it will stop when there is no more active turtles
+  ;if all? turtles [not active?]  [ stop ]   ;; it will stop when there is no more active turtles
   
   ;reset-roundActiveCounts
   reset-weight-sums
@@ -16,16 +16,13 @@ to go
   
   update-threshold                          ;; set the new threshold if the threshold switch is on  
   update-costs                              ;; set the new cost
-  
-  
+  update-resource                           ;; calculate the resources
   
   make-adoption-decision
   
   set-turtle-color
-  
  
   update-indicators
-
   
   tick
 end
@@ -79,13 +76,13 @@ to propagate-influence
           ]
         ]
       ][
-      if array:item actives? ?
-        [
-          ask my-links [
-            influence myself ?
+      ;;if array:item actives? ?
+       ;; [
+        ;;  ask my-links [
+        ;;    influence myself ?
             ;set color (base + ? * step)
-          ]
-        ]
+         ;; ]
+       ;; ]
       if not array:item actives? ?
       [
         ask my-links [
@@ -116,11 +113,18 @@ to make-adoption-decision
     
     let opt knapsack-decide
     
+    if varying-available-resources [
+      reset-actives
+    ]
+    
     foreach opt [
      array:set actives? ? true
      (run after-adoption ?)
     ]
-    
+       
+    if varying-available-resources [
+      run after-knapsack
+    ]
   ]
 end
 
@@ -219,7 +223,10 @@ to set-color
     set color neutral
   ]
 end
-  
+
+to reset-actives
+  set actives? array:from-list n-values num-behaviors [false]
+end
 
 ;; turtle procedure
 to-report active?

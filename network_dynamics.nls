@@ -3,23 +3,27 @@
 
 ;; turtel procedure
 to after-adoption-SIvRS [b-id]
-  if array:item state b-id = "S"[
-    array:set state b-id "V"
+  if array:item state b-id = "S" [
     array:set remaining-infected-duration b-id (array:item infected-durations b-id)
   ]
+  array:set state b-id "V"
 end
 
 ;; turtle procedure
 to new-consider-SIvRS 
   foreach behav-id-list [
+    ifelse varying-available-resources [  
+      array:set consider? ? ((array:item consider? ? and array:item state ? != "R") or (array:item state ? = "D") or (array:item state ? = "V"))
+    ][
     array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S"))
+    ]
   ]
 end
 
 ;;turtle procedure
 to update-turtle-attr-SIvRS
   foreach behav-id-list [
-    ifelse array:item state ? = "V" [
+    ifelse array:item state ? = "V" [                                        ;; check for nodes with either volatile state or dormant behaviors
       ifelse array:item remaining-infected-duration ? = 0 [
         array:set state ? "R"
         array:set actives? ? false
@@ -40,28 +44,45 @@ to update-turtle-attr-SIvRS
       ]
     ]
   ]
+end
+
+;; turtle procedure
+to after-knapsack-SIvRS
+  foreach behav-id-list[
+    if not array:item actives? ? [
+      if array:item state ? = "V" [
+        array:set state ?  "D"
+      ]                                             ;; Put the node in dormant state
+    ]
+  ]    
 end
 
 ;;;;;;;;;;;;;;;;;;;;;SIRS Model;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; turtel procedure
 to after-adoption-SIRS [b-id]
+  if array:item state b-id = "S" [
+    array:set remaining-infected-duration b-id (array:item infected-durations b-id)
+  ]
   array:set state b-id "I"
-  array:set remaining-infected-duration b-id (array:item infected-durations b-id)
   set remaining-resource remaining-resource - (array:item costs b-id)
 end
 
 ;; turtle procedure
 to new-consider-SIRS 
   foreach behav-id-list [
+    ifelse varying-available-resources [  
+      array:set consider? ? ((array:item consider? ? and array:item state ? != "R") or (array:item state ? = "D") or (array:item state ? = "I"))
+    ][
     array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S"))
+    ]
   ]
 end
 
 ;;turtle procedure
 to update-turtle-attr-SIRS
   foreach behav-id-list [
-    ifelse array:item state ? = "I" [
+    ifelse array:item state ? = "I" [                               
       ifelse array:item remaining-infected-duration ? = 0 [
         array:set state ? "R"
         array:set actives? ? false
@@ -85,27 +106,43 @@ to update-turtle-attr-SIRS
   ]
 end
 
+;; turtle procedure
+to after-knapsack-SIRS
+  foreach behav-id-list[
+    if not array:item actives? ? [
+      if array:item state ? = "I" [
+        array:set state ?  "D"
+      ]                                             ;; Put the node in dormant state
+    ]
+  ]  
+end
+
 ;;;;;;;;;;;;;;;;;;;;;SIR Model;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; turtel procedure
 to after-adoption-SIR [b-id]
+  if array:item state b-id = "S" [
+    array:set remaining-infected-duration b-id (array:item infected-durations b-id)
+  ]
   array:set state b-id "I"
-  array:set actives? b-id true
-  array:set remaining-infected-duration b-id (array:item infected-durations b-id)
   set remaining-resource remaining-resource - (array:item costs b-id)
 end
 
 ;; turtle procedure
 to new-consider-SIR 
   foreach behav-id-list [
+    ifelse varying-available-resources [  
+      array:set consider? ? ((array:item consider? ? and array:item state ? != "R") or (array:item state ? = "D") or (array:item state ? = "I"))
+    ][
     array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S"))
+    ]
   ]
 end
 
 ;;turtle procedure
 to update-turtle-attr-SIR
   foreach behav-id-list [
-    if array:item state ? = "I" [
+    if array:item state ? = "I"[
       ifelse array:item remaining-infected-duration ? = 0 [
         array:set state ? "R"
         array:set actives? ? false
@@ -118,6 +155,16 @@ to update-turtle-attr-SIR
   ]
 end
 
+;; turtle procedure
+to after-knapsack-SIR                                 
+  foreach behav-id-list[
+    if not array:item actives? ? [
+      if array:item state ? = "I" [
+        array:set state ?  "D"
+      ]                                             ;; Put the node in dormant state
+    ]
+  ]
+end
 
 
 ;;;;;;;;;;;;;;;;;;;;;Sticky Behavior SIVS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -154,6 +201,19 @@ to update-turtle-attr-sticky
   ]
 end
 
+;; turtle procedure
+to after-knapsack-sticky
+      if varying-available-resources [                                    ;; Update the knapsack when there is a resource variation
+    set actives? array:from-list n-values num-behaviors [false]
+    foreach behav-id-list[
+      if not array:item actives? ?[
+        array:set state ? "D"                                             ;; Put the node in dormant state
+      ]
+    ]
+  ]
+  
+end
+
 ;;;;;;;;;;;;;;;;;;;;;None SVS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     
 ;; V (Velnerable) denotes the state where a behavior has crossed its mandatory infection period, but it
@@ -173,6 +233,18 @@ end
 
 ;;turtle procedure
 to update-turtle-attr-none
+
+end
+
+;; turtle procedure
+to after-knapsack-none
+  if varying-available-resources [                                    ;; Update the knapsack when there is a resource variation
+      foreach behav-id-list[
+        if not array:item actives? ?[
+        array:set state ? "S"
+      ]
+      ]
+    ]
 end
   
   
@@ -219,7 +291,29 @@ to update-costs
     ]
 end 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Varying Resources ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; turtle prodecude to update resource, it is based of time. calcuating using the tick and if the modulus fall within [1 -5] then weekdays having less resource. 
+;; If the modulus is falling within [6,7] , then considering it as the weekend and will have more resource. 
+to update-resource
+  if varying-available-resources [
+    let timestamp ticks mod 7
+    ask turtles[ 
+      set resource array:item weekly-resource timestamp
+      set remaining-resource resource
+     ; foreach behav-id-list[
+      ;  if array:item actives? ? [
+       ;   set remaining-resource remaining-resource - (array:item costs ?)
+        ;]
+      ;] 
+    ]  
+  ]
+end
+
+
+
+
 
 
 

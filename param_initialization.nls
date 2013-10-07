@@ -24,6 +24,7 @@ turtles-own
 [
   resource   ;; total resource available to this agent for behavior adoption 
   resource-backup ;; backs up the resource value of each agent while running the spread based seedselection simulations
+  weekly-resource ;; this is the weekly resource for a node
   
   thresholds ;; thresholds of adoption for each possible behavior
   thresholds-backup ;; this is a backup for thresholds
@@ -36,7 +37,7 @@ turtles-own
   ;; Params added for Time Varying models
   recovered-durations ;; array for duration per behavior going to be in incuation
   remaining-recovered-duration ;; an array to keep a track of the remaining incubation duration
-  
+ 
   infected-durations   ;; an array of durations per behavior which are sticky
   remaining-infected-duration ;; an array to keep a track of the remaining duration
   state ;; an array which stores state (i.e. S, I or R) of the turtle wrt each behavior
@@ -155,14 +156,37 @@ end
 ;; set individual resources for each agent
 to set-resource
   ask turtles [
+    ifelse varying-available-resources [
+      set resource array:item weekly-resource 1
+    ][
     set resource random-float 1
+    ]
+  ]
+end
+
+;; set individual weekly resources for each agent
+to set-weekly-resource
+  if varying-available-resources [ 
+    let weeklyresourcelist read-from-string weekly-resource-input
+    ifelse is-list? weeklyresourcelist [
+      ask turtles [
+        set weekly-resource array:from-list weeklyresourcelist
+      ]
+    ][
+    user-message "Input weekly resource as a list i.e. within []"
+    stop
+    ]
   ]
 end
 
 ;; set individual remaining-resources for each agent
 to set-remaining-resource
   ask turtles [
+    ifelse varying-available-resources [
+      set remaining-resource array:item weekly-resource 1
+    ][
     set remaining-resource resource
+    ]
   ]
 end
 

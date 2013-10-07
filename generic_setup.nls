@@ -7,9 +7,10 @@ globals [
   step
   scaling
   
-  update-turtle-attr
-  new-consider
-  after-adoption
+  update-turtle-attr                            ;; used to update the turtle attributes for different duration models, present in network_dynamics.nls
+  new-consider                                  ;; used to update the consider list for different duration models, present in network_dynamics.nls
+  after-adoption                                ;; used to update the turtle state after adoption for different duration models, present in network_dynamics.nls
+  after-knapsack                                ;; used to update the turtle attributes for different duration models, present in network_dynamics.nls
 ]
 
 to generic-setup [network-generation-task]
@@ -27,6 +28,7 @@ to generic-setup [network-generation-task]
   set-edge-weights
   
   random-seed 123456 + rand-seed-resource
+  set-weekly-resource
   set-resource
   set-remaining-resource
   
@@ -99,31 +101,36 @@ end
 to set-SIRS
   set update-turtle-attr task [update-turtle-attr-SIRS]
   set new-consider task [new-consider-SIRS]
-  set after-adoption task [after-adoption-SIRS ?]
+  set after-adoption task [after-adoption-SIRS ?]  
+  set after-knapsack task [after-knapsack-SIRS]
 end
 
 to set-SIvRS
   set update-turtle-attr task [update-turtle-attr-SIvRS]
   set new-consider task [new-consider-SIvRS]
-  set after-adoption task [after-adoption-SIvRS ?]
+  set after-adoption task [after-adoption-SIvRS ?]  
+  set after-knapsack task [after-knapsack-SIvRS]
 end
 
 to set-none
   set update-turtle-attr task [update-turtle-attr-none]
   set new-consider task [new-consider-none]
   set after-adoption task [after-adoption-none ?]
+  set after-knapsack task [after-knapsack-none]
 end
 
 to set-SIR
   set update-turtle-attr task [update-turtle-attr-SIR]
   set new-consider task [new-consider-SIR]
   set after-adoption task [after-adoption-SIR ?]
+  set after-knapsack task [after-knapsack-SIR]
 end
 
 to set-sticky
   set update-turtle-attr task [update-turtle-attr-sticky]
   set new-consider task [new-consider-sticky]
   set after-adoption task [after-adoption-sticky ?]
+  set after-knapsack task [after-knapsack-sticky]
 end
 
 to set-coloring-variables
