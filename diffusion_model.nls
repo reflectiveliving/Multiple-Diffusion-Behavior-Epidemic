@@ -9,11 +9,12 @@ to go
   
   ;reset-roundActiveCounts
   reset-weight-sums
-  reset-consider ;this is commented out
+  reset-consider 
   reset-payoffs
   
   propagate-influence
-  
+
+  update-weight-sums-global-influence       ;; in calculate_payoffs.nls, update the weight-sums when global influence is on
   update-threshold                          ;; set the new threshold if the threshold switch is on  
   update-costs                              ;; set the new cost
   update-resource                           ;; calculate the resources
@@ -47,11 +48,8 @@ end
 to reset-consider
   ask turtles [
     foreach behav-id-list [
-      ;ifelse duration-model = "none"[
-      ;array:set consider? ? (array:item actives? ?)   ;; previously adopted behaviors are automatically considered
-     ; ][
       array:set consider? ? false ; only behaviors crossing the threshold are considered
-      ;]
+ 
     ]
   ]
 end
@@ -67,37 +65,32 @@ end
 to propagate-influence 
   ask turtles [
     foreach behav-id-list [
-      ifelse not global-behavior-awareness [  ;; if the global-behavior-awareness switch is turned of
-        if array:item actives? ?
+      if array:item actives? ?
         [
           ask my-links [
             influence myself ?
-            ;set color (base + ? * step)
           ]
         ]
-      ][
-      ;;if array:item actives? ?
-       ;; [
-        ;;  ask my-links [
-        ;;    influence myself ?
-            ;set color (base + ? * step)
-         ;; ]
-       ;; ]
-      if not array:item actives? ?
-      [
-        ask my-links [
-          influence myself ?
-          ;set color (base + ? * step)
-        ]
       ]
-      ]
-    ]
   ]
 end
 
 ;; link procedure; influencer influences the other end of the link; link procedure
 to influence [influencer behav-id]
-  calculate-weight-sums influencer behav-id ;; function written in calculate_payoffs.nls
+  ifelse end1 = influencer [
+      let weight end2-weight
+      ask end2 [
+        let t array:item weight-sums behav-id
+        array:set weight-sums behav-id ( t + weight )
+      ]
+    ]
+    [
+      let weight end1-weight
+      ask end1 [
+        let t array:item weight-sums behav-id
+        array:set weight-sums behav-id ( t + weight )
+      ]
+    ]
 end
 
 ;; decision to turn active or not

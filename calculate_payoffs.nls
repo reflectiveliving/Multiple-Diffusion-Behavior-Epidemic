@@ -22,43 +22,13 @@ end
 
 
 ;; turtle procedure; calculate the present weightsum for each behavior
-to calculate-weight-sums [influencer behav-id]
+to update-weight-sums-global-influence 
   let w 0.5
-  
-  foreach behav-id-list [
-   ;; if preferences-per-behav switch is on then includde preferences
-    ifelse global-influence  [
-      ifelse end1 = influencer [
-        let weight end2-weight
-        ask end2 [
-          let t array:item weight-sums behav-id
-          let weight-sums-temp ( t + weight )
-          array:set weight-sums behav-id w * weight-sums-temp + w * (array:item global-population behav-id )
-        ]
+  if global-influence [
+    ask turtles [
+      foreach behav-id-list [
+        array:set weight-sums ? (w * array:item weight-sums ? + (1 - w) * array:item global-population ?)
       ]
-      [
-        let weight end1-weight
-        ask end1 [
-          let t array:item weight-sums behav-id
-          let weight-sums-temp ( t + weight )
-          array:set weight-sums behav-id w * weight-sums-temp + w * (array:item global-population behav-id )
-        ]
-      ]
-    ][
-    ifelse end1 = influencer [
-      let weight end2-weight
-      ask end2 [
-        let t array:item weight-sums behav-id
-        array:set weight-sums behav-id ( t + weight )
-      ]
-    ]
-    [
-      let weight end1-weight
-      ask end1 [
-        let t array:item weight-sums behav-id
-        array:set weight-sums behav-id ( t + weight )
-      ]
-    ]
     ]
   ]
 end

@@ -183,7 +183,7 @@ number-of-nodes
 number-of-nodes
 1
 2000
-100
+10
 1
 1
 NIL
@@ -198,7 +198,7 @@ total-num-seeds
 total-num-seeds
 1
 number-of-nodes
-10
+3
 1
 1
 NIL
@@ -243,7 +243,7 @@ BUTTON
 107
 NIL
 go
-T
+NIL
 1
 T
 OBSERVER
@@ -372,7 +372,7 @@ INPUTBOX
 196
 269
 behavior-utilities
-[0.2 0.3 0.2]
+[0.3 0.2 0.2]
 1
 0
 String
@@ -707,7 +707,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[0 0]
+[4 4]
 1
 0
 String
@@ -730,7 +730,7 @@ CHOOSER
 duration-model
 duration-model
 "SIR" "SIRS" "SIvRS" "sticky-behavior" "none"
-2
+1
 
 MONITOR
 285
@@ -823,7 +823,7 @@ INPUTBOX
 1562
 817
 weekly-resource-input
-[0.5 0.5 0.2 0.2 0.2 0.2 0.2]
+[0.5 0.5 0.2 0.2 0 0.2 0.2]
 1
 0
 String
