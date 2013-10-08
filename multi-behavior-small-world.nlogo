@@ -693,8 +693,8 @@ SWITCH
 776
 1258
 809
-varying-avialable-resources
-varying-avialable-resources
+varying-available-resources
+varying-available-resources
 1
 1
 -1000
@@ -813,6 +813,17 @@ global-behavior-awareness
 0
 1
 -1000
+
+INPUTBOX
+1515
+723
+1778
+783
+weekly-resource-input
+NIL
+1
+0
+String
 
 @#$#@#$#@
 ## WHAT IS IT?

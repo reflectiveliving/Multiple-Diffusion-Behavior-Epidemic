@@ -28,7 +28,6 @@ to generic-setup [network-generation-task]
   set-edge-weights
   
   random-seed 123456 + rand-seed-resource
-  set-weekly-resource
   set-resource
   set-remaining-resource
   

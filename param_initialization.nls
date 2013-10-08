@@ -155,27 +155,33 @@ end
 
 ;; set individual resources for each agent
 to set-resource
-  ask turtles [
-    ifelse varying-available-resources [
-      set resource array:item weekly-resource 1
-    ][
-    set resource random-float 1
+  ifelse varying-available-resources [
+    set-weekly-resource
+  ]
+  [
+    ask turtles [
+      set resource random-float 1
     ]
   ]
 end
 
 ;; set individual weekly resources for each agent
 to set-weekly-resource
-  if varying-available-resources [ 
-    let weeklyresourcelist read-from-string weekly-resource-input
-    ifelse is-list? weeklyresourcelist [
-      ask turtles [
-        set weekly-resource array:from-list weeklyresourcelist
-      ]
-    ][
-    user-message "Input weekly resource as a list i.e. within []"
-    stop
-    ]
+   let weekly-resource-temp n-values 7 [0]
+   let weeklyresourcelist read-from-string weekly-resource-lower-limit
+   let weeklyresourcelist-higher read-from-string weekly-resource-higher-limit
+   let random-value 0
+   
+   if varying-available-resources [ 
+     ask turtles [
+       let start random 7
+       (foreach weeklyresourcelist  weeklyresourcelist-higher [0 1 2 3 4 5 6 ][
+         set random-value (?1 + random-float (?2 - ?1) )
+         set weekly-resource-temp replace-item ((?3 + start) mod 7) weekly-resource-temp random-value])
+       set weekly-resource array:from-list weekly-resource-temp
+       set resource array:item weekly-resource 0
+     ]
+   
   ]
 end
 

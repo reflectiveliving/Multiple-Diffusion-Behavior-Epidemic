@@ -361,7 +361,7 @@ INPUTBOX
 195
 204
 behavior-costs
-[0.3 0.2]
+[0.5 0.2]
 1
 0
 String
@@ -632,7 +632,7 @@ INPUTBOX
 1746
 233
 behavior-durations-mean
-[8 8]
+[6 2]
 1
 0
 String
@@ -707,7 +707,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[4 4]
+[5 5]
 1
 0
 String
@@ -822,8 +822,19 @@ INPUTBOX
 757
 1562
 817
-weekly-resource-input
-[0.5 0.5 0.2 0.2 0 0.2 0.2]
+weekly-resource-lower-limit
+[0.5 0.5 0 0 0 0 0]
+1
+0
+String
+
+INPUTBOX
+1299
+831
+1564
+891
+weekly-resource-higher-limit
+[1 1 0.5 0.5 0.5 0.5 0.5 ]
 1
 0
 String
