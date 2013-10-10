@@ -183,7 +183,7 @@ number-of-nodes
 number-of-nodes
 1
 1000
-100
+500
 1
 1
 NIL
@@ -198,7 +198,7 @@ total-num-seeds
 total-num-seeds
 1
 number-of-nodes
-10
+50
 1
 1
 NIL
@@ -288,7 +288,7 @@ num-behaviors
 num-behaviors
 1
 10
-3
+1
 1
 1
 NIL
@@ -735,7 +735,7 @@ INPUTBOX
 1767
 278
 behavior-durations-mean
-[2 2 2]
+[3]
 1
 0
 String
@@ -746,7 +746,7 @@ INPUTBOX
 1769
 360
 behavior-durations-sd
-[0 0 0]
+[0]
 1
 0
 String
@@ -757,7 +757,7 @@ INPUTBOX
 1772
 445
 behavior-recovered-duration
-[1 1 1]
+[0]
 1
 0
 String
@@ -810,7 +810,7 @@ SWITCH
 810
 global-behavior-awareness
 global-behavior-awareness
-0
+1
 1
 -1000
 
@@ -819,7 +819,29 @@ INPUTBOX
 723
 1778
 783
-weekly-resource-input
+weekly-resource-lower-limit
+NIL
+1
+0
+String
+
+SWITCH
+1515
+669
+1650
+702
+Synchronized?
+Synchronized?
+1
+1
+-1000
+
+INPUTBOX
+1516
+798
+1778
+858
+weekly-resource-higher-limit
 NIL
 1
 0

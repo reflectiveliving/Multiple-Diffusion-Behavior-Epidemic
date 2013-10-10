@@ -22,6 +22,8 @@ links-own
 
 turtles-own
 [
+  node-clustering-coefficient
+  
   resource   ;; total resource available to this agent for behavior adoption 
   resource-backup ;; backs up the resource value of each agent while running the spread based seedselection simulations
   weekly-resource ;; this is the weekly resource for a node
@@ -172,17 +174,18 @@ to set-weekly-resource
    let weeklyresourcelist-higher read-from-string weekly-resource-higher-limit
    let random-value 0
    
-   if varying-available-resources [ 
-     ask turtles [
-       let start random 7
-       (foreach weeklyresourcelist  weeklyresourcelist-higher [0 1 2 3 4 5 6 ][
-         set random-value (?1 + random-float (?2 - ?1) )
-         set weekly-resource-temp replace-item ((?3 + start) mod 7) weekly-resource-temp random-value])
-       set weekly-resource array:from-list weekly-resource-temp
-       set resource array:item weekly-resource 0
+   ask turtles [
+     let start 0
+     if not synchronized? [
+       set start random 7
      ]
+     (foreach weeklyresourcelist  weeklyresourcelist-higher [0 1 2 3 4 5 6 ][
+       set random-value (?1 + random-float (?2 - ?1) )
+       set weekly-resource-temp replace-item ((?3 + start) mod 7) weekly-resource-temp random-value])
+     set weekly-resource array:from-list weekly-resource-temp
+     set resource array:item weekly-resource 0
+   ]
    
-  ]
 end
 
 ;; set individual remaining-resources for each agent

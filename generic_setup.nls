@@ -6,7 +6,7 @@ globals [
   base
   step
   scaling
-  
+   
   update-turtle-attr                            ;; used to update the turtle attributes for different duration models, present in network_dynamics.nls
   new-consider                                  ;; used to update the consider list for different duration models, present in network_dynamics.nls
   after-adoption                                ;; used to update the turtle state after adoption for different duration models, present in network_dynamics.nls
@@ -135,6 +135,6 @@ end
 to set-coloring-variables
   set neutral white
   set base red
-  set step 10
+  set step 20
   set scaling (base + num-behaviors * step) - (base + base + step)
 end

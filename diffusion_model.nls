@@ -22,7 +22,7 @@ to go
   make-adoption-decision
   
   set-turtle-color
- 
+  
   update-indicators
   
   tick
