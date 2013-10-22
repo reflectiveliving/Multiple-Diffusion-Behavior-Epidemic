@@ -213,7 +213,7 @@ rand-seed-network
 rand-seed-network
 1
 10000
-6499
+6540
 1
 1
 NIL
@@ -498,7 +498,7 @@ rand-seed-threshold
 rand-seed-threshold
 0
 10000
-4499
+4340
 1
 1
 NIL
@@ -632,7 +632,7 @@ INPUTBOX
 1746
 233
 behavior-durations-mean
-[5]
+[3]
 1
 0
 String
@@ -676,7 +676,7 @@ SWITCH
 888
 cost-varying?
 cost-varying?
-1
+0
 1
 -1000
 
@@ -687,7 +687,7 @@ SWITCH
 789
 varying-available-resources
 varying-available-resources
-0
+1
 1
 -1000
 
@@ -707,7 +707,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[7]
+[0]
 1
 0
 String
@@ -730,7 +730,7 @@ CHOOSER
 duration-model
 duration-model
 "SIR" "SIRS" "SIvRS" "sticky-behavior" "none"
-4
+2
 
 MONITOR
 285
@@ -817,38 +817,59 @@ global-behavior-awareness
 1
 -1000
 
-INPUTBOX
-1299
-757
-1562
-817
-weekly-resource-lower-limit
-[0.5 0.5 0 0 0 0 0]
-1
-0
-String
-
-INPUTBOX
-1299
-831
-1564
-891
-weekly-resource-higher-limit
-[1 1 0.5 0.5 0.5 0.5 0.5 ]
-1
-0
-String
-
 SWITCH
-1627
-783
-1761
-816
+1288
+708
+1422
+741
 synchronized?
 synchronized?
-0
+1
 1
 -1000
+
+BUTTON
+275
+883
+447
+916
+NIL
+find-clustering-coefficient
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+MONITOR
+465
+881
+626
+926
+NIL
+clustering-coefficient
+17
+1
+11
+
+SLIDER
+1288
+755
+1426
+788
+weekly-resource-availability
+weekly-resource-availability
+10
+100
+80
+5
+1
+%
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -3040,7 +3061,7 @@ NetLogo 5.0.3
       <value value="false"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="SIR-SIRS-PA-varying-duration-network-avg" repetitions="1" runMetricsEveryStep="true">
+  <experiment name="SIRS-PAvarying-duration-network-avg" repetitions="1" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
     <timeLimit steps="50"/>
@@ -3057,7 +3078,7 @@ NetLogo 5.0.3
       <value value="false"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="rand-seed-threshold">
-      <value value="4300"/>
+      <value value="4340"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="behavior-durations-mean">
       <value value="&quot;[1]&quot;"/>
@@ -3065,11 +3086,6 @@ NetLogo 5.0.3
       <value value="&quot;[3]&quot;"/>
       <value value="&quot;[4]&quot;"/>
       <value value="&quot;[5]&quot;"/>
-      <value value="&quot;[6]&quot;"/>
-      <value value="&quot;[7]&quot;"/>
-      <value value="&quot;[8]&quot;"/>
-      <value value="&quot;[9]&quot;"/>
-      <value value="&quot;[10]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -3093,7 +3109,11 @@ NetLogo 5.0.3
       <value value="false"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[0]&quot;"/>
+      <value value="&quot;[1]&quot;"/>
+      <value value="&quot;[2]&quot;"/>
+      <value value="&quot;[3]&quot;"/>
+      <value value="&quot;[4]&quot;"/>
+      <value value="&quot;[5]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="weekly-resource-higher-limit">
       <value value="&quot;[1 1 0.5 0.5 0.5 0.5 0.5 ]&quot;"/>
@@ -3137,10 +3157,11 @@ NetLogo 5.0.3
     <enumeratedValueSet variable="max-step">
       <value value="145"/>
     </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-network" first="6000" step="1" last="6499"/>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6540"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIR&quot;"/>
-      <value value="&quot;SIvRS&quot;"/>
+      <value value="&quot;SIRS&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="rand-seed-duration">
       <value value="1967"/>

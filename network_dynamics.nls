@@ -31,6 +31,7 @@ to update-turtle-attr-SIvRS
       ]
       [
         array:set remaining-infected-duration ? (array:item remaining-infected-duration ? - 1)
+        update-costs ?                                                        ;; this function updates the behavior cost for each individual 
       ]
     ]
     [
@@ -278,15 +279,15 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Varying Adoption Costs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; turtle procedure to update costs
-to update-costs
+to update-costs [node-id]
   let constant 10
     if cost-varying? [
       foreach behav-id-list [
         let alpha 0.1;(array:item costs-backup ? - 0.05 )
         let temp-costs 0
-        let stable-cost (array:item costs-backup ? - alpha)
-        set temp-costs  (alpha * exp ( 0 - (constant * array:item global-population ?) ) + stable-cost )
-        array:set costs ? temp-costs
+        let base-cost (array:item costs-backup ? - alpha)
+        set temp-costs  (alpha * exp ( 0 - (constant * ticks) ) + base-cost )
+        array:set stable-costs node-id temp-costs
       ]   
     ]
 end 
@@ -313,7 +314,22 @@ end
 
 
 
-
+;; set individual weekly resources for each agent
+to set-weekly-resource
+  let weekly-resource-temp n-values 7 [0]
+   
+   ask turtles [
+     let start 0
+     if not synchronized? [
+       set start random 7
+     ]
+     (foreach [0 1 2 3 4 5 6 ][
+       set weekly-resource-temp replace-item ((?1 + start) mod 7) weekly-resource-temp  random-float 1])
+   set weekly-resource array:from-list weekly-resource-temp
+   set resource array:item weekly-resource 0    
+   ]                        ;; to set the resource for first day of the week
+   
+end
 
 
 

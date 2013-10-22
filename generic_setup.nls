@@ -41,6 +41,7 @@ to generic-setup [network-generation-task]
   set-weight-sums
   set-payoffs
   set-consider 
+  set-stable-costs               ;; sets all the stable behavior costs for each turtle
   
   set-infected-durations                    ;; sets all the behavior durations for sticky behaviors
   set-recovered-durations         ;; sets all the incubation durations for sticky behaviors

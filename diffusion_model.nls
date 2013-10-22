@@ -16,7 +16,7 @@ to go
 
   update-weight-sums-global-influence       ;; in calculate_payoffs.nls, update the weight-sums when global influence is on
   update-threshold                          ;; set the new threshold if the threshold switch is on  
-  update-costs                              ;; set the new cost
+  ;update-costs                              ;; set the new cost
   update-resource                           ;; calculate the resources
   
   make-adoption-decision
@@ -142,9 +142,16 @@ to-report knapsack-decide
   let max-payoff 0
   foreach power-set [
     let total-cost 0
-    foreach ? [
-      set total-cost total-cost + (array:item costs ?)
+    ifelse cost-varying?[
+      foreach ? [
+        set total-cost total-cost + (array:item costs ?)
+      ]]
+    [
+      foreach ? [
+        set total-cost total-cost + (array:item stable-costs ?)
+      ]
     ]
+    
     if total-cost <= remaining-resource [  ;; resource minus the used-resource because the used-resource is sticky  
       let total-payoff 0
       foreach ? [

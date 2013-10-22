@@ -19,13 +19,13 @@ links-own
   end1-weight ;; influence weight exerted by the end2 on end1
   end2-weight ;; vice versa
 ]
-
 turtles-own
 [
   node-clustering-coefficient
   
   resource   ;; total resource available to this agent for behavior adoption 
   resource-backup ;; backs up the resource value of each agent while running the spread based seedselection simulations
+  stable-costs   ;; this is the change in cost of each resource
   weekly-resource ;; this is the weekly resource for a node
   
   thresholds ;; thresholds of adoption for each possible behavior
@@ -167,27 +167,6 @@ to set-resource
   ]
 end
 
-;; set individual weekly resources for each agent
-to set-weekly-resource
-   let weekly-resource-temp n-values 7 [0]
-   let weeklyresourcelist read-from-string weekly-resource-lower-limit
-   let weeklyresourcelist-higher read-from-string weekly-resource-higher-limit
-   let random-value 0
-   
-   ask turtles [
-     let start 0
-     if not synchronized? [
-       set start random 7
-     ]
-     (foreach weeklyresourcelist  weeklyresourcelist-higher [0 1 2 3 4 5 6 ][
-       set random-value (?1 + random-float (?2 - ?1) )
-       set weekly-resource-temp replace-item ((?3 + start) mod 7) weekly-resource-temp random-value])
-     set weekly-resource array:from-list weekly-resource-temp
-     set resource array:item weekly-resource 0
-   ]
-   
-end
-
 ;; set individual remaining-resources for each agent
 to set-remaining-resource
   ask turtles [
@@ -225,6 +204,13 @@ to update-positive-global-effect
       array:set positive-global-effect? ? false    
       ]
     ]
+  ]
+end
+
+;; set the costs for each behavior
+to set-stable-costs
+  ask turtles [
+    set stable-costs costs
   ]
 end
 

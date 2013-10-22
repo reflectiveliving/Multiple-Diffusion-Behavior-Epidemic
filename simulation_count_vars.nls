@@ -13,6 +13,7 @@ globals [
   utilization ;; network wide resource utilization
   max-utilization ;; maximum utilization reached 
   total-adoption ;; this is the total adoption taking place after diffusion
+  clustering-coefficient
 ]
 
 to setup-indicators 
@@ -69,6 +70,8 @@ to update-indicators
   set utilization utilized-resource / total-resource
   update-max-utilization                                      ;; updating the max-utilization
   update-total-adoption                                       ;; updating total-adoption
+  
+  avg-degree
 end
 
 
@@ -90,4 +93,52 @@ end
 
 to update-total-adoption
   set total-adoption total-active-count / number-of-nodes
+end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Network Degree Distribution
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+to avg-degree
+  let total 0
+  ask turtles with [ count link-neighbors > 1]
+  [
+    
+    set total total + count link-neighbors
+  ]
+  set clustering-coefficient total / number-of-nodes
+end
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Clustering computations ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report in-neighborhood? [ hood ]
+  report ( member? end1 hood and member? end2 hood )
+end
+
+
+to find-clustering-coefficient
+  ifelse all? turtles [count link-neighbors <= 1]
+  [
+    ;; it is undefined
+    ;; what should this be?
+    set clustering-coefficient 0
+  ]
+  [
+    let total 0
+    ask turtles with [ count link-neighbors <= 1]
+      [ set node-clustering-coefficient "undefined" ]
+    ask turtles with [ count link-neighbors > 1]
+    [
+      let hood link-neighbors
+      set node-clustering-coefficient (2 * count links with [ in-neighborhood? hood ] /((count hood) * (count hood - 1)) )
+      ;; find the sum for the value at turtles
+      set total total + node-clustering-coefficient
+    ]
+    ;; take the average
+    set clustering-coefficient total / count turtles with [count link-neighbors > 1]
+  ]
 end
