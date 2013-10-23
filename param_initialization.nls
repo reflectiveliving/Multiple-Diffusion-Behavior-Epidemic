@@ -210,7 +210,7 @@ end
 ;; set the costs for each behavior
 to set-stable-costs
   ask turtles [
-    set stable-costs costs
+    set stable-costs costs ;;array:from-list array:to-list costs
   ]
 end
 

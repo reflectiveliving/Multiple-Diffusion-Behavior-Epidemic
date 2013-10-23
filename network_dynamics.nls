@@ -92,6 +92,7 @@ to update-turtle-attr-SIRS
       ]
       [
         array:set remaining-infected-duration ? (array:item remaining-infected-duration ? - 1)
+        update-costs ? 
       ]
     ]
     [
@@ -151,6 +152,7 @@ to update-turtle-attr-SIR
       ]
       [
         array:set remaining-infected-duration ? (array:item remaining-infected-duration ? - 1)
+        update-costs ? 
       ]
     ]
   ]
@@ -197,6 +199,7 @@ to update-turtle-attr-sticky
       ]
       [
         array:set remaining-infected-duration ? (array:item remaining-infected-duration ? - 1)
+        update-costs ? 
       ]
     ]
   ]
@@ -283,7 +286,7 @@ to update-costs [node-id]
   let constant 10
     if cost-varying? [
       foreach behav-id-list [
-        let alpha 0.1;(array:item costs-backup ? - 0.05 )
+        let alpha 0.3;(array:item costs-backup ? - 0.05 )
         let temp-costs 0
         let base-cost (array:item costs-backup ? - alpha)
         set temp-costs  (alpha * exp ( 0 - (constant * ticks) ) + base-cost )
