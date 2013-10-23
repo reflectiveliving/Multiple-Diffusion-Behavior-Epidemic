@@ -318,23 +318,27 @@ end
 
 
 ;; set individual weekly resources for each agent
-to set-weekly-resource
-  let weekly-resource-temp n-values 7 [0]
-   
+to set-weekly-resource   
    ask turtles [
+     let weekly-resource-temp n-values 7 [random-float 1]            ;; initialize the weekly-resource with random number from 0 to 1
+     let weekly-sum 0 
+     (foreach [2 3 4 5 6 ][
+       set weekly-sum ( weekly-sum + ?1 )])                          ;; finding the sum of the last 5 days
+     
      let start 0
-     if not synchronized? [
+     if not synchronized? [                                           ;; this switch controls if the maximum resource will be present on first two days or any other consecutive days
        set start random 7
      ]
-     (foreach [0 1 2 3 4 5 6 ][
-       set weekly-resource-temp replace-item ((?1 + start) mod 7) weekly-resource-temp  random-float 1])
-   set weekly-resource array:from-list weekly-resource-temp
-   set resource array:item weekly-resource 0    
+     
+     let alpha (( weekly-sum *  weekly-resource-availability / 100 ) / (1 -  weekly-resource-availability / 100 ))
+     
+     (foreach [0 1][
+       set weekly-resource-temp replace-item ((?1 + start) mod 7) weekly-resource-temp   ( alpha * ?1 ) ] )
+     set weekly-resource array:from-list weekly-resource-temp
+     set resource array:item weekly-resource 0    
    ]                        ;; to set the resource for first day of the week
    
 end
-
-
 
 
 

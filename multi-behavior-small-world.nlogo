@@ -183,7 +183,7 @@ number-of-nodes
 number-of-nodes
 1
 1000
-504
+100
 1
 1
 NIL
@@ -646,20 +646,20 @@ max-utilization
 11
 
 TEXTBOX
-861
-689
-1106
-729
+503
+697
+748
+718
 Select Time Varying Parameters
 16
 0.0
 1
 
 SWITCH
-861
-722
-1016
 755
+775
+945
+809
 global-influence
 global-influence
 1
@@ -667,21 +667,21 @@ global-influence
 -1000
 
 SWITCH
-862
+985
 775
-1017
+1140
 808
 cost-varying?
 cost-varying?
-1
+0
 1
 -1000
 
 SWITCH
-1049
-722
-1256
-755
+507
+774
+691
+808
 threshold-varying?
 threshold-varying?
 1
@@ -689,10 +689,10 @@ threshold-varying?
 -1000
 
 SWITCH
-1049
-776
-1258
-809
+1198
+774
+1407
+807
 varying-available-resources
 varying-available-resources
 1
@@ -789,52 +789,96 @@ total-adoption
 11
 
 SLIDER
-1291
-722
-1495
-755
+505
+828
+690
+862
 positive-effect-probability
 positive-effect-probability
 0
 1
-1
+0.9
 0.1
 1
 NIL
 HORIZONTAL
 
 SWITCH
-1292
-777
-1497
-810
-global-behavior-awareness
-global-behavior-awareness
+1199
+827
+1407
+860
+synchronized?
+synchronized?
 1
 1
 -1000
+
+TEXTBOX
+508
+733
+696
+756
+Threshold Variation
+14
+0.0
+1
+
+TEXTBOX
+758
+737
+946
+760
+Global-Influence Variation
+14
+0.0
+1
 
 SWITCH
-1050
-827
-1258
-860
-Synchronized?
-Synchronized?
+755
+828
+945
+862
+positive-influence?
+positive-influence?
 1
 1
 -1000
 
-INPUTBOX
-1092
-873
-1204
-933
-max-weekly-resource
-NIL
+TEXTBOX
+990
+738
+1135
+761
+Cost Variation
+14
+0.0
 1
-0
-String
+
+TEXTBOX
+1203
+735
+1391
+758
+Resource Variation
+14
+0.0
+1
+
+SLIDER
+1434
+773
+1654
+807
+weekly-resource-availability
+weekly-resource-availability
+10
+100
+50
+1
+1
+%
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?

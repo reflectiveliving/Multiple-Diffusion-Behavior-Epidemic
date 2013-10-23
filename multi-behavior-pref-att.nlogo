@@ -707,7 +707,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[0]
+[2]
 1
 0
 String
@@ -730,7 +730,7 @@ CHOOSER
 duration-model
 duration-model
 "SIR" "SIRS" "SIvRS" "sticky-behavior" "none"
-2
+1
 
 MONITOR
 285
