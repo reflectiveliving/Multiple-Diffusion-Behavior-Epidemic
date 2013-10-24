@@ -632,7 +632,7 @@ INPUTBOX
 1746
 233
 behavior-durations-mean
-[5]
+[2]
 1
 0
 String
@@ -644,7 +644,7 @@ SWITCH
 815
 global-influence
 global-influence
-1
+0
 1
 -1000
 
@@ -687,7 +687,7 @@ SWITCH
 812
 varying-available-resources
 varying-available-resources
-0
+1
 1
 -1000
 
@@ -707,7 +707,7 @@ INPUTBOX
 1753
 448
 behavior-recovered-duration
-[3]
+[0]
 1
 0
 String
@@ -781,15 +781,15 @@ total-adoption
 11
 
 SLIDER
-517
-837
-707
-870
+626
+832
+816
+865
 positive-effect-probability
 positive-effect-probability
 0
 1
-0.9
+0.3
 0.1
 1
 NIL
@@ -871,17 +871,6 @@ Resource Variation
 14
 0.0
 1
-
-SWITCH
-740
-837
-948
-870
-positive-influence?
-positive-influence?
-1
-1
--1000
 
 @#$#@#$#@
 ## WHAT IS IT?

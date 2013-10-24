@@ -498,7 +498,7 @@ rand-seed-resource
 rand-seed-resource
 0
 10000
-3852
+5000
 1
 1
 NIL
@@ -513,7 +513,7 @@ rand-seed-threshold
 rand-seed-threshold
 0
 10000
-4995
+3333
 1
 1
 NIL
@@ -659,7 +659,7 @@ SWITCH
 755
 775
 945
-809
+808
 global-influence
 global-influence
 1
@@ -673,7 +673,7 @@ SWITCH
 808
 cost-varying?
 cost-varying?
-0
+1
 1
 -1000
 
@@ -681,10 +681,10 @@ SWITCH
 507
 774
 691
-808
+807
 threshold-varying?
 threshold-varying?
-1
+0
 1
 -1000
 
@@ -735,7 +735,7 @@ INPUTBOX
 1767
 278
 behavior-durations-mean
-[2]
+[9]
 1
 0
 String
@@ -757,7 +757,7 @@ INPUTBOX
 1772
 445
 behavior-recovered-duration
-[0]
+[3]
 1
 0
 String
@@ -789,9 +789,9 @@ total-adoption
 11
 
 SLIDER
-505
-828
-690
+636
+829
+821
 862
 positive-effect-probability
 positive-effect-probability
@@ -834,17 +834,6 @@ Global-Influence Variation
 0.0
 1
 
-SWITCH
-755
-828
-945
-862
-positive-influence?
-positive-influence?
-1
-1
--1000
-
 TEXTBOX
 990
 738
@@ -869,15 +858,15 @@ SLIDER
 1434
 773
 1654
-807
-weekly-resource-availability
-weekly-resource-availability
-10
-100
-50
+806
+weekend-resource-availability
+weekend-resource-availability
+0.29
+0.58
+0.5
+0.1
 1
-1
-%
+NIL
 HORIZONTAL
 
 @#$#@#$#@

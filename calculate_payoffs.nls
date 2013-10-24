@@ -27,9 +27,9 @@ to update-weight-sums-global-influence
   if global-influence [
     ask turtles [
       foreach behav-id-list [
-        ifelse positive-influence? [
-        set w replace-item 1 w (array:item weight-sums ? + array:item global-population ?)
-        array:set weight-sums ? min w
+        ifelse array:item positive-global-effect? ? [
+          set w replace-item 1 w (array:item weight-sums ? + array:item global-population ?)
+          array:set weight-sums ? min w
         ][
         set w replace-item 0 w 0
         set w replace-item 1 w (array:item weight-sums ? - array:item global-population ?)
