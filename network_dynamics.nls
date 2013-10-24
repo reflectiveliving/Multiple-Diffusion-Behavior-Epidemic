@@ -259,7 +259,7 @@ end
 
 ;; turtle procedure to update thresholds
 to update-threshold
-  let alpha 0.09
+  let alpha 0.4
   let constant 10
   ask turtles[
     if threshold-varying? [
@@ -320,20 +320,21 @@ end
 ;; set individual weekly resources for each agent
 to set-weekly-resource   
    ask turtles [
-     let weekly-resource-temp n-values 7 [random-float 1]            ;; initialize the weekly-resource with random number from 0 to 1
-     let weekly-sum 0 
-     (foreach [2 3 4 5 6 ][
-       set weekly-sum ( weekly-sum + ?1 )])                          ;; finding the sum of the last 5 days
-     
+     let weekly-resource-temp n-values 7 [0]                          ;; initialize the weekly-resource with random number from 0 to 1
+    
      let start 0
      if not synchronized? [                                           ;; this switch controls if the maximum resource will be present on first two days or any other consecutive days
        set start random 7
      ]
      
-     let alpha (( weekly-sum *  weekly-resource-availability / 100 ) / (1 -  weekly-resource-availability / 100 ))
+     let y ( 3.5 * ( 1 - weekend-resource-availability) / 5 )         ;; refer to info part for details about this procedure
+     let x weekend-resource-availability * 3.5 
      
      (foreach [0 1][
-       set weekly-resource-temp replace-item ((?1 + start) mod 7) weekly-resource-temp   ( alpha * ?1 ) ] )
+       set weekly-resource-temp replace-item ((? + start) mod 7) weekly-resource-temp (( x - 1 ) + random-float (2 - x)) ] )
+     (foreach [2 3 4 5 6][
+       set weekly-resource-temp replace-item ((? + start) mod 7) weekly-resource-temp  random-float (2 * y)  ] )
+
      set weekly-resource array:from-list weekly-resource-temp
      set resource array:item weekly-resource 0    
    ]                        ;; to set the resource for first day of the week
