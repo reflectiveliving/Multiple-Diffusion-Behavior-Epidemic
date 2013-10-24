@@ -183,7 +183,7 @@ number-of-nodes
 number-of-nodes
 1
 2000
-10
+100
 1
 1
 NIL
@@ -198,7 +198,7 @@ total-num-seeds
 total-num-seeds
 1
 number-of-nodes
-2
+10
 1
 1
 NIL
@@ -213,7 +213,7 @@ rand-seed-network
 rand-seed-network
 1
 10000
-6539
+6540
 1
 1
 NIL
@@ -642,9 +642,9 @@ SWITCH
 782
 948
 815
-global-influence
-global-influence
-0
+global-influence?
+global-influence?
+1
 1
 -1000
 
@@ -665,7 +665,7 @@ SWITCH
 815
 threshold-varying?
 threshold-varying?
-1
+0
 1
 -1000
 
@@ -789,7 +789,7 @@ positive-effect-probability
 positive-effect-probability
 0
 1
-1
+0
 0.1
 1
 NIL

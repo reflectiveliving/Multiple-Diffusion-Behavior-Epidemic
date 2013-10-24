@@ -39,6 +39,7 @@ to generic-setup [network-generation-task]
   set-state ;; set S,I,R state
   set-actives
   set-weight-sums
+  set-total-influence
   set-payoffs
   set-consider 
   set-stable-costs               ;; sets all the stable behavior costs for each turtle

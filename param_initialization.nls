@@ -35,6 +35,7 @@ turtles-own
   weight-sums ;; used to sum up influence weight from active neighbors
   payoffs    ;; payoff from each of the the behaviors
   consider?  ;; boolean array for indicating whether a behavior will be considered for adoption or not
+  total-influence ;; array; influece (either local or sum of local and global) for each behavior
   
   ;; Params added for Time Varying models
   recovered-durations ;; array for duration per behavior going to be in incuation
@@ -236,6 +237,12 @@ end
 to set-weight-sums
   ask turtles [
     set weight-sums array:from-list all-zeros
+  ]
+end
+
+to set-total-influence
+  ask turtles [
+    set total-influence array:from-list all-zeros
   ]
 end
 

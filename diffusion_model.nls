@@ -9,11 +9,13 @@ to go
   
   ;reset-roundActiveCounts
   reset-weight-sums
+  reset-total-influence
   reset-consider 
   reset-payoffs
   
   propagate-influence
-
+  
+  update-total-influence
   update-threshold                          ;; set the new threshold if the threshold switch is on  
   ;update-costs                              ;; set the new cost
   update-resource                           ;; calculate the resources
@@ -44,6 +46,10 @@ to reset-weight-sums
   ]
 end
 
+to reset-total-influence
+  set-total-influence
+end
+
 to reset-consider
   ask turtles [
     foreach behav-id-list [
@@ -70,9 +76,6 @@ to propagate-influence
             influence myself ?
           ]
         ]
-      if global-influence [
-        update-weight-sums-global-influence ?      ;; in calculate_payoffs.nls, update the weight-sums when global influence is on
-      ]
     ]
   ]
 end
@@ -125,7 +128,7 @@ end
 
 to calculate-high-local-influence
   foreach behav-id-list [
-    if array:item weight-sums ? >= array:item thresholds ? [
+    if array:item total-influence ? >= array:item thresholds ? [
       array:set consider? ? true
     ]
   ]

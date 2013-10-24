@@ -8,15 +8,7 @@ to calculate-payoffs
   ]
   
   foreach behav-id-list [
-   ;; if preferences-per-behav switch is on then includde preferences
-    ifelse global-influence  [
-      set w 0.33
-      array:set payoffs ?  w * (array:item utilities ? + extra) + w * (array:item weight-sums ?) + w * (array:item global-population ? ) ;; preference factor is added 
-    ][
-    set w 0.5
-    let payoff-temp w * (array:item utilities ? + extra) + w * (array:item weight-sums ?)
-    array:set payoffs ?  payoff-temp
-    ]
+    array:set payoffs ? w * (array:item utilities ? + extra) + (1 - w) * (array:item total-influence ?)
   ]
 end
 
