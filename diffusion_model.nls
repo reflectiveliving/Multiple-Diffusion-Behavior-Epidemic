@@ -14,7 +14,6 @@ to go
   
   propagate-influence
 
-  update-weight-sums-global-influence       ;; in calculate_payoffs.nls, update the weight-sums when global influence is on
   update-threshold                          ;; set the new threshold if the threshold switch is on  
   ;update-costs                              ;; set the new cost
   update-resource                           ;; calculate the resources
@@ -71,7 +70,10 @@ to propagate-influence
             influence myself ?
           ]
         ]
+      if global-influence [
+        update-weight-sums-global-influence ?      ;; in calculate_payoffs.nls, update the weight-sums when global influence is on
       ]
+    ]
   ]
 end
 

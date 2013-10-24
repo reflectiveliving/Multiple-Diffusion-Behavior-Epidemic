@@ -183,7 +183,7 @@ number-of-nodes
 number-of-nodes
 1
 2000
-100
+10
 1
 1
 NIL
@@ -198,7 +198,7 @@ total-num-seeds
 total-num-seeds
 1
 number-of-nodes
-10
+2
 1
 1
 NIL
@@ -213,7 +213,7 @@ rand-seed-network
 rand-seed-network
 1
 10000
-6540
+6539
 1
 1
 NIL
@@ -632,7 +632,7 @@ INPUTBOX
 1746
 233
 behavior-durations-mean
-[2]
+[15]
 1
 0
 String
@@ -789,7 +789,7 @@ positive-effect-probability
 positive-effect-probability
 0
 1
-0.3
+1
 0.1
 1
 NIL
@@ -821,12 +821,12 @@ SLIDER
 1443
 778
 1663
-813
+811
 weekend-resource-availability
 weekend-resource-availability
 0.29
 0.58
-0.57
+0.5
 0.1
 1
 NIL

@@ -21,23 +21,5 @@ to calculate-payoffs
 end
 
 
-;; turtle procedure; calculate the present weightsum for each behavior
-to update-weight-sums-global-influence 
-  let w n-values 2 [1]
-  if global-influence [
-    ask turtles [
-      foreach behav-id-list [
-        ifelse array:item positive-global-effect? ? [
-          set w replace-item 1 w (array:item weight-sums ? + array:item global-population ?)
-          array:set weight-sums ? min w
-        ][
-        set w replace-item 0 w 0
-        set w replace-item 1 w (array:item weight-sums ? - array:item global-population ?)
-        array:set weight-sums ? max w
-        ]
-      ]
-    ]
-  ]
-end
 
 

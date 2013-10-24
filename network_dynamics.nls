@@ -341,6 +341,19 @@ to set-weekly-resource
    
 end
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;; Varying Global Influence ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+;; turtle procedure; calculate the present weightsum for each behavior
+to update-weight-sums-global-influence [behav-id]
+  let w n-values 2 [1]
+  ifelse array:item positive-global-effect? behav-id [
+    set w replace-item 1 w (array:item weight-sums behav-id + array:item global-population behav-id)
+    array:set weight-sums behav-id min w
+  ][
+  set w replace-item 0 w 0
+  set w replace-item 1 w (array:item weight-sums behav-id - array:item global-population behav-id)
+  array:set weight-sums behav-id max w
+  ]
+end
 
