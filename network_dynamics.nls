@@ -303,7 +303,7 @@ to update-costs [node-id]
   let constant 10
     if cost-varying? [
       foreach behav-id-list [
-        let alpha 0.3;(array:item costs-backup ? - 0.05 )
+        let alpha 0.4;(array:item costs-backup ? - 0.05 )
         let temp-costs 0
         let base-cost (array:item costs-backup ? - alpha)
         set temp-costs  (alpha * exp ( 0 - (constant * ticks) ) + base-cost )
@@ -356,21 +356,5 @@ to set-weekly-resource
      set resource array:item weekly-resource 0    
    ]                        ;; to set the resource for first day of the week
    
-end
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;; Varying Global Influence ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;; turtle procedure; calculate the present weightsum for each behavior
-to update-weight-sums-global-influence [behav-id]
-  let w n-values 2 [1]
-  ifelse array:item positive-global-effect? behav-id [
-    set w replace-item 1 w (array:item weight-sums behav-id + array:item global-population behav-id)
-    array:set weight-sums behav-id min w
-  ][
-  set w replace-item 0 w 0
-  set w replace-item 1 w (array:item weight-sums behav-id - array:item global-population behav-id)
-  array:set weight-sums behav-id max w
-  ]
 end
 
