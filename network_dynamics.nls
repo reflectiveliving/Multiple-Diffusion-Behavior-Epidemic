@@ -282,13 +282,17 @@ to update-threshold
     if threshold-varying? [
       foreach behav-id-list [
         let temp-threshold 0
-        let stable-threshold (array:item thresholds-backup ? - alpha)
-        set temp-threshold  (alpha * exp ( 0 - (constant * array:item global-population ?) ) + stable-threshold )
+        ;;;; OLD EQUATION
+        ;let stable-threshold (array:item thresholds-backup ? - alpha)
+        ;set temp-threshold  (alpha * exp ( 0 - (constant * array:item global-population ?) ) + stable-threshold )
+        ;; NEW EQUATION
+        set temp-threshold  (array:item thresholds-backup ? - array:item global-population ? * alpha)        
         ifelse array:item positive-global-effect? ? [          
           array:set thresholds ? temp-threshold
         ]
         [
-          array:set thresholds ? (1 - temp-threshold)
+          set temp-threshold  (array:item thresholds-backup ? + array:item global-population ? * alpha) 
+          array:set thresholds ? temp-threshold
         ]
       ]   
     ]
@@ -299,16 +303,15 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Varying Adoption Costs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; turtle procedure to update costs
-to update-costs [node-id]
+to update-costs [behav-id]
   let constant 10
+  array:set tick-counter behav-id (array:item tick-counter behav-id + 1)   ;; increament the tick-counter by 1
     if cost-varying? [
-      foreach behav-id-list [
-        let alpha 0.4;(array:item costs-backup ? - 0.05 )
+        let alpha 0.1;
         let temp-costs 0
-        let base-cost (array:item costs-backup ? - alpha)
-        set temp-costs  (alpha * exp ( 0 - (constant * ticks) ) + base-cost )
-        array:set stable-costs node-id temp-costs
-      ]   
+        let base-cost (array:item costs-backup behav-id - alpha)
+        set temp-costs  (alpha * exp ( 0 - (constant * array:item tick-counter behav-id) ) + base-cost )
+        array:set stable-costs behav-id temp-costs
     ]
 end 
 

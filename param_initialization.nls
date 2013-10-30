@@ -25,6 +25,8 @@ turtles-own
   
   resource   ;; total resource available to this agent for behavior adoption 
   resource-backup ;; backs up the resource value of each agent while running the spread based seedselection simulations
+  tick-counter         ;; this is the tick-counter to keep track of the ticks
+  
   stable-costs   ;; this is the change in cost of each resource
   weekly-resource ;; this is the weekly resource for a node
   
@@ -88,6 +90,14 @@ to set-edge-weights
         set-weight myself weight
       ]
     ]
+  ]
+end
+
+;; set the remaining duration to all zeros
+
+to set-tick-counter
+  ask turtles [
+    set tick-counter array:from-list all-zeros
   ]
 end
 

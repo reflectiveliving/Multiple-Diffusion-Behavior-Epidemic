@@ -34,6 +34,7 @@ to generic-setup [network-generation-task]
   random-seed 1234567 + rand-seed-threshold
   set-thresholds
   
+  set-tick-counter                ;; set the tick counter for every behavior
   set-remaining-infected-duration ;; set remaining-duration to all zeros
   set-remaining-recovered-duration ;; set remaining-incubationduration to all zeros
   set-state ;; set S,I,R state
