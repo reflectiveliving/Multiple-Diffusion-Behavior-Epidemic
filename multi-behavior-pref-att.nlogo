@@ -781,10 +781,10 @@ total-adoption
 11
 
 SLIDER
-626
-832
-816
-865
+553
+831
+743
+864
 positive-effect-probability
 positive-effect-probability
 0
@@ -871,6 +871,36 @@ Resource Variation
 14
 0.0
 1
+
+SLIDER
+773
+831
+945
+864
+alpha
+alpha
+0
+1
+0.06
+0.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+973
+831
+1145
+864
+constant
+constant
+0
+100
+1
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -1223,2118 +1253,74 @@ NetLogo 5.0.3
         org.nlogo.sdm.gui.ReservoirFigure "attributes" "attributes" 1 "FillColor" "Color" 192 192 192 166 125 30 30
 @#$#@#$#@
 <experiments>
-  <experiment name="seed-selection-heuristic-comparison-extra-switching-cost-threshold-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;naive-degree-ranked-with-knapsack-assignment&quot;"/>
-      <value value="&quot;naive-degree-ranked-with-random-tie-breaking-no-nudging&quot;"/>
-      <value value="&quot;naive-degree-ranked-with-random-tie-breaking-with-nudging&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="seed-distribution-switching-cost-threshold-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-      <value value="&quot;proportional to cost&quot;"/>
-      <value value="&quot;inversely proportional to cost&quot;"/>
-      <value value="&quot;highest cost behavior only&quot;"/>
-      <value value="&quot;lowest cost behavior only&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="seed-distribution-switching-cost-network-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-network" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-threshold">
-      <value value="4937"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-      <value value="&quot;proportional to cost&quot;"/>
-      <value value="&quot;inversely proportional to cost&quot;"/>
-      <value value="&quot;highest cost behavior only&quot;"/>
-      <value value="&quot;lowest cost behavior only&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="max-utilization-threshold-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;ideal-all-agent-adoption-without-network-effect&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="max-utilization-network-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-network" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-threshold">
-      <value value="4937"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;ideal-all-agent-adoption-without-network-effect&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="num-seed-vs-utilization-threshold-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <metric>array:item num-seeds-per-behavior 0</metric>
-    <metric>array:item num-seeds-per-behavior 1</metric>
-    <metric>array:item num-seeds-per-behavior 2</metric>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
-      <value value="200"/>
-      <value value="300"/>
-      <value value="400"/>
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 2 3]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="seed-selection-heuristic-comparison-extra-threshold-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;naive-degree-ranked-with-knapsack-assignment&quot;"/>
-      <value value="&quot;naive-degree-ranked-with-random-tie-breaking-no-nudging&quot;"/>
-      <value value="&quot;naive-degree-ranked-with-random-tie-breaking-with-nudging&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="seed-selection-heuristic-comparison-switching-cost-threshold-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;randomly-with-random-tie-breaking&quot;"/>
-      <value value="&quot;degree-and-resource-ranked-with-random-tie-breaking&quot;"/>
-      <value value="&quot;one-step-spread-ranked-with-random-tie-breaking&quot;"/>
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="seed-selection-heuristic-comparison-switching-cost-network-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <steppedValueSet variable="rand-seed-network" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;randomly-with-random-tie-breaking&quot;"/>
-      <value value="&quot;degree-and-resource-ranked-with-random-tie-breaking&quot;"/>
-      <value value="&quot;one-step-spread-ranked-with-random-tie-breaking&quot;"/>
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-      <value value="&quot;naive-degree-ranked-with-knapsack-assignment&quot;"/>
-      <value value="&quot;naive-degree-ranked-with-random-tie-breaking-no-nudging&quot;"/>
-      <value value="&quot;naive-degree-ranked-with-random-tie-breaking-with-nudging&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-threshold">
-      <value value="4937"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="seed-selection-heuristic-comparison-n-sw-cost-network-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <steppedValueSet variable="rand-seed-network" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;naive-degree-ranked-with-knapsack-assignment&quot;"/>
-      <value value="&quot;naive-degree-ranked-with-random-tie-breaking-no-nudging&quot;"/>
-      <value value="&quot;naive-degree-ranked-with-random-tie-breaking-with-nudging&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-threshold">
-      <value value="4937"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="behav-distribution-n-sw-cost-threshold-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;highest cost behavior only&quot;"/>
-      <value value="&quot;lowest cost behavior only&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="final-distribution-n-sw-cost-threshold-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-      <value value="&quot;proportional to cost&quot;"/>
-      <value value="&quot;inversely proportional to cost&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="initial-to-final-ratio-n-sw-cost-threshold" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;in ratio&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 2 3]&quot;"/>
-      <value value="&quot;[1 3 2]&quot;"/>
-      <value value="&quot;[2 1 3]&quot;"/>
-      <value value="&quot;[2 3 1]&quot;"/>
-      <value value="&quot;[3 1 2]&quot;"/>
-      <value value="&quot;[3 2 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="seed-selection-heuristic-comparison-switching-cost-threshold-average-repeat" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="greedy-approx-seed-selection" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go-bspace</go>
-    <timeLimit steps="1"/>
-    <metric>total-part-mean</metric>
-    <metric>total-part-sd</metric>
-    <metric>total-adopt-mean</metric>
-    <metric>total-adopt-sd</metric>
-    <metric>util-mean</metric>
-    <metric>util-sd</metric>
-    <metric>array:item act-counts-mean 0</metric>
-    <metric>array:item act-counts-sd 0</metric>
-    <metric>array:item act-counts-mean 1</metric>
-    <metric>array:item act-counts-sd 1</metric>
-    <metric>array:item act-counts-mean 2</metric>
-    <metric>array:item act-counts-sd 2</metric>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[3 2 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="1000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-threshold">
-      <value value="1000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;spread-based-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="seed-selection-heu-comp-n-sw-cost-thresh-av-test" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-ranked-with-random-tie-breaking&quot;"/>
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="comp-with-greedy-th-av-matched-thresh" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go-bspace</go>
-    <timeLimit steps="1"/>
-    <metric>total-part-mean</metric>
-    <metric>total-part-sd</metric>
-    <metric>total-adopt-mean</metric>
-    <metric>total-adopt-sd</metric>
-    <metric>util-mean</metric>
-    <metric>util-sd</metric>
-    <metric>array:item act-counts-mean 0</metric>
-    <metric>array:item act-counts-sd 0</metric>
-    <metric>array:item act-counts-mean 1</metric>
-    <metric>array:item act-counts-sd 1</metric>
-    <metric>array:item act-counts-mean 2</metric>
-    <metric>array:item act-counts-sd 2</metric>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;spread-based-hill-climbing-incremental-one-behav-per-seed&quot;"/>
-      <value value="&quot;spread-based-hill-climbing-incremental&quot;"/>
-      <value value="&quot;one-step-spread-ranked-with-random-tie-breaking&quot;"/>
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-      <value value="&quot;one-step-spread-hill-climbing-incremental-one-behav-per-seed&quot;"/>
-      <value value="&quot;one-step-spread-hill-climbing-incremental&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-threshold">
-      <value value="1000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[3 2 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="5476"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="seed-selection-heu-ia-s-t-n-sw-network-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>total-active-count</metric>
-    <metric>total-unique-active-count</metric>
-    <metric>array:item active-counts 0</metric>
-    <metric>array:item active-counts 1</metric>
-    <metric>array:item active-counts 2</metric>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[3 2 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="500"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;IA-S-T&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-threshold">
-      <value value="4937"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.2 0.5 0.7]&quot;"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-network" first="1000" step="1" last="5999"/>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="51"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIRS-SIR-none-threshold-average" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>max-utilization</metric>
-    <metric>utilization</metric>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[1 2 3]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="true"/>
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[1 1 1]&quot;"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="1000" step="1" last="2000"/>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[1 1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="9"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="2164"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-per-behavior">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-per-behavior">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="103"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIRS&quot;"/>
-      <value value="&quot;SIR&quot;"/>
-      <value value="&quot;none&quot;"/>
-      <value value="&quot;sticky-behavior&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIvRS-SIR-PA-threshold-average-max-utlization" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="2164"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIvRS&quot;"/>
-      <value value="&quot;SIR&quot;"/>
-      <value value="&quot;none&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIRS-PA-threshold-average-max-utlization" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIRS&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 ]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="2164"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIR-none-SIvRS-threshold-avg-global-influence" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;none&quot;"/>
-      <value value="&quot;SIR&quot;"/>
-      <value value="&quot;SIvRS&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 ]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="positive-effect-probability">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="2164"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIRS-threshold-avg-global-influence" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIRS&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 ]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="positive-effect-probability">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="2164"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIR-SIRS-none-max-utilization-PA-threshold-average-variable-seeds" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="total-num-seeds" first="10" step="10" last="100"/>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 ]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="positive-effect-probability">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="2164"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIR&quot;"/>
-      <value value="&quot;SIRS&quot;"/>
-      <value value="&quot;none&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIvRS-max-utilization-PA-threshold-average-variable-seeds" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="total-num-seeds" first="10" step="10" last="100"/>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 ]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="positive-effect-probability">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="2164"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIvRS&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIR-none-SIvRS-threshold-avg-cost-varying" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;none&quot;"/>
-      <value value="&quot;SIR&quot;"/>
-      <value value="&quot;SIvRS&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 ]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="positive-effect-probability">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="2164"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIRS-threshold-avg-cost-varying" repetitions="1" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIRS&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 ]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.5 0.3 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="positive-effect-probability">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="2164"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIR-SIRS-PA-varying-duration" repetitions="1" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="50"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <enumeratedValueSet variable="global-behavior-awareness">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="weekly-resource-lower-limit">
-      <value value="&quot;[0.5 0.5 0 0 0 0 0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4500"/>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[1]&quot;"/>
-      <value value="&quot;[2]&quot;"/>
-      <value value="&quot;[3]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="synchronized?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="weekly-resource-higher-limit">
-      <value value="&quot;[1 1 0.5 0.5 0.5 0.5 0.5 ]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.3 0.2 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="positive-effect-probability">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="7849"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIR&quot;"/>
-      <value value="&quot;SIRS&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIRS-PAvarying-duration-network-avg" repetitions="1" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="50"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <enumeratedValueSet variable="global-behavior-awareness">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="weekly-resource-lower-limit">
-      <value value="&quot;[0.5 0.5 0 0 0 0 0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-threshold">
-      <value value="4340"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[1]&quot;"/>
-      <value value="&quot;[2]&quot;"/>
-      <value value="&quot;[3]&quot;"/>
-      <value value="&quot;[4]&quot;"/>
-      <value value="&quot;[5]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="synchronized?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[1]&quot;"/>
-      <value value="&quot;[2]&quot;"/>
-      <value value="&quot;[3]&quot;"/>
-      <value value="&quot;[4]&quot;"/>
-      <value value="&quot;[5]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="weekly-resource-higher-limit">
-      <value value="&quot;[1 1 0.5 0.5 0.5 0.5 0.5 ]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.3 0.2 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="positive-effect-probability">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="6540"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIRS&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIR-SIRS-none-threshold-avg-varying-resource-different-recovered-time" repetitions="1" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="50"/>
-    <metric>utilization</metric>
-    <metric>max-utilization</metric>
-    <metric>total-adoption</metric>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="benefit-of-inertia">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-duration">
-      <value value="1967"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="positive-effect-probability">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="switching-cost?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[7]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="cost-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="weekly-resource-lower-limit">
-      <value value="&quot;[0.5 0.5 0 0 0 0 0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="threshold-varying?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4499"/>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="weekly-resource-higher-limit">
-      <value value="&quot;[1 1 0.5 0.5 0.5 0.5 0.5 ]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="6499"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="global-behavior-awareness">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-utilities">
-      <value value="&quot;[0.3 0.2 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="total-num-seeds">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="synchronized?">
-      <value value="true"/>
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[5]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="duration-model">
-      <value value="&quot;SIR&quot;"/>
-      <value value="&quot;SIRS&quot;"/>
-      <value value="&quot;none&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-samples-for-spread-estimation">
-      <value value="5000"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="SIvRS-threshold-avg-different-probability" repetitions="1" runMetricsEveryStep="true">
+  <experiment name="SINGLE-Threshold-Alpha-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
     <timeLimit steps="30"/>
-    <metric>utilization</metric>
     <metric>max-utilization</metric>
+    <metric>utilization</metric>
     <metric>total-adoption</metric>
-    <enumeratedValueSet variable="positive-influence?">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-sd">
-      <value value="&quot;[0]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-selection-algorithm">
-      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="final-ratio">
-      <value value="&quot;[1 1]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seed-distribution">
-      <value value="&quot;uniform&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-nodes">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-step">
-      <value value="145"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="positive-effect-probability" first="0.5" step="0.1" last="1"/>
-    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
-    <enumeratedValueSet variable="rand-seed-network">
-      <value value="6540"/>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.7"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="global-influence">
-      <value value="false"/>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
       <value value="200"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-recovered-duration">
-      <value value="&quot;[0]&quot;"/>
+    <enumeratedValueSet variable="threshold-varying?">
+      <value value="false"/>
+      <value value="true"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-costs">
-      <value value="&quot;[0.5 0.2]&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rand-seed-resource">
-      <value value="3852"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="synchronized?">
+    <enumeratedValueSet variable="varying-available-resources">
       <value value="false"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="matched-threshold?">
-      <value value="false"/>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-samples-for-spread-estimation">
       <value value="5000"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="rand-seed-duration">
       <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="switching-cost?">
       <value value="false"/>
@@ -3342,30 +1328,1042 @@ NetLogo 5.0.3
     <enumeratedValueSet variable="behavior-utilities">
       <value value="&quot;[0.5 0.2 0.2]&quot;"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="num-behaviors">
-      <value value="1"/>
-    </enumeratedValueSet>
     <enumeratedValueSet variable="cost-varying?">
       <value value="false"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="varying-available-resources">
-      <value value="false"/>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[4]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.06"/>
+      <value value="0.1"/>
+      <value value="0.2"/>
+      <value value="0.4"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SINGLE-Threshold-Ratio-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="30"/>
+    <metric>max-utilization</metric>
+    <metric>utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.3"/>
+      <value value="0.7"/>
+      <value value="0.8"/>
+      <value value="0.9"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="threshold-varying?">
       <value value="false"/>
       <value value="true"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="behavior-durations-mean">
-      <value value="&quot;[2]&quot;"/>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="false"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="weekly-resource-availability">
-      <value value="80"/>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.2 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-varying?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[4]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SINGLE-Cost-alpha-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="30"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-varying?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="constant">
       <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.2 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-varying?">
+      <value value="true"/>
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[3]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.06"/>
+      <value value="0.1"/>
+      <value value="0.2"/>
+      <value value="0.4"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SINGLE-Cost-constant-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="30"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-varying?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="constant">
+      <value value="1"/>
+      <value value="5"/>
+      <value value="10"/>
+      <value value="20"/>
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.2 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-varying?">
+      <value value="true"/>
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[3]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SINGLE-Resource-ratio-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="30"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-varying?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="false"/>
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="constant">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.5"/>
+      <value value="0.6"/>
+      <value value="0.7"/>
+      <value value="0.8"/>
+      <value value="0.9"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.2 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-varying?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[5]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.06"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SINGLE-Global-Influence-ratio-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="30"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.3"/>
+      <value value="0.7"/>
+      <value value="0.8"/>
+      <value value="0.9"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-varying?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="constant">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.2 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-varying?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[3]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.06"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SINGLE-Threshold-Cost-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="30"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.7"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-varying?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="constant">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.2 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-varying?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[3]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SINGLE-Threshold-Resource-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="30"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.7"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-varying?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="constant">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.8"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.2 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-varying?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[3]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SINGLE-Cost-Resource-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="30"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.7"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-varying?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="constant">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.8"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.2 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-varying?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[3]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SINGLE- Threshold-Cost-Resource-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="30"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.7"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-varying?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="constant">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.8"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.2 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-varying?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[3]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="SINGLE- Threshold-Cost-Resource-Global-vary-SVRS-threshold-avg" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="30"/>
+    <metric>utilization</metric>
+    <metric>max-utilization</metric>
+    <metric>total-adoption</metric>
+    <enumeratedValueSet variable="positive-effect-probability">
+      <value value="0.7"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="duration-model">
+      <value value="&quot;SIvRS&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-costs">
+      <value value="&quot;[0.5 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-sim-for-spread-based-seed-selection">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="threshold-varying?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="varying-available-resources">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-step">
+      <value value="145"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="constant">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-distribution">
+      <value value="&quot;uniform&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-network">
+      <value value="6547"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-samples-for-spread-estimation">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="global-influence?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="weekend-resource-availability">
+      <value value="0.8"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed-selection-algorithm">
+      <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-nodes">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-behaviors">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="rand-seed-threshold" first="4000" step="1" last="4999"/>
+    <enumeratedValueSet variable="behavior-recovered-duration">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="synchronized?">
+      <value value="false"/>
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-duration">
+      <value value="1967"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="final-ratio">
+      <value value="&quot;[1 1]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="matched-threshold?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="switching-cost?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-utilities">
+      <value value="&quot;[0.5 0.2 0.2]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="cost-varying?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-sd">
+      <value value="&quot;[0]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="total-num-seeds">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="benefit-of-inertia">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="behavior-durations-mean">
+      <value value="&quot;[3]&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rand-seed-resource">
+      <value value="3852"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="alpha">
+      <value value="0.2"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

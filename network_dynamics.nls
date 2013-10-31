@@ -276,8 +276,8 @@ end
 
 ;; turtle procedure to update thresholds
 to update-threshold
-  let alpha 0.4
-  let constant 10
+ ; let alpha 0.4
+  ;let constant 10
   ask turtles[
     if threshold-varying? [
       foreach behav-id-list [
@@ -304,10 +304,10 @@ end
 
 ;; turtle procedure to update costs
 to update-costs [behav-id]
-  let constant 10
+  ;let constant 10
   array:set tick-counter behav-id (array:item tick-counter behav-id + 1)   ;; increament the tick-counter by 1
     if cost-varying? [
-        let alpha 0.1;
+       ; let alpha 0.1;
         let temp-costs 0
         let base-cost (array:item costs-backup behav-id - alpha)
         set temp-costs  (alpha * exp ( 0 - (constant * array:item tick-counter behav-id) ) + base-cost )
