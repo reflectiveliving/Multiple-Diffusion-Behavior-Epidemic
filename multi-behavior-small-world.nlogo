@@ -1257,6 +1257,12 @@ NetLogo 5.0.3
     <enumeratedValueSet variable="positive-effect-probability">
       <value value="0.7"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
     </enumeratedValueSet>
@@ -1295,7 +1301,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1329,7 +1335,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1360,6 +1366,12 @@ NetLogo 5.0.3
       <value value="0.8"/>
       <value value="0.9"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
     </enumeratedValueSet>
@@ -1398,7 +1410,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1432,7 +1444,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1456,6 +1468,12 @@ NetLogo 5.0.3
     <metric>total-adoption</metric>
     <enumeratedValueSet variable="positive-effect-probability">
       <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
@@ -1497,7 +1515,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1532,7 +1550,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1559,6 +1577,12 @@ NetLogo 5.0.3
     <metric>total-adoption</metric>
     <enumeratedValueSet variable="positive-effect-probability">
       <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
@@ -1604,7 +1628,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1639,7 +1663,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1663,6 +1687,12 @@ NetLogo 5.0.3
     <metric>total-adoption</metric>
     <enumeratedValueSet variable="positive-effect-probability">
       <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
@@ -1709,7 +1739,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1744,7 +1774,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1772,6 +1802,12 @@ NetLogo 5.0.3
       <value value="0.8"/>
       <value value="0.9"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
     </enumeratedValueSet>
@@ -1812,7 +1848,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1846,7 +1882,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1871,6 +1907,12 @@ NetLogo 5.0.3
     <enumeratedValueSet variable="positive-effect-probability">
       <value value="0.7"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
     </enumeratedValueSet>
@@ -1911,7 +1953,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1945,7 +1987,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1970,6 +2012,12 @@ NetLogo 5.0.3
     <enumeratedValueSet variable="positive-effect-probability">
       <value value="0.7"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
     </enumeratedValueSet>
@@ -2010,7 +2058,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -2045,7 +2093,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -2070,6 +2118,12 @@ NetLogo 5.0.3
     <enumeratedValueSet variable="positive-effect-probability">
       <value value="0.7"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
     </enumeratedValueSet>
@@ -2110,7 +2164,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -2145,7 +2199,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -2170,6 +2224,12 @@ NetLogo 5.0.3
     <enumeratedValueSet variable="positive-effect-probability">
       <value value="0.7"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
     </enumeratedValueSet>
@@ -2210,7 +2270,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -2245,7 +2305,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -2270,6 +2330,12 @@ NetLogo 5.0.3
     <enumeratedValueSet variable="positive-effect-probability">
       <value value="0.7"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="rewiring-probability">
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="no-edges">
+      <value value="2"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="duration-model">
       <value value="&quot;SIvRS&quot;"/>
     </enumeratedValueSet>
@@ -2310,7 +2376,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -2345,7 +2411,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>

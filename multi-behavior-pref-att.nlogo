@@ -1301,7 +1301,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1335,7 +1335,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1404,7 +1404,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1438,7 +1438,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1503,7 +1503,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1538,7 +1538,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1610,7 +1610,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1645,7 +1645,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1715,7 +1715,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1750,7 +1750,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1818,7 +1818,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1852,7 +1852,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -1917,7 +1917,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -1951,7 +1951,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -2016,7 +2016,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -2051,7 +2051,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -2116,7 +2116,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -2151,7 +2151,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -2216,7 +2216,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -2251,7 +2251,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
@@ -2316,7 +2316,7 @@ NetLogo 5.0.3
       <value value="&quot;one-step-spread-hill-climbing-with-random-tie-breaking&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-nodes">
-      <value value="1000"/>
+      <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-behaviors">
       <value value="1"/>
@@ -2351,7 +2351,7 @@ NetLogo 5.0.3
       <value value="&quot;[0]&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="total-num-seeds">
-      <value value="100"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="benefit-of-inertia">
       <value value="0.2"/>
