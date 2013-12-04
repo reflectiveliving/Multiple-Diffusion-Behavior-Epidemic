@@ -15,7 +15,7 @@ to new-consider-SIvRS
     ifelse varying-available-resources [  
       array:set consider? ? ((array:item consider? ? and array:item state ? != "R") or (array:item state ? = "D") or (array:item state ? = "V"))
     ][
-    array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S"))
+    array:set consider? ? ((array:item consider? ?) and (array:item state ? = "S") or (array:item state ? = "V"))
     ]
   ]
 end

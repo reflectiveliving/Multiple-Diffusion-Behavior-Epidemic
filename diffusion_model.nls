@@ -111,9 +111,11 @@ to make-adoption-decision
     
     let opt knapsack-decide
     
-    if varying-available-resources [
+    if varying-available-resources  [
       reset-actives
     ]
+    
+    reset-actives
     
     foreach opt [
      array:set actives? ? true
@@ -143,13 +145,16 @@ to-report knapsack-decide
   
   let power-set compute-power-set consider-behav-list
   
+ ; print "power-set"
+ ; print power-set
+  
   let opt [] 
   let max-payoff 0
   
   foreach power-set [
    let $total-cost 0
    let $sum-list[] 
-   print $total-cost
+  ; print $total-cost
    
     ifelse cost-varying?[
       foreach ? [
@@ -166,8 +171,12 @@ to-report knapsack-decide
     ]
     
     
+   ; print "total cost" 
+   ; print $total-cost
+   ; print "remaining-res" 
+   ; print remaining-resource
     
-    if $total-cost <= remaining-resource [  ;; resource minus the used-resource because the used-resource is sticky  
+    ifelse ($total-cost < remaining-resource)[  ;; resource minus the used-resource because the used-resource is sticky  
       let $total-payoff 0
       let $sum-payoff[] 
       
@@ -183,11 +192,13 @@ to-report knapsack-decide
         set max-payoff $total-payoff
         set opt ?
       ]
+    ][
+   ; print "not adopted"
     ]
-    
-    print $total-cost
+        
   ]
-  
+ ; print "opt" 
+ ; print opt
   report opt
 end
 
