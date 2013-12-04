@@ -145,28 +145,47 @@ to-report knapsack-decide
   
   let opt [] 
   let max-payoff 0
+  
   foreach power-set [
-    let total-cost 0
+   let $total-cost 0
+   let $sum-list[] 
+   print $total-cost
+   
     ifelse cost-varying?[
       foreach ? [
-        set total-cost total-cost + (array:item costs ?)
-      ]]
-    [
-      foreach ? [
-        set total-cost total-cost + (array:item stable-costs ?)
+        set $sum-list fput (array:item costs ?) $sum-list 
       ]
+    ][
+      foreach ? [
+        set $sum-list fput (array:item stable-costs ?) $sum-list 
+      ]
+    ]  
+    
+    foreach $sum-list[
+      set $total-cost $total-cost + ?
     ]
     
-    if total-cost <= remaining-resource [  ;; resource minus the used-resource because the used-resource is sticky  
-      let total-payoff 0
+    
+    
+    if $total-cost <= remaining-resource [  ;; resource minus the used-resource because the used-resource is sticky  
+      let $total-payoff 0
+      let $sum-payoff[] 
+      
       foreach ? [
-        set total-payoff total-payoff + (array:item payoffs ?)
+        set $sum-payoff fput (array:item payoffs ?) $sum-payoff
       ]
-      if total-payoff > max-payoff [
-        set max-payoff total-payoff
+      
+      foreach $sum-payoff[
+        set $total-payoff $total-payoff + ?
+      ]
+      
+      if $total-payoff > max-payoff [
+        set max-payoff $total-payoff
         set opt ?
       ]
     ]
+    
+    print $total-cost
   ]
   
   report opt
