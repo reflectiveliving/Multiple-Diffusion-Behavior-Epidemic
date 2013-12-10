@@ -145,38 +145,26 @@ to-report knapsack-decide
   
   let power-set compute-power-set consider-behav-list
   
- ; print "power-set"
- ; print power-set
-  
   let opt [] 
   let max-payoff 0
   
   foreach power-set [
    let $total-cost 0
    let $sum-list[] 
-  ; print $total-cost
-   
+
     ifelse cost-varying?[
       foreach ? [
-        set $sum-list fput (array:item costs ?) $sum-list 
+        ;set $sum-list fput (array:item costs ?) $sum-list 
+        set $total-cost $total-cost + (array:item stable-costs ?)
       ]
     ][
       foreach ? [
-        set $sum-list fput (array:item stable-costs ?) $sum-list 
+        ;set $sum-list fput (array:item stable-costs ?) $sum-list 
+         set $total-cost $total-cost + (array:item costs ?)
       ]
     ]  
     
-    foreach $sum-list[
-      set $total-cost $total-cost + ?
-    ]
-    
-    
-   ; print "total cost" 
-   ; print $total-cost
-   ; print "remaining-res" 
-   ; print remaining-resource
-    
-    ifelse ($total-cost < remaining-resource)[  ;; resource minus the used-resource because the used-resource is sticky  
+    ifelse $total-cost <= remaining-resource[  ;; resource minus the used-resource because the used-resource is sticky  
       let $total-payoff 0
       let $sum-payoff[] 
       
@@ -193,12 +181,9 @@ to-report knapsack-decide
         set opt ?
       ]
     ][
-   ; print "not adopted"
     ]
         
   ]
- ; print "opt" 
- ; print opt
   report opt
 end
 
