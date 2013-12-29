@@ -40,6 +40,7 @@ to generic-setup [network-generation-task]
   set-state ;; set S,I,R state
   set-actives
   set-weight-sums
+  set-active-neighbors
   set-total-influence
   set-payoffs
   set-consider 

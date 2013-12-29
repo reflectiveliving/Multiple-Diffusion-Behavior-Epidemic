@@ -34,6 +34,7 @@ turtles-own
   thresholds-backup ;; this is a backup for thresholds
   
   actives?   ;; whether this agent is active or not for the particular behavior
+  active-neighbors ;; sum of the active neighbors
   weight-sums ;; used to sum up influence weight from active neighbors
   payoffs    ;; payoff from each of the the behaviors
   consider?  ;; boolean array for indicating whether a behavior will be considered for adoption or not
@@ -247,6 +248,13 @@ end
 to set-weight-sums
   ask turtles [
     set weight-sums array:from-list all-zeros
+  ]
+end
+
+; set active-neighbors for the behaviors to zero
+to set-active-neighbors
+  ask turtles [
+    set active-neighbors array:from-list all-zeros
   ]
 end
 

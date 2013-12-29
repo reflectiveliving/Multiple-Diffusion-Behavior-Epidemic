@@ -9,6 +9,7 @@ to go
   
   ;reset-roundActiveCounts
   reset-weight-sums
+  reset-active-neighbors
   reset-total-influence
   reset-consider 
   reset-payoffs
@@ -46,6 +47,12 @@ to reset-weight-sums
   ]
 end
 
+to reset-active-neighbors
+  ask turtles [
+    set active-neighbors array:from-list all-zeros
+  ]
+end
+
 to reset-total-influence
   set-total-influence
 end
@@ -74,6 +81,7 @@ to propagate-influence
         [
           ask my-links [
             influence myself ?
+            update-active-neighbors myself ?
           ]
         ]
     ]
@@ -94,6 +102,23 @@ to influence [influencer behav-id]
       ask end1 [
         let t array:item weight-sums behav-id
         array:set weight-sums behav-id ( t + weight )
+      ]
+    ]
+end
+
+
+;; link procedure; influencer influences the other end of the link; link procedure
+to update-active-neighbors [influencer behav-id]
+  ifelse end1 = influencer [
+      ask end2 [
+        let t array:item active-neighbors behav-id
+        array:set active-neighbors behav-id ( t + 1 )
+      ]
+    ]
+    [
+      ask end1 [
+        let t array:item active-neighbors behav-id
+        array:set active-neighbors behav-id ( t + 1 )
       ]
     ]
 end

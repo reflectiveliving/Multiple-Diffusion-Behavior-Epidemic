@@ -255,19 +255,19 @@ end
 
 to update-total-influence
   ask turtles [
-    ifelse global-influence? [
-      foreach behav-id-list [
-        ifelse array:item positive-global-effect? ? [
-          array:set total-influence ? (min (list (array:item weight-sums ? + array:item global-population ?) 1))
-        ]
-        [
-          array:set total-influence ? (max (list (array:item weight-sums ? - array:item global-population ?) 0))
-        ]
-      ]
-    ]
-    [
+   ; ifelse global-influence? [
+   ;   foreach behav-id-list [
+   ;     ifelse array:item positive-global-effect? ? [
+   ;       array:set total-influence ? (min (list (array:item weight-sums ? + array:item global-population ?) 1))
+   ;     ]
+   ;     [
+   ;       array:set total-influence ? (max (list (array:item weight-sums ? - array:item global-population ?) 0))
+   ;     ]
+   ;   ]
+   ; ]
+   ; [
       set total-influence array:from-list (array:to-list weight-sums)
-    ]
+   ; ]
   ]
 end  
   
