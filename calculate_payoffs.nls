@@ -20,7 +20,7 @@
 to calculate-payoffs
   let w 0.5
   let extra 0
-  let beta 0.9
+  let beta 0.99
   if switching-cost? [
     set extra benefit-of-inertia
   ]
@@ -38,7 +38,7 @@ to calculate-payoffs
       ]
     ][
     ;array:set payoffs ? w * (array:item utilities ? + extra) + (1 - w) * (array:item total-influence ?)
-    array:set payoffs ? array:item utilities ? * ( beta * array:item active-neighbors ?) 
+    array:set payoffs ? array:item utilities ? * array:item active-neighbors ?
     ]
     
   ]

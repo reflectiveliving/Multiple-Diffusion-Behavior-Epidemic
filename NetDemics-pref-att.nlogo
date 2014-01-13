@@ -663,7 +663,7 @@ SWITCH
 815
 global-influence?
 global-influence?
-0
+1
 1
 -1000
 
@@ -706,7 +706,7 @@ SWITCH
 812
 varying-available-resources
 varying-available-resources
-1
+0
 1
 -1000
 
@@ -768,7 +768,7 @@ INPUTBOX
 1749
 318
 behavior-durations-sd
-[1 1 1]
+[0 0 0]
 1
 0
 String
@@ -832,7 +832,7 @@ SWITCH
 866
 synchronized?
 synchronized?
-1
+0
 1
 -1000
 
@@ -845,7 +845,7 @@ weekend-resource-availability
 weekend-resource-availability
 0.29
 0.58
-0.4
+0.5
 0.1
 1
 NIL
